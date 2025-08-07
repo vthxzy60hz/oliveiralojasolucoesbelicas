@@ -334,6 +334,46 @@
             box-shadow: 0 5px 30px rgba(37, 211, 102, 0.7);
         }
         
+        .cart-btn {
+            position: fixed;
+            bottom: 7rem;
+            right: 2rem;
+            background: var(--destaque);
+            color: var(--preto);
+            width: 4.2rem;
+            height: 4.2rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        
+        .cart-btn:hover {
+            background: var(--destaque-brilho);
+            transform: scale(1.1);
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #ff4444;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
         @keyframes pulse {
             0% { transform: scale(1); }
             50% { transform: scale(1.1); }
@@ -349,12 +389,16 @@
                 font-size: 1.8rem;
             }
             
-            .whatsapp-btn {
+            .whatsapp-btn, .cart-btn {
                 width: 3.8rem;
                 height: 3.8rem;
                 font-size: 1.8rem;
                 bottom: 1.5rem;
                 right: 1.5rem;
+            }
+            
+            .cart-btn {
+                bottom: 6rem;
             }
         }
     </style>
@@ -377,37 +421,37 @@
             <h2>Catálogo</h2>
             
             <div class="produtos-grid">
-                <!-- Spray de Pimenta com sua imagem -->
+                <!-- Spray de Pimenta -->
                 <div class="produto">
                     <div class="produto-img">
                         <img src="https://i.imgur.com/7Gm6KBL.jpeg" alt="Spray de Pimenta">
                     </div>
                     <div class="produto-info">
-                        <h3>Spray de Pimenta</h3>
+                        <h3>Spray de Pimenta OSB</h3>
                         <p>Defesa pessoal com alcance de 3m, formulação UV marcadora e válvula anti-retorno.</p>
                         <span class="preco">R$ 129,00</span>
-                        <button class="btn-comprar">
+                        <button class="btn-comprar" onclick="addToCart('Spray de Pimenta OSB', 129.00, 'https://i.imgur.com/7Gm6KBL.jpeg')">
                             <i class="fas fa-shopping-cart"></i> Comprar
                         </button>
                     </div>
                 </div>
                 
-                <!-- Taser adicionado -->
+                <!-- Taser -->
                 <div class="produto">
                     <div class="produto-img">
-                        <img src="https://i.imgur.com/7JXTbLs.jpeg" alt="Taser de Defesa">
+                        <img src="https://i.imgur.com/placeholder-taser.jpg" alt="Taser de Defesa">
                     </div>
                     <div class="produto-info">
-                        <h3>Taser</h3>
+                        <h3>Taser OSB Defender</h3>
                         <p>Eletrochoque de 50.000V com segurança ativada por PIN e lanterna LED integrada.</p>
                         <span class="preco">R$ 117,90</span>
-                        <button class="btn-comprar">
+                        <button class="btn-comprar" onclick="addToCart('Taser OSB Defender', 117.90, 'https://i.imgur.com/placeholder-taser.jpg')">
                             <i class="fas fa-shopping-cart"></i> Comprar
                         </button>
                     </div>
                 </div>
                 
-                <!-- Demais produtos -->
+                <!-- Caneta Canivete -->
                 <div class="produto">
                     <div class="produto-img">
                         <img src="https://i.imgur.com/placeholder-canivete.jpg" alt="Caneta Canivete">
@@ -416,49 +460,52 @@
                         <h3>Caneta Canivete Tática</h3>
                         <p>Multifuncional com lâmina oculta, design discreto e corpo em alumínio aeronáutico.</p>
                         <span class="preco">R$ 34,90</span>
-                        <button class="btn-comprar">
+                        <button class="btn-comprar" onclick="addToCart('Caneta Canivete Tática', 34.90, 'https://i.imgur.com/placeholder-canivete.jpg')">
                             <i class="fas fa-shopping-cart"></i> Comprar
                         </button>
                     </div>
                 </div>
                 
+                <!-- Lanterna -->
                 <div class="produto">
                     <div class="produto-img">
                         <img src="https://i.imgur.com/placeholder-lanterna.jpg" alt="Lanterna Aegis">
                     </div>
                     <div class="produto-info">
                         <h3>Lanterna Aegis LP-08</h3>
-                        <p>800 lumens, resistente à água IPX8, 150 metros de alcance e duração de bateria de 2 horas de uso.</p>
+                        <p>1.200 lumens, resistente à água IPX8, zoom ajustável e corpo em liga de magnésio.</p>
                         <span class="preco">R$ 349,00</span>
-                        <button class="btn-comprar">
+                        <button class="btn-comprar" onclick="addToCart('Lanterna Aegis LP-08', 349.00, 'https://i.imgur.com/placeholder-lanterna.jpg')">
                             <i class="fas fa-shopping-cart"></i> Comprar
                         </button>
                     </div>
                 </div>
                 
+                <!-- Aegis TM-18F -->
                 <div class="produto">
                     <div class="produto-img">
                         <img src="https://i.imgur.com/placeholder-aegis.jpg" alt="Aegis TM-18F">
                     </div>
                     <div class="produto-info">
                         <h3>Aegis TM-18F</h3>
-                        <p>Lanterna de mão de 1800 lúmens, resistente à água IPX6, 200 metros de alcance e duração de bateria de 18 horas de uso.</p>
+                        <p>Eletrochoque de 18 milhões de volts com lanterna LED e sistema de segurança tripla.</p>
                         <span class="preco">R$ 549,00</span>
-                        <button class="btn-comprar">
+                        <button class="btn-comprar" onclick="addToCart('Aegis TM-18F', 549.00, 'https://i.imgur.com/placeholder-aegis.jpg')">
                             <i class="fas fa-shopping-cart"></i> Comprar
                         </button>
                     </div>
                 </div>
                 
+                <!-- Blackbird -->
                 <div class="produto">
                     <div class="produto-img">
                         <img src="https://i.imgur.com/placeholder-blackbird.jpg" alt="Blackbird">
                     </div>
                     <div class="produto-info">
                         <h3>Blackbird</h3>
-                        <p>Lanterna de caça de 2 mil lúmens, resistente à água IPX4, 300 metros de alcance e duração de bateria de 4 horas de uso.</p>
+                        <p>Faca tática full tang com lâmina em aço D2 (62 HRC) e cabo em micarta texturizado.</p>
                         <span class="preco">R$ 419,00</span>
-                        <button class="btn-comprar">
+                        <button class="btn-comprar" onclick="addToCart('Blackbird', 419.00, 'https://i.imgur.com/placeholder-blackbird.jpg')">
                             <i class="fas fa-shopping-cart"></i> Comprar
                         </button>
                     </div>
@@ -488,8 +535,58 @@
         </div>
     </footer>
     
+    <!-- Botão do Carrinho -->
+    <a href="cart.html" class="cart-btn" id="cart-btn">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count" id="cart-count">0</span>
+    </a>
+    
+    <!-- Botão do WhatsApp -->
     <a href="https://wa.me/555496768112" class="whatsapp-btn" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
+
+    <script>
+        // Função para adicionar ao carrinho
+        function addToCart(productName, productPrice, productImage) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            
+            // Verifica se o produto já está no carrinho
+            const existingItem = cart.find(item => item.name === productName);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    name: productName,
+                    price: productPrice,
+                    image: productImage,
+                    quantity: 1
+                });
+            }
+            
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+            
+            // Feedback visual
+            const btn = event.target;
+            btn.innerHTML = '<i class="fas fa-check"></i> Adicionado';
+            btn.style.background = 'linear-gradient(90deg, #25D366, #128C7E)';
+            setTimeout(() => {
+                btn.innerHTML = '<i class="fas fa-shopping-cart"></i> Comprar';
+                btn.style.background = 'linear-gradient(90deg, var(--destaque), var(--cinza-claro))';
+            }, 2000);
+        }
+        
+        // Atualiza o contador do carrinho
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            document.getElementById('cart-count').textContent = totalItems;
+        }
+        
+        // Atualiza ao carregar a página
+        document.addEventListener('DOMContentLoaded', updateCartCount);
+    </script>
 </body>
 </html>
