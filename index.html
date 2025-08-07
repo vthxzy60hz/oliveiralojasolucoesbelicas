@@ -12,9 +12,10 @@
             --cinza: #333333;
             --cinza-claro: #666666;
             --branco: #F0F0F0;
-            --azul-neon: rgba(0, 120, 215, 0.7); /* Azul mais militar */
+            --azul-neon: rgba(0, 120, 215, 0.7);
             --azul-neon-solid: #0078D7;
-            --destaque: #FF6B00; /* Laranja para contrastes */
+            --destaque: #C0C0C0; /* Cinza neon substituindo o laranja */
+            --destaque-brilho: #E0E0E0; /* Tom mais claro para efeitos */
         }
         
         * {
@@ -31,7 +32,6 @@
             overflow-x: hidden;
         }
         
-        /* Efeito de padrão tático sutil */
         body::before {
             content: "";
             position: fixed;
@@ -62,7 +62,7 @@
             left: 50%;
             transform: translateX(-50%);
             background: var(--destaque);
-            color: black;
+            color: var(--preto);
             padding: 0.2rem 1rem;
             font-size: 0.7rem;
             font-weight: bold;
@@ -217,6 +217,7 @@
             font-weight: bold;
             font-size: 1.5rem;
             margin: 1.2rem 0;
+            text-shadow: 0 0 8px rgba(192, 192, 192, 0.3);
         }
         
         .btn-comprar {
@@ -224,8 +225,8 @@
             align-items: center;
             justify-content: center;
             gap: 0.7rem;
-            background: linear-gradient(90deg, var(--destaque), #CC5200);
-            color: black;
+            background: linear-gradient(90deg, var(--destaque), var(--cinza-claro));
+            color: var(--preto);
             padding: 0.9rem 1.8rem;
             text-decoration: none;
             border-radius: 4px;
@@ -240,8 +241,8 @@
         }
         
         .btn-comprar:hover {
-            background: linear-gradient(90deg, #FF7B00, var(--destaque));
-            box-shadow: 0 0 15px rgba(255, 107, 0, 0.6);
+            background: linear-gradient(90deg, var(--destaque-brilho), var(--destaque));
+            box-shadow: 0 0 15px rgba(192, 192, 192, 0.6);
         }
         
         .disclaimer {
@@ -339,7 +340,6 @@
             100% { transform: scale(1); }
         }
         
-        /* Responsividade */
         @media (max-width: 768px) {
             .produtos-grid {
                 grid-template-columns: 1fr;
@@ -379,12 +379,12 @@
             <div class="produtos-grid">
                 <div class="produto">
                     <div class="produto-img">
-                        <img src="https://i.imgur.com/placeholder-spray.jpg" alt="Spray de Pimenta Tático">
+                        <img src="https://i.imgur.com/placeholder-spray.jpg" alt="Spray de Pimenta">
                     </div>
                     <div class="produto-info">
-                        <h3>Spray de Pimenta OSB-9</h3>
-                        <p>Defesa pessoal com alcance ampliado, marcador UV e válvula anti-retorno.</p>
-                        <span class="preco">R$ 97,90</span>
+                        <h3>Spray de Pimenta OSB</h3>
+                        <p>Defesa pessoal com alcance de 3m, formulação UV marcadora e jato em cone.</p>
+                        <span class="preco">R$ 129,00</span>
                         <button class="btn-comprar">
                             <i class="fas fa-shopping-cart"></i> Comprar
                         </button>
@@ -393,12 +393,12 @@
                 
                 <div class="produto">
                     <div class="produto-img">
-                        <img src="https://i.imgur.com/placeholder-taser.jpg" alt="Taser de Defesa">
+                        <img src="https://i.imgur.com/placeholder-canivete.jpg" alt="Caneta Canivete">
                     </div>
                     <div class="produto-info">
-                        <h3>Taser OSB-X12</h3>
-                        <p>Eletrochoque de alta potência com sistema de segurança tripla e lanterna tática.</p>
-                        <span class="preco">R$ 379,90</span>
+                        <h3>Caneta Canivete Tática</h3>
+                        <p>Multifuncional com lâmina oculta, design discreto e corpo em alumínio aeronáutico.</p>
+                        <span class="preco">R$ 34,90</span>
                         <button class="btn-comprar">
                             <i class="fas fa-shopping-cart"></i> Comprar
                         </button>
@@ -407,12 +407,12 @@
                 
                 <div class="produto">
                     <div class="produto-img">
-                        <img src="https://i.imgur.com/placeholder-coldre.jpg" alt="Coldre Tático">
+                        <img src="https://i.imgur.com/placeholder-lanterna.jpg" alt="Lanterna Aegis">
                     </div>
                     <div class="produto-info">
-                        <h3>Coldre OSB Phantom</h3>
-                        <p>Cordura 1000D com sistema de ajuste rápido e proteção contra umidade.</p>
-                        <span class="preco">R$ 179,90</span>
+                        <h3>Lanterna Aegis LP-08</h3>
+                        <p>1.200 lumens, resistente à água IPX8, zoom ajustável e corpo em liga de magnésio.</p>
+                        <span class="preco">R$ 349,00</span>
                         <button class="btn-comprar">
                             <i class="fas fa-shopping-cart"></i> Comprar
                         </button>
@@ -421,12 +421,26 @@
                 
                 <div class="produto">
                     <div class="produto-img">
-                        <img src="https://i.imgur.com/placeholder-faca.jpg" alt="Faca Tática">
+                        <img src="https://i.imgur.com/placeholder-taser.jpg" alt="Taser Aegis">
                     </div>
                     <div class="produto-info">
-                        <h3>Faca OSB Raven</h3>
-                        <p>Lâmina em aço D2 (62 HRC) com tratamento anti-reflexo e cabo em G10.</p>
-                        <span class="preco">R$ 249,90</span>
+                        <h3>Aegis TM-18F</h3>
+                        <p>Eletrochoque de 18 milhões de volts com lanterna LED e sistema de segurança tripla.</p>
+                        <span class="preco">R$ 549,00</span>
+                        <button class="btn-comprar">
+                            <i class="fas fa-shopping-cart"></i> Comprar
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="produto">
+                    <div class="produto-img">
+                        <img src="https://i.imgur.com/placeholder-blackbird.jpg" alt="Blackbird">
+                    </div>
+                    <div class="produto-info">
+                        <h3>Blackbird</h3>
+                        <p>Faca tática full tang com lâmina em aço D2 (62 HRC) e cabo em micarta texturizado.</p>
+                        <span class="preco">R$ 419,00</span>
                         <button class="btn-comprar">
                             <i class="fas fa-shopping-cart"></i> Comprar
                         </button>
@@ -435,7 +449,7 @@
             </div>
             
             <div class="disclaimer">
-                <p><strong>AVISO LEGAL IMPORTANTE:</strong> Todos os produtos Oliveira Soluções Bélicas são comercializados em estrita conformidade com a legislação brasileira. A compra está condicionada à apresentação de documentação válida quando exigido por lei. Consulte as regulamentações específicas do seu estado/município.</p>
+                <p><strong>AVISO LEGAL IMPORTANTE:</strong> Todos os produtos Oliveira Soluções Bélicas são comercializados em estrita conformidade com a legislação brasileira. A compra está condicionada à apresentação de documentação válida quando exigido por lei.</p>
             </div>
         </section>
     </main>
@@ -452,7 +466,7 @@
                     <a href="#"><i class="fab fa-youtube"></i></a>
                 </div>
                 <p>&copy; 2024 Oliveira Soluções Bélicas. Todos os direitos reservados.</p>
-                <p>WhatsApp: <strong>(54) 9676-8112</strong>
+                <p>WhatsApp: <strong>(54) 9676-8112</strong></p>
             </div>
         </div>
     </footer>
