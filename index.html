@@ -1,62 +1,70 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Oliveira | Soluções Bélicas</title>
-  <link rel="stylesheet" href="style.css"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OLIVEIRA | Soluções Bélicas</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <img src="logo.jpg" alt="Logo Oliveira" class="logo" />
-    <nav>
-      <ul>
-        <li><a href="#produtos">Produtos</a></li>
-        <li><a href="#carrinho">Carrinho</a></li>
-        <li><a href="#contato">Contato</a></li>
-      </ul>
-    </nav>
-  </header>
+    <!-- Navbar -->
+    <header>
+        <div class="logo">
+            <img src="imagens/logo-igor.jpg" alt="OLIVEIRA Soluções Bélicas">
+        </div>
+        <nav>
+            <a href="#produtos">Produtos</a>
+            <a href="#vantagens">Vantagens</a>
+            <a href="#contato">Contato</a>
+        </nav>
+    </header>
 
-  <section class="hero">
-    <h1>Bem-vindo à Oliveira</h1>
-    <p>Soluções bélicas com qualidade, precisão e confiança.</p>
-  </section>
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>SOLUÇÕES BÉLICAS DE ALTO IMPACTO</h1>
+        <p>Equipamentos militares e estratégia para operações de elite.</p>
+        <a href="#contato" class="btn">FALE CONOSCO</a>
+    </section>
 
-  <section id="produtos" class="produtos">
-    <h2>Produtos em Destaque</h2>
-    
-    <div class="produto" data-id="1" data-nome="Coldre Tático" data-preco="199.90">
-      <img src="https://via.placeholder.com/200x200.png?text=Coldre+T%C3%A1tico" alt="Coldre Tático" />
-      <h3>Coldre Tático</h3>
-      <p>Ideal para uso profissional e esportivo.</p>
-      <span class="preco">R$ 199,90</span>
-      <button class="btn-comprar">Adicionar ao carrinho</button>
-    </div>
+    <!-- Produtos -->
+    <section id="produtos" class="produtos">
+        <h2>NOSSOS PRODUTOS</h2>
+        <div class="grid-produtos">
+            <div class="item">
+                <h3>Armamento Pesado</h3>
+                <p>Precisão e poder para qualquer cenário.</p>
+            </div>
+            <div class="item">
+                <h3>Equipamentos Táticos</h3>
+                <p>Proteção e mobilidade em missões críticas.</p>
+            </div>
+            <div class="item">
+                <h3>Treinamento Especializado</h3>
+                <p>Capacitação com instrutores de elite.</p>
+            </div>
+        </div>
+    </section>
 
-    <div class="produto" data-id="2" data-nome="Camisa Militar" data-preco="99.90">
-      <img src="https://via.placeholder.com/200x200.png?text=Camisa+Militar" alt="Camisa Militar" />
-      <h3>Camisa Militar</h3>
-      <p>Confortável, resistente e estilosa.</p>
-      <span class="preco">R$ 99,90</span>
-      <button class="btn-comprar">Adicionar ao carrinho</button>
-    </div>
-  </section>
+    <!-- Depoimentos -->
+    <section class="depoimentos">
+        <h2>QUEM CONTRATA, APROVA</h2>
+        <div class="depoimento-card">
+            <p>"A Oliveira entregou soluções que mudaram o jogo em nossa operação."</p>
+            <span>— Capitão Silva, Forças Especiais</span>
+        </div>
+    </section>
 
-  <section id="carrinho" class="carrinho">
-    <h2>Seu Carrinho</h2>
-    <ul id="lista-carrinho"></ul>
-    <p id="total-carrinho">Total: R$ 0,00</p>
-    <a id="whatsapp-link" href="#" target="_blank" class="btn-finalizar">Finalizar pelo WhatsApp</a>
-  </section>
+    <!-- CTA Final -->
+    <section id="contato" class="cta">
+        <h2>PRONTO PARA ELEVAR SUA OPERAÇÃO?</h2>
+        <a href="#" class="btn">SOLICITE UM ORÇAMENTO</a>
+    </section>
 
-  <section id="contato" class="contato">
-    <h2>Fale Conosco</h2>
-    <p>Estamos à disposição pelo WhatsApp. Clique no botão flutuante.</p>
-  </section>
+    <!-- Footer -->
+    <footer>
+        <p>© 2024 OLIVEIRA SOLUÇÕES BÉLICAS. Todos os direitos reservados.</p>
+    </footer>
 
-  <a href="https://wa.me/5599999999999" class="whatsapp-icon" target="_blank">📱</a>
-
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
