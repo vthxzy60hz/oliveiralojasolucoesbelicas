@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentação | Oliveira Soluções Bélicas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --preto: #0A0A0A;
+            --cinza-escuro: #1A1A1A;
+            --cinza: #333333;
+            --cinza-claro: #666666;
+            --branco: #F0F0F0;
+            --azul: #0078D7;
+            --destaque: #C0C0C0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--preto);
+            color: var(--branco);
+            line-height: 1.7;
+        }
+
+        header {
+            background: linear-gradient(to bottom, var(--cinza-escuro), var(--preto));
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--destaque);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .logo i {
+            font-size: 2.5rem;
+            color: var(--destaque);
+        }
+
+        h1 {
+            font-size: 2rem;
+            text-transform: uppercase;
+        }
+
+        .doc-section {
+            background: var(--cinza-escuro);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--azul);
+        }
+
+        h2 {
+            color: var(--destaque);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        ul, ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        .doc-img {
+            max-width: 100%;
+            border-radius: 6px;
+            margin: 1.5rem 0;
+            border: 1px solid var(--cinza);
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--destaque);
+            color: var(--preto);
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            z-index: 100;
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-file-alt"></i>
+                <h1>DOCUMENTAÇÃO BÉLICA</h1>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="nav-buttons">
+            <a href="index.html" class="btn"><i class="fas fa-home"></i> Início</a>
+            <a href="loja.html" class="btn"><i class="fas fa-store"></i> Loja</a>
+        </div>
+
+        <div class="doc-section">
+            <h2><i class="fas fa-clipboard-check"></i> Requisitos para Posse</h2>
+            <p>Para dar entrada no processo de posse de arma de fogo no Brasil, você precisa:</p>
+            <ul>
+                <li>Ter no mínimo 25 anos</li>
+                <li>Não possuir antecedentes criminais</li>
+                <li>Comprovar ocupação lícita</li>
+                <li>Realizar curso de manuseio</li>
+                <li>Atestado psicológico</li>
+            </ul>
+            <!-- Substitua pela sua imagem real -->
+            <img src="https://i.imgur.com/placeholder-doc1.jpg" alt="Documentos necessários" class="doc-img">
+        </div>
+
+        <div class="doc-section">
+            <h2><i class="fas fa-tasks"></i> Passo a Passo</h2>
+            <ol>
+                <li>Curso de manejo (20 horas)</li>
+                <li>Exames psicológicos</li>
+                <li>Protocolo na Polícia Federal</li>
+                <li>Aprovação do SINARM</li>
+                <li>Compra do armamento</li>
+            </ol>
+        </div>
+
+        <div class="doc-section">
+            <h2><i class="fas fa-gavel"></i> Legislação Atual</h2>
+            <p>Principais pontos da legislação vigente:</p>
+            <ul>
+                <li>Posse permitida para até 4 armas</li>
+                <li>Porte restrito a categorias específicas</li>
+                <li>Calibre máximo .380 para posse comum</li>
+                <li>Recadastramento a cada 5 anos</li>
+            </ul>
+        </div>
+    </div>
+
+    <a href="https://wa.me/555496768112" class="whatsapp-btn" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Adicione scripts JS aqui se necessário
+        console.log("Página de documentação carregada");
+    </script>
+</body>
+</html>
