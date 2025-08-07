@@ -1,0 +1,115 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #1A1A1A;
+  color: white;
+}
+
+header {
+  background-color: #0F0F0F;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em 2em;
+}
+
+.logo {
+  height: 50px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.hero {
+  text-align: center;
+  padding: 4em 2em;
+  background: #2D2D2D;
+}
+
+.produtos {
+  padding: 2em;
+  display: flex;
+  gap: 2em;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.produto {
+  background: #2D2D2D;
+  padding: 1em;
+  border-radius: 10px;
+  text-align: center;
+  width: 220px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.produto img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.produto .preco {
+  display: block;
+  margin: 10px 0;
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
+.produto button {
+  background: #ffffff;
+  color: #000;
+  border: none;
+  padding: 0.6em 1em;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.carrinho {
+  padding: 2em;
+  background: #111;
+}
+
+.carrinho ul {
+  list-style: none;
+  padding: 0;
+}
+
+.carrinho li {
+  margin: 10px 0;
+  background: #222;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.btn-finalizar {
+  display: inline-block;
+  margin-top: 15px;
+  background: #25D366;
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.whatsapp-icon {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #25D366;
+  color: white;
+  font-size: 24px;
+  padding: 10px 15px;
+  border-radius: 50%;
+  text-decoration: none;
+}
