@@ -3,116 +3,197 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OLIVEIRA | Soluções Bélicas</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Orbitron:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <title>Defesa Pro - Equipamentos Táticos</title>
+    <style>
+        /* Cores e estilo minimalista */
+        :root {
+            --preto: #121212;
+            --cinza-escuro: #2A2A2A;
+            --cinza: #555555;
+            --branco: #F5F5F5;
+        }
+        
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--branco);
+            color: var(--preto);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--preto);
+            color: var(--branco);
+            padding: 20px 0;
+            text-align: center;
+        }
+        
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 2.2em;
+        }
+        
+        h2 {
+            color: var(--cinza-escuro);
+            border-bottom: 2px solid var(--cinza);
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+        
+        .produto {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .produto img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto 15px;
+            border-radius: 3px;
+        }
+        
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .whatsapp-btn:hover {
+            background-color: #128C7E;
+            transform: scale(1.1);
+        }
+        
+        .btn-comprar {
+            display: inline-block;
+            background-color: var(--preto);
+            color: var(--branco);
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .btn-comprar:hover {
+            background-color: var(--cinza-escuro);
+        }
+        
+        footer {
+            background-color: var(--preto);
+            color: var(--branco);
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+        
+        .disclaimer {
+            color: #FF4444;
+            font-size: 0.9em;
+            font-weight: bold;
+            margin-top: 30px;
+            padding: 10px;
+            border: 1px solid #FF4444;
+            border-radius: 5px;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+            }
+            
+            .whatsapp-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 25px;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Navbar -->
     <header>
-        <div class="logo">
-            <a href="#">
-                <img src="logo-igor.jpg" alt="OLIVEIRA Soluções Bélicas" width="180" loading="lazy">
-            </a>
+        <div class="container">
+            <h1>Defesa Pro</h1>
+            <p>Equipamentos Táticos Profissionais</p>
         </div>
-        <nav>
-            <a href="#produtos">Produtos</a>
-            <a href="#vantagens">Vantagens</a>
-            <a href="#contato">Contato</a>
-        </nav>
-        <button class="menu-mobile" aria-label="Menu mobile">☰</button>
     </header>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>SOLUÇÕES BÉLICAS DE ALTO IMPACTO</h1>
-            <p>Tecnologia militar de ponta para operações estratégicas</p>
-            <a href="#contato" class="btn pulse">FALE CONOSCO</a>
-        </div>
-    </section>
-
-    <!-- Produtos -->
-    <section id="produtos" class="section-dark">
-        <div class="container">
-            <h2>NOSSOS PRODUTOS</h2>
-            <div class="grid-produtos">
-                <div class="item card-hover">
-                    <h3>Armamento Pesado</h3>
-                    <p>Precisão e poder para qualquer cenário de combate.</p>
-                </div>
-                <div class="item card-hover">
-                    <h3>Equipamentos Táticos</h3>
-                    <p>Proteção e mobilidade em missões críticas.</p>
-                </div>
-                <div class="item card-hover">
-                    <h3>Treinamento Especializado</h3>
-                    <p>Capacitação com instrutores de forças especiais.</p>
-                </div>
+    
+    <div class="container">
+        <section id="produtos">
+            <h2>Nossos Produtos</h2>
+            
+            <div class="produto">
+                <h3>Spray de Pimenta</h3>
+                <img src="URL_DA_IMAGEM_SPRAY" alt="Spray de Pimenta">
+                <p>Defesa pessoal compacta com alcance de até 3 metros. Formulação não inflamável.</p>
+                <a href="#" class="btn-comprar">Comprar</a>
             </div>
-        </div>
-    </section>
-
-    <!-- Vantagens -->
-    <section id="vantagens" class="section-light">
-        <div class="container">
-            <h2>PORQUE ESCOLHER A OLIVEIRA</h2>
-            <div class="vantagens-grid">
-                <div class="vantagem-item">
-                    <h3>10+ Anos</h3>
-                    <p>De experiência no mercado bélico</p>
-                </div>
-                <div class="vantagem-item">
-                    <h3>100%</h3>
-                    <p>De aprovação em operações críticas</p>
-                </div>
-                <div class="vantagem-item">
-                    <h3>24/7</h3>
-                    <p>Suporte especializado</p>
-                </div>
+            
+            <div class="produto">
+                <h3>Taser</h3>
+                <img src="URL_DA_IMAGEM_TASER" alt="Taser de Defesa">
+                <p>Dispositivo de eletrochoque com segurança integrada e design ergonômico.</p>
+                <a href="#" class="btn-comprar">Comprar</a>
             </div>
-        </div>
-    </section>
-
-    <!-- Depoimentos -->
-    <section class="depoimentos">
-        <div class="container">
-            <h2>QUEM CONTRATA, APROVA</h2>
-            <div class="depoimento-card card-hover">
-                <p>"A Oliveira entregou soluções que mudaram completamente o resultado de nossa operação. Equipamentos impecáveis e suporte técnico excepcional."</p>
-                <span>— Capitão Silva, Forças Especiais</span>
+            
+            <div class="produto">
+                <h3>Coldre Tático</h3>
+                <img src="URL_DA_IMAGEM_COLDRE" alt="Coldre Tático">
+                <p>Material resistente à água, ajustável e compatível com diversos modelos.</p>
+                <a href="#" class="btn-comprar">Comprar</a>
             </div>
+            
+            <div class="produto">
+                <h3>Facas Táticas</h3>
+                <img src="URL_DA_IMAGEM_FACA" alt="Faca Tática">
+                <p>Lâmina em aço inoxidável, cabo antiderrapante e bainha durável.</p>
+                <a href="#" class="btn-comprar">Comprar</a>
+            </div>
+        </section>
+        
+        <div class="disclaimer">
+            Venda condicionada à legislação vigente. Consulte as regulamentações locais.
         </div>
-    </section>
-
-    <!-- CTA Final -->
-    <section id="contato" class="cta">
-        <div class="container">
-            <h2>PRONTO PARA ELEVAR SUA OPERAÇÃO?</h2>
-            <p>Entre em contato para um orçamento personalizado</p>
-            <a href="#" class="btn">SOLICITE UM ORÇAMENTO</a>
-        </div>
-    </section>
-
-    <!-- Footer -->
+    </div>
+    
     <footer>
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <img src="logo-igor.jpg" alt="OLIVEIRA Soluções Bélicas" width="120">
-                </div>
-                <div class="footer-links">
-                    <a href="#">Termos de Serviço</a>
-                    <a href="#">Política de Privacidade</a>
-                    <a href="#">Contato</a>
-                </div>
-            </div>
-            <p class="copyright">© 2024 OLIVEIRA SOLUÇÕES BÉLICAS. Todos os direitos reservados.</p>
+            <p>&copy; 2024 Defesa Pro. Todos os direitos reservados.</p>
+            <p>WhatsApp: (XX) XXXX-XXXX</p>
         </div>
     </footer>
-
-    <script src="script.js"></script>
+    
+    <!-- Botão do WhatsApp -->
+    <a href="https://wa.me/SEUNUMERO" class="whatsapp-btn" target="_blank">
+        <span style="margin-top: 5px;">💬</span>
+    </a>
 </body>
 </html>
