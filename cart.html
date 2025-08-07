@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho | Oliveira Soluções Bélicas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --preto: #0A0A0A;
+            --cinza-escuro: #1A1A1A;
+            --cinza: #333333;
+            --cinza-claro: #666666;
+            --branco: #F0F0F0;
+            --azul-neon: rgba(0, 120, 215, 0.7);
+            --azul-neon-solid: #0078D7;
+            --destaque: #C0C0C0;
+            --destaque-brilho: #E0E0E0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Roboto', sans-serif;
+        }
+        
+        body {
+            background-color: var(--preto);
+            color: var(--branco);
+            line-height: 1.7;
+        }
+        
+        /* Header igual ao site principal */
+        header {
+            background: linear-gradient(to bottom, var(--cinza-escuro), var(--preto));
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--destaque);
+            position: relative;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .logo-icon {
+            color: var(--destaque);
+            font-size: 2.8rem;
+        }
+        
+        h1 {
+            font-size: 2.3rem;
+            color: var(--branco);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Estilos específicos do carrinho */
+        .cart-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--cinza);
+            padding-bottom: 1rem;
+        }
+        
+        .cart-items {
+            margin-bottom: 2rem;
+        }
+        
+        .cart-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid var(--cinza);
+            position: relative;
+        }
+        
+        .cart-item img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            margin-right: 1rem;
+            border-radius: 4px;
+        }
+        
+        .item-details {
+            flex-grow: 1;
+        }
+        
+        .item-price {
+            font-weight: bold;
+            color: var(--destaque);
+            font-size: 1.2rem;
+        }
+        
+        .item-quantity {
+            display: flex;
+            align-items: center;
+            margin: 0.5rem 0;
+        }
+        
+        .quantity-btn {
+            background: var(--cinza);
+            border: none;
+            color: white;
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+        
+        .quantity-input {
+            width: 40px;
+            text-align: center;
+            margin: 0 0.5rem;
+            background: transparent;
+            color: white;
+            border: 1px solid var(--cinza);
+            border-radius: 3px;
+        }
+        
+        .remove-item {
+            color: #ff4444;
+            cursor: pointer;
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .cart-summary {
+            background: var(--cinza-escuro);
+            padding: 1.5rem;
+            border-radius: 5px;
+            margin-top: 2rem;
+        }
+        
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .checkout-btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--destaque);
+            color: black;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-radius: 4px;
+            font-size: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .checkout-btn:hover {
+            background: var(--destaque-brilho);
+        }
+        
+        .empty-cart-message {
+            text-align: center;
+            padding: 3rem 0;
+        }
+        
+        .btn-comprar {
+            display: inline-block;
+            background: var(--destaque);
+            color: black;
+            padding: 0.8rem 1.5rem;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+        
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .cart-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .cart-item img {
+                margin-bottom: 1rem;
+            }
+            
+            .remove-item {
+                top: auto;
+                bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-crosshairs"></i>
+                </div>
+                <h1>OLIVEIRA SOLUÇÕES BÉLICAS</h1>
+            </div>
+        </div>
+    </header>
+
+    <main class="cart-container">
+        <div class="cart-header">
+            <h2><i class="fas fa-shopping-cart"></i> Seu Carrinho</h2>
+            <a href="index.html" class="btn-comprar">← Continuar comprando</a>
+        </div>
+
+        <div class="cart-items" id="cart-items">
+            <!-- Itens serão inseridos pelo JavaScript -->
+        </div>
+
+        <div class="cart-summary" id="cart-summary">
+            <div class="summary-row">
+                <span>Subtotal:</span>
+                <span id="subtotal">R$ 0,00</span>
+            </div>
+            <div class="summary-row">
+                <span>Frete:</span>
+                <span id="shipping">Calcular</span>
+            </div>
+            <div class="summary-row">
+                <strong>Total:</strong>
+                <strong id="total">R$ 0,00</strong>
+            </div>
+            <button class="checkout-btn" id="checkout-btn">Finalizar Compra</button>
+        </div>
+    </main>
+
+    <script>
+        // Carrinho de compras - Funcionalidades completas
+        document.addEventListener('DOMContentLoaded', function() {
+            // Recupera o carrinho do localStorage
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartItemsContainer = document.getElementById('cart-items');
+            const subtotalElement = document.getElementById('subtotal');
+            const totalElement = document.getElementById('total');
+            const checkoutBtn = document.getElementById('checkout-btn');
+
+            // Atualiza a exibição do carrinho
+            function updateCartDisplay() {
+                cartItemsContainer.innerHTML = '';
+                
+                if (cart.length === 0) {
+                    cartItemsContainer.innerHTML = `
+                        <div class="empty-cart-message">
+                            <p>Seu carrinho está vazio</p>
+                            <a href="index.html" class="btn-comprar">Voltar às compras</a>
+                        </div>
+                    `;
+                    document.getElementById('cart-summary').style.display = 'none';
+                    return;
+                }
+                
+                document.getElementById('cart-summary').style.display = 'block';
+                
+                let subtotal = 0;
+                
+                cart.forEach((item, index) => {
+                    const itemTotal = item.price * item.quantity;
+                    subtotal += itemTotal;
+                    
+                    const cartItemElement = document.createElement('div');
+                    cartItemElement.className = 'cart-item';
+                    cartItemElement.innerHTML = `
+                        <img src="${item.image}" alt="${item.name}">
+                        <div class="item-details">
+                            <h3>${item.name}</h3>
+                            <div class="item-price">R$ ${item.price.toFixed(2).replace('.', ',')}</div>
+                            <div class="item-quantity">
+                                <button class="quantity-btn" data-index="${index}" data-action="decrease">-</button>
+                                <input type="number" class="quantity-input" value="${item.quantity}" min="1" data-index="${index}">
+                                <button class="quantity-btn" data-index="${index}" data-action="increase">+</button>
+                            </div>
+                        </div>
+                        <span class="remove-item" data-index="${index}"><i class="fas fa-trash"></i></span>
+                    `;
+                    
+                    cartItemsContainer.appendChild(cartItemElement);
+                });
+                
+                subtotalElement.textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
+                totalElement.textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
+            }
+            
+            // Eventos de clique
+            cartItemsContainer.addEventListener('click', function(e) {
+                // Botão de remover item
+                if (e.target.closest('.remove-item')) {
+                    const index = e.target.closest('.remove-item').getAttribute('data-index');
+                    cart.splice(index, 1);
+                    saveCart();
+                }
+                
+                // Botões de quantidade
+                if (e.target.classList.contains('quantity-btn')) {
+                    const index = e.target.getAttribute('data-index');
+                    const action = e.target.getAttribute('data-action');
+                    
+                    if (action === 'increase') {
+                        cart[index].quantity += 1;
+                    } else if (action === 'decrease' && cart[index].quantity > 1) {
+                        cart[index].quantity -= 1;
+                    }
+                    
+                    saveCart();
+                }
+            });
+            
+            // Atualiza quantidade quando alterada manualmente
+            cartItemsContainer.addEventListener('change', function(e) {
+                if (e.target.classList.contains('quantity-input')) {
+                    const index = e.target.getAttribute('data-index');
+                    const newQuantity = parseInt(e.target.value);
+                    
+                    if (newQuantity > 0) {
+                        cart[index].quantity = newQuantity;
+                        saveCart();
+                    } else {
+                        e.target.value = cart[index].quantity;
+                    }
+                }
+            });
+            
+            // Botão de finalizar compra
+            checkoutBtn.addEventListener('click', function() {
+                alert('Compra finalizada! Redirecionando para o WhatsApp...');
+                // Aqui você pode adicionar a lógica para enviar o pedido por WhatsApp
+                const message = `Olá, gostaria de comprar:\n\n${
+                    cart.map(item => `${item.name} - ${item.quantity}x R$ ${item.price.toFixed(2)}`).join('\n')
+                }\n\nTotal: R$ ${cart.reduce((total, item) => total + (item.price * item.quantity), 0).toFixed(2)}`;
+                
+                const whatsappUrl = `https://wa.me/555496768112?text=${encodeURIComponent(message)}`;
+                window.open(whatsappUrl, '_blank');
+            });
+            
+            // Salva o carrinho no localStorage
+            function saveCart() {
+                localStorage.setItem('cart', JSON.stringify(cart));
+                updateCartDisplay();
+            }
+            
+            // Inicializa o carrinho
+            updateCartDisplay();
+        });
+    </script>
+</body>
+</html>
