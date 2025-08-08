@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nossa Equipe - Oliveira Soluções Bélicas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --preto: #0A0A0A;
+            --cinza-escuro: #1A1A1A;
+            --cinza: #333333;
+            --cinza-claro: #666666;
+            --branco: #F0F0F0;
+            --azul: #0078D7;
+            --destaque: #C0C0C0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--preto);
+            color: var(--branco);
+            line-height: 1.7;
+        }
+
+        header {
+            background: linear-gradient(to bottom, var(--cinza-escuro), var(--preto));
+            padding: 2rem 0;
+            text-align: center;
+            border-bottom: 1px solid var(--destaque);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        .logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .logo-icon {
+            font-size: 2.5rem;
+            color: var(--destaque);
+        }
+
+        h1 {
+            font-size: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .page-title {
+            text-align: center;
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .page-title::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--destaque);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .team-member {
+            background: var(--cinza-escuro);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s;
+            text-align: center;
+            border: 1px solid var(--cinza);
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            border-color: var(--azul);
+        }
+
+        .member-photo {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-bottom: 1px solid var(--cinza);
+        }
+
+        .member-info {
+            padding: 1.5rem;
+        }
+
+        .member-info h3 {
+            color: var(--destaque);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .member-info p {
+            color: var(--cinza-claro);
+            margin-bottom: 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--destaque);
+            color: var(--preto);
+            padding: 0.6rem 1.2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .btn:hover {
+            background: var(--branco);
+        }
+
+        footer {
+            background: var(--cinza-escuro);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            border-top: 1px solid var(--cinza);
+        }
+
+        /* Botão do WhatsApp */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            z-index: 100;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .member-photo {
+                height: 250px;
+            }
+
+            .whatsapp-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 1.6rem;
+                right: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h1>OLIVEIRA SOLUÇÕES BÉLICAS</h1>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="page-title">
+            <h2>Nossa Equipe</h2>
+            <p>Conheça os profissionais por trás da Oliveira Soluções Bélicas</p>
+        </div>
+
+        <div class="team-grid">
+            <!-- Membro 1 - Igor -->
+            <div class="team-member">
+                <a href="igor.html">
+                    <img src="https://via.placeholder.com/400x300?text=Foto+do+Igor" alt="Igor" class="member-photo">
+                </a>
+                <div class="member-info">
+                    <h3>Igor Oliveira</h3>
+                    <p>Especialista em Armamentos</p>
+                    <a href="igor.html" class="btn">Ver Perfil Completo</a>
+                </div>
+            </div>
+
+            <!-- Membro 2 - Você -->
+            <div class="team-member">
+                <a href="seu-perfil.html">
+                    <img src="https://via.placeholder.com/400x300?text=Sua+Foto" alt="Seu Nome" class="member-photo">
+                </a>
+                <div class="member-info">
+                    <h3>Seu Nome</h3>
+                    <p>Especialista em Documentação</p>
+                    <a href="seu-perfil.html" class="btn">Ver Perfil Completo</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Oliveira Soluções Bélicas | WhatsApp: (54) 9676-8112</p>
+    </footer>
+
+    <!-- Botão do WhatsApp -->
+    <a href="https://wa.me/555496768112" class="whatsapp-btn" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+</body>
+</html>
