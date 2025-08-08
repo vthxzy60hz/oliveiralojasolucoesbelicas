@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estoque | Oliveira Soluções Bélicas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --preto: #0A0A0A;
+            --cinza-escuro: #1A1A1A;
+            --cinza: #333333;
+            --cinza-claro: #666666;
+            --branco: #F0F0F0;
+            --azul: #0078D7;
+            --verde: #25D366;
+            --vermelho: #FF4444;
+            --destaque: #C0C0C0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--preto);
+            color: var(--branco);
+            line-height: 1.7;
+        }
+
+        /* Tela de Login */
+        #login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: var(--preto);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .login-box {
+            background: var(--cinza-escuro);
+            padding: 2rem;
+            border-radius: 8px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+        }
+
+        .login-box h2 {
+            margin-bottom: 1.5rem;
+            color: var(--destaque);
+        }
+
+        .login-input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            margin-bottom: 1rem;
+            background: var(--cinza);
+            border: none;
+            color: white;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 0.8rem;
+            background: var(--azul);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .login-btn:hover {
+            opacity: 0.9;
+        }
+
+        #erro-login {
+            color: var(--vermelho);
+            margin-top: 1rem;
+            display: none;
+        }
+
+        /* Estoque */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        header {
+            background: linear-gradient(to bottom, var(--cinza-escuro), var(--preto));
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--destaque);
+        }
+
+        h1 {
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: var(--cinza);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            background: var(--cinza-claro);
+        }
+
+        .estoque-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .estoque-item {
+            background: var(--cinza-escuro);
+            padding: 1.5rem;
+            border-radius: 5px;
+            border-left: 4px solid var(--azul);
+        }
+
+        .estoque-item h3 {
+            margin-bottom: 1rem;
+            color: var(--destaque);
+        }
+
+        .estoque-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .estoque-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .estoque-actions input {
+            width: 60px;
+            padding: 0.5rem;
+            text-align: center;
+            background: var(--cinza);
+            border: none;
+            color: white;
+            border-radius: 4px;
+        }
+
+        .estoque-actions button {
+            padding: 0.5rem 1rem;
+            background: var(--azul);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .historico {
+            margin-top: 3rem;
+            border-top: 1px solid var(--cinza);
+            padding-top: 2rem;
+        }
+
+        .historico-item {
+            background: var(--cinza-escuro);
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+
+        .historico-item span {
+            color: var(--destaque);
+        }
+
+        @media (max-width: 768px) {
+            .estoque-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Tela de Login -->
+    <div id="login-container">
+        <div class="login-box">
+            <h2><i class="fas fa-lock"></i> Acesso Restrito ao Estoque</h2>
+            <input type="password" id="senha-acesso" class="login-input" placeholder="Digite a senha">
+            <button onclick="verificarSenha()" class="login-btn">Acessar</button>
+            <p id="erro-login"><i class="fas fa-exclamation-circle"></i> Senha incorreta!</p>
+        </div>
+    </div>
+
+    <!-- Conteúdo do Estoque (oculto inicialmente) -->
+    <div id="estoque-content" style="display: none;">
+        <header>
+            <div class="container">
+                <h1><i class="fas fa-boxes"></i> Controle de Estoque</h1>
+            </div>
+        </header>
+
+        <div class="container">
+            <div class="nav-buttons">
+                <a href="index.html" class="btn"><i class="fas fa-home"></i> Início</a>
+                <a href="cart.html" class="btn"><i class="fas fa-shopping-cart"></i> Carrinho</a>
+            </div>
+
+            <div class="estoque-grid" id="estoque-container"></div>
+
+            <div class="historico">
+                <h2><i class="fas fa-history"></i> Histórico de Movimentações</h2>
+                <div id="historico-container"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // SENHA DE ACESSO (ALTERE PARA UMA SENHA SEGURA)
+        const SENHA_ESTOQUE = "oliveira123";
+
+        // Dados do estoque
+        let estoque = JSON.parse(localStorage.getItem('estoque')) || [
+            { id: 1, nome: "Spray de Pimenta OSB", quantidade: 15, preco: 129.00 },
+            { id: 2, nome: "Taser OSB Defender", quantidade: 8, preco: 117.90 },
+            { id: 3, nome: "Caneta Canivete Tática", quantidade: 22, preco: 34.90 },
+            { id: 4, nome: "Lanterna Aegis LP-08", quantidade: 5, preco: 349.00 },
+            { id: 5, nome: "Aegis TM-18F", quantidade: 3, preco: 549.00 },
+            { id: 6, nome: "Blackbird", quantidade: 7, preco: 419.00 }
+        ];
+
+        let historico = JSON.parse(localStorage.getItem('historico-estoque')) || [];
+
+        // Verifica a senha
+        function verificarSenha() {
+            const senhaDigitada = document.getElementById('senha-acesso').value;
+            if (senhaDigitada === SENHA_ESTOQUE) {
+                document.getElementById('login-container').style.display = 'none';
+                document.getElementById('estoque-content').style.display = 'block';
+                renderizarEstoque();
+                renderizarHistorico();
+            } else {
+                document.getElementById('erro-login').style.display = 'block';
+            }
+        }
+
+        // Renderiza o estoque
+        function renderizarEstoque() {
+            const container = document.getElementById('estoque-container');
+            container.innerHTML = '';
+            
+            estoque.forEach(item => {
+                container.innerHTML += `
+                    <div class="estoque-item">
+                        <h3>${item.nome}</h3>
+                        <div class="estoque-info">
+                            <div>Preço: R$ ${item.preco.toFixed(2)}</div>
+                            <div>Estoque: <strong>${item.quantidade}</strong></div>
+                        </div>
+                        <div class="estoque-actions">
+                            <input type="number" id="quantidade-${item.id}" placeholder="Qtd">
+                            <button onclick="adicionarEstoque(${item.id})"><i class="fas fa-plus"></i></button>
+                            <button onclick="removerEstoque(${item.id})"><i class="fas fa-minus"></i></button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        // Renderiza o histórico
+        function renderizarHistorico() {
+            const container = document.getElementById('historico-container');
+            container.innerHTML = '';
+            
+            if (historico.length === 0) {
+                container.innerHTML = '<p>Nenhuma movimentação registrada.</p>';
+                return;
+            }
+            
+            historico.slice(0, 10).forEach(item => {
+                container.innerHTML += `
+                    <div class="historico-item">
+                        <span>${new Date(item.data).toLocaleString()}</span> - ${item.mensagem}
+                    </div>
+                `;
+            });
+        }
+
+        // Adiciona ao estoque
+        function adicionarEstoque(id) {
+            const input = document.getElementById(`quantidade-${id}`);
+            const quantidade = parseInt(input.value) || 0;
+            
+            if (quantidade <= 0) {
+                alert("Digite uma quantidade válida!");
+                return;
+            }
+            
+            const produto = estoque.find(p => p.id === id);
+            produto.quantidade += quantidade;
+            
+            // Registra no histórico
+            historico.unshift({
+                data: new Date().toISOString(),
+                mensagem: `Adicionados ${quantidade} unidades de ${produto.nome}`
+            });
+            
+            salvarDados();
+        }
+
+        // Remove do estoque
+        function removerEstoque(id) {
+            const input = document.getElementById(`quantidade-${id}`);
+            const quantidade = parseInt(input.value) || 0;
+            
+            if (quantidade <= 0) {
+                alert("Digite uma quantidade válida!");
+                return;
+            }
+            
+            const produto = estoque.find(p => p.id === id);
+            
+            if (produto.quantidade < quantidade) {
+                alert("Quantidade indisponível no estoque!");
+                return;
+            }
+            
+            produto.quantidade -= quantidade;
+            
+            // Registra no histórico
+            historico.unshift({
+                data: new Date().toISOString(),
+                mensagem: `Removidos ${quantidade} unidades de ${produto.nome}`
+            });
+            
+            salvarDados();
+        }
+
+        // Salva dados e notifica a loja
+        function salvarDados() {
+            localStorage.setItem('estoque', JSON.stringify(estoque));
+            localStorage.setItem('historico-estoque', JSON.stringify(historico));
+            
+            // Notifica a loja sobre a atualização
+            window.dispatchEvent(new Event('estoqueAtualizado'));
+            
+            renderizarEstoque();
+            renderizarHistorico();
+        }
+
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('senha-acesso').focus();
+            
+            // Carrega dados salvos
+            if (!localStorage.getItem('estoque')) {
+                localStorage.setItem('estoque', JSON.stringify(estoque));
+            }
+        });
+    </script>
+</body>
+</html>
