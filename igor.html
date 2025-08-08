@@ -47,7 +47,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
             text-align: center;
         }
 
@@ -57,62 +57,64 @@
             border-radius: 50%;
             object-fit: cover;
             border: 3px solid var(--destaque);
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
 
-        .profile-content {
-            margin-top: 2rem;
+        .presentation {
+            background: var(--cinza-escuro);
+            border-radius: 8px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 800px;
+            text-align: center;
+            border-left: 4px solid var(--azul);
         }
 
-        .profile-section {
-            margin-bottom: 2rem;
-        }
-
-        .profile-section h3 {
-            color: var(--destaque);
-            margin-bottom: 1rem;
-            border-bottom: 1px solid var(--cinza);
-            padding-bottom: 0.5rem;
-        }
-
-        .profile-section p {
+        .presentation p {
             color: var(--cinza-claro);
             margin-bottom: 1rem;
+            font-size: 1.1rem;
         }
 
         .gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1rem;
-            margin-top: 1rem;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
         }
 
-        .gallery img {
+        .certificate-img {
             width: 100%;
-            height: 200px;
-            object-fit: cover;
+            height: 400px;
+            object-fit: contain;
+            background: var(--cinza-escuro);
             border-radius: 5px;
+            border: 1px solid var(--cinza);
             transition: transform 0.3s;
         }
 
-        .gallery img:hover {
-            transform: scale(1.05);
+        .certificate-img:hover {
+            transform: scale(1.03);
         }
 
         .back-btn {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
             background: var(--destaque);
             color: var(--preto);
-            padding: 0.6rem 1.2rem;
+            padding: 0.8rem 1.5rem;
             border-radius: 4px;
             text-decoration: none;
             font-weight: bold;
             transition: all 0.3s;
-            margin-top: 1rem;
+            margin: 2rem auto;
         }
 
         .back-btn:hover {
             background: var(--branco);
+            transform: translateX(-5px);
         }
 
         footer {
@@ -125,7 +127,11 @@
 
         @media (max-width: 768px) {
             .gallery {
-                grid-template-columns: 1fr 1fr;
+                grid-template-columns: 1fr;
+            }
+            
+            .certificate-img {
+                height: 300px;
             }
         }
     </style>
@@ -134,45 +140,33 @@
     <header>
         <div class="container">
             <h1>Igor Oliveira</h1>
-            <p>Especialista em Armamentos</p>
+            <p>Especialista em Operações Táticas</p>
         </div>
     </header>
 
     <main class="container">
         <div class="profile-header">
-            <img src="https://via.placeholder.com/400x400?text=Foto+do+Igor" alt="Igor Oliveira" class="profile-photo">
-            <h2>Igor Oliveira</h2>
-            <p>Fundador e Especialista em Armamentos</p>
-            <a href="equipe.html" class="back-btn">Voltar para a Equipe</a>
+            <img src="https://via.placeholder.com/400x400?text=Foto+Igor+Oliveira" alt="Igor Oliveira" class="profile-photo">
+            <h2>IGOR OLIVEIRA</h2>
         </div>
 
-        <div class="profile-content">
-            <div class="profile-section">
-                <h3>Sobre</h3>
-                <p>Profissional com mais de 15 anos de experiência no mercado de armamentos e defesa pessoal. Especialista em treinamento tático e manuseio de equipamentos.</p>
-                
-                <!-- Espaço para imagens -->
-                <div class="gallery">
-                    <img src="https://via.placeholder.com/300x200?text=Certificação+1" alt="Certificação 1">
-                    <img src="https://via.placeholder.com/300x200?text=Certificação+2" alt="Certificação 2">
-                    <img src="https://via.placeholder.com/300x200?text=Treinamento" alt="Treinamento">
-                </div>
-            </div>
-
-            <div class="profile-section">
-                <h3>Especializações</h3>
-                <p>• Armamentos de fogo</p>
-                <p>• Equipamentos táticos</p>
-                <p>• Treinamento de segurança</p>
-                <p>• Documentação legal</p>
-                
-                <!-- Mais imagens -->
-                <div class="gallery">
-                    <img src="https://via.placeholder.com/300x200?text=Especialização+1" alt="Especialização 1">
-                    <img src="https://via.placeholder.com/300x200?text=Especialização+2" alt="Especialização 2">
-                </div>
-            </div>
+        <div class="presentation">
+            <p>Profissional com vasta experiência em operações táticas, treinamento de equipes e resgate em ambientes de alto risco.</p>
+            <p>Certificado em diversas áreas de segurança e atendimento pré-hospitalar.</p>
         </div>
+
+        <div class="gallery">
+            <img src="WhatsApp Image 2025-08-08 at 16.06.15 (1).jpeg" alt="Certificação Pescafista" class="certificate-img">
+            <img src="WhatsApp Image 2025-08-08 at 16.06.15.jpeg" alt="Certificação Socorrista" class="certificate-img">
+            <img src="WhatsApp Image 2025-08-08 at 16.06.14 (1).jpeg" alt="Certificação Instrutor de Tiro" class="certificate-img">
+            <img src="WhatsApp Image 2025-08-08 at 16.06.14 (2).jpeg" alt="Certificação Medicina de Combate" class="certificate-img">
+            <img src="WhatsApp Image 2025-08-08 at 16.06.14 (3).jpeg" alt="Certificação Multiplicador APH" class="certificate-img">
+            <img src="WhatsApp Image 2025-08-08 at 16.06.14.jpeg" alt="Certificação Instrutor" class="certificate-img">
+        </div>
+
+        <a href="equipe.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Voltar para a Equipe
+        </a>
     </main>
 
     <footer>
