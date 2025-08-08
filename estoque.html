@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Estoque | Oliveira Soluções Bélicas</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <style>
         :root {
             --preto: #0A0A0A;
@@ -220,7 +220,7 @@
     <div id="login-container">
         <div class="login-box">
             <h2><i class="fas fa-lock"></i> Acesso Restrito</h2>
-            <input type="password" id="senha-acesso" class="login-input" placeholder="Digite a senha">
+            <input type="password" id="senha-acesso" class="login-input" placeholder="Digite a senha" />
             <button onclick="verificarSenha()" class="login-btn">Acessar</button>
             <p id="erro-login"><i class="fas fa-exclamation-circle"></i> Senha incorreta!</p>
         </div>
@@ -252,11 +252,14 @@
         // Configurações
         const SENHA_ESTOQUE = "oliveira123"; // Altere para sua senha
         
-        // Dados iniciais
+        // Dados iniciais (com todos os produtos solicitados)
         let estoque = JSON.parse(localStorage.getItem('estoque')) || [
             { id: 1, nome: "Spray de Pimenta OSB", quantidade: 15, preco: 129.00 },
-            { id: 2, nome: "Taser Defender", quantidade: 8, preco: 117.90 },
-            { id: 3, nome: "Caneta Canivete", quantidade: 22, preco: 34.90 }
+            { id: 2, nome: "Taser OSB Defender", quantidade: 8, preco: 117.90 },
+            { id: 3, nome: "Caneta Canivete Tática", quantidade: 22, preco: 34.90 },
+            { id: 4, nome: "Lanterna Aegis LP-08", quantidade: 5, preco: 349.00 },
+            { id: 5, nome: "Aegis TM-18F", quantidade: 3, preco: 549.00 },
+            { id: 6, nome: "Blackbird", quantidade: 7, preco: 419.00 }
         ];
 
         let historico = JSON.parse(localStorage.getItem('historico-estoque')) || [];
@@ -288,7 +291,7 @@
                             <div>Estoque: <strong>${item.quantidade}</strong></div>
                         </div>
                         <div class="estoque-actions">
-                            <input type="number" id="quantidade-${item.id}" placeholder="Qtd" min="1">
+                            <input type="number" id="quantidade-${item.id}" placeholder="Qtd" min="1" />
                             <button onclick="adicionarEstoque(${item.id})"><i class="fas fa-plus"></i> Add</button>
                             <button onclick="removerEstoque(${item.id})"><i class="fas fa-minus"></i> Rem</button>
                         </div>
