@@ -16,21 +16,23 @@
             --azul-neon-solid: #0078D7;
             --destaque: #C0C0C0;
             --destaque-brilho: #E0E0E0;
+            --verde: #25D366;
+            --vermelho: #FF4444;
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', 'Roboto', sans-serif;
         }
-        
+
         body {
             background-color: var(--preto);
             color: var(--branco);
             line-height: 1.7;
         }
-        
+
         /* Header igual ao site principal */
         header {
             background: linear-gradient(to bottom, var(--cinza-escuro), var(--preto));
@@ -38,39 +40,39 @@
             border-bottom: 1px solid var(--destaque);
             position: relative;
         }
-        
+
         .container {
             width: 90%;
             max-width: 1200px;
             margin: 0 auto;
         }
-        
+
         .logo {
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 0.5rem;
         }
-        
+
         .logo-icon {
             color: var(--destaque);
             font-size: 2.8rem;
         }
-        
+
         h1 {
             font-size: 2.3rem;
             color: var(--branco);
             text-transform: uppercase;
             letter-spacing: 1px;
         }
-        
+
         /* Estilos específicos do carrinho */
         .cart-container {
             max-width: 1200px;
             margin: 2rem auto;
             padding: 0 1rem;
         }
-        
+
         .cart-header {
             display: flex;
             justify-content: space-between;
@@ -79,11 +81,11 @@
             border-bottom: 1px solid var(--cinza);
             padding-bottom: 1rem;
         }
-        
+
         .cart-items {
             margin-bottom: 2rem;
         }
-        
+
         .cart-item {
             display: flex;
             align-items: center;
@@ -91,7 +93,7 @@
             border-bottom: 1px solid var(--cinza);
             position: relative;
         }
-        
+
         .cart-item img {
             width: 80px;
             height: 80px;
@@ -99,23 +101,23 @@
             margin-right: 1rem;
             border-radius: 4px;
         }
-        
+
         .item-details {
             flex-grow: 1;
         }
-        
+
         .item-price {
             font-weight: bold;
             color: var(--destaque);
             font-size: 1.2rem;
         }
-        
+
         .item-quantity {
             display: flex;
             align-items: center;
             margin: 0.5rem 0;
         }
-        
+
         .quantity-btn {
             background: var(--cinza);
             border: none;
@@ -125,7 +127,7 @@
             cursor: pointer;
             border-radius: 3px;
         }
-        
+
         .quantity-input {
             width: 40px;
             text-align: center;
@@ -135,30 +137,30 @@
             border: 1px solid var(--cinza);
             border-radius: 3px;
         }
-        
+
         .remove-item {
-            color: #ff4444;
+            color: var(--vermelho);
             cursor: pointer;
             position: absolute;
             right: 1rem;
             top: 1rem;
             font-size: 1.2rem;
         }
-        
+
         .cart-summary {
             background: var(--cinza-escuro);
             padding: 1.5rem;
             border-radius: 5px;
             margin-top: 2rem;
         }
-        
+
         .summary-row {
             display: flex;
             justify-content: space-between;
             margin-bottom: 1rem;
             font-size: 1.1rem;
         }
-        
+
         .checkout-btn {
             width: 100%;
             padding: 1rem;
@@ -172,16 +174,16 @@
             font-size: 1rem;
             margin-top: 1rem;
         }
-        
+
         .checkout-btn:hover {
             background: var(--destaque-brilho);
         }
-        
+
         .empty-cart-message {
             text-align: center;
             padding: 3rem 0;
         }
-        
+
         .btn-comprar {
             display: inline-block;
             background: var(--destaque);
@@ -192,7 +194,7 @@
             font-weight: bold;
             margin-top: 1rem;
         }
-        
+
         /* Responsividade */
         @media (max-width: 768px) {
             .cart-item {
@@ -208,6 +210,14 @@
                 top: auto;
                 bottom: 1rem;
             }
+        }
+
+        /* Alerta de estoque (NOVO) */
+        .alert-no-stock {
+            color: var(--vermelho);
+            font-size: 0.8rem;
+            margin-top: 5px;
+            display: none;
         }
     </style>
 </head>
@@ -251,10 +261,10 @@
     </main>
 
     <script>
-        // Carrinho de compras - Funcionalidades completas
         document.addEventListener('DOMContentLoaded', function() {
-            // Recupera o carrinho do localStorage
+            // Recupera o carrinho e o estoque
             let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let estoque = JSON.parse(localStorage.getItem('estoque')) || [];
             const cartItemsContainer = document.getElementById('cart-items');
             const subtotalElement = document.getElementById('subtotal');
             const totalElement = document.getElementById('total');
@@ -280,6 +290,10 @@
                 let subtotal = 0;
                 
                 cart.forEach((item, index) => {
+                    // Verifica estoque para cada item (NOVO)
+                    const produtoEstoque = estoque.find(p => p.id === item.id) || { quantidade: 0 };
+                    const semEstoque = produtoEstoque.quantidade < item.quantity;
+                    
                     const itemTotal = item.price * item.quantity;
                     subtotal += itemTotal;
                     
@@ -295,6 +309,9 @@
                                 <input type="number" class="quantity-input" value="${item.quantity}" min="1" data-index="${index}">
                                 <button class="quantity-btn" data-index="${index}" data-action="increase">+</button>
                             </div>
+                            <div class="alert-no-stock" ${!semEstoque ? 'style="display: none;"' : ''}>
+                                <i class="fas fa-exclamation-circle"></i> Estoque insuficiente!
+                            </div>
                         </div>
                         <span class="remove-item" data-index="${index}"><i class="fas fa-trash"></i></span>
                     `;
@@ -304,6 +321,12 @@
                 
                 subtotalElement.textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
                 totalElement.textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
+                
+                // Desativa o botão se houver itens sem estoque (NOVO)
+                checkoutBtn.disabled = cart.some(item => {
+                    const produtoEstoque = estoque.find(p => p.id === item.id) || { quantidade: 0 };
+                    return produtoEstoque.quantidade < item.quantity;
+                });
             }
             
             // Eventos de clique
@@ -345,22 +368,55 @@
                 }
             });
             
-            // Botão de finalizar compra
+            // Botão de finalizar compra (NOVO: verifica estoque)
             checkoutBtn.addEventListener('click', function() {
-                alert('Compra finalizada! Redirecionando para o WhatsApp...');
-                // Aqui você pode adicionar a lógica para enviar o pedido por WhatsApp
+                const produtosSemEstoque = [];
+                
+                cart.forEach(item => {
+                    const produtoEstoque = estoque.find(p => p.id === item.id) || { quantidade: 0 };
+                    if (produtoEstoque.quantidade < item.quantity) {
+                        produtosSemEstoque.push(item.name);
+                    }
+                });
+                
+                if (produtosSemEstoque.length > 0) {
+                    alert(`Os seguintes itens não têm estoque suficiente:\n\n${produtosSemEstoque.join('\n')}\n\nAjuste as quantidades ou remova-os.`);
+                    return;
+                }
+                
+                // Atualiza estoque (NOVO)
+                cart.forEach(item => {
+                    const produtoEstoque = estoque.find(p => p.id === item.id);
+                    if (produtoEstoque) {
+                        produtoEstoque.quantidade -= item.quantity;
+                    }
+                });
+                
+                localStorage.setItem('estoque', JSON.stringify(estoque));
+                
+                // Envia para WhatsApp
                 const message = `Olá, gostaria de comprar:\n\n${
                     cart.map(item => `${item.name} - ${item.quantity}x R$ ${item.price.toFixed(2)}`).join('\n')
                 }\n\nTotal: R$ ${cart.reduce((total, item) => total + (item.price * item.quantity), 0).toFixed(2)}`;
                 
                 const whatsappUrl = `https://wa.me/555496768112?text=${encodeURIComponent(message)}`;
                 window.open(whatsappUrl, '_blank');
+                
+                // Limpa carrinho após compra
+                localStorage.removeItem('cart');
+                cart = [];
+                updateCartDisplay();
             });
             
             // Salva o carrinho no localStorage
             function saveCart() {
                 localStorage.setItem('cart', JSON.stringify(cart));
                 updateCartDisplay();
+                
+                // Atualiza contador no header (se estiver na index.html)
+                if (window.updateCartCount) {
+                    window.updateCartCount();
+                }
             }
             
             // Inicializa o carrinho
