@@ -14,31 +14,32 @@
             --branco: #F0F0F0;
             --azul: #0078D7;
             --destaque: #C0C0C0;
+            --verde: #25D366;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
             background-color: var(--preto);
             color: var(--branco);
-            line-height: 1.7;
+            line-height: 1.8;
         }
 
         header {
             background: linear-gradient(to bottom, var(--cinza-escuro), var(--preto));
-            padding: 2rem 0;
+            padding: 2.5rem 0;
             text-align: center;
-            border-bottom: 1px solid var(--destaque);
+            border-bottom: 2px solid var(--azul);
         }
 
         .container {
             width: 90%;
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
             padding: 2rem 0;
         }
@@ -52,93 +53,207 @@
         }
 
         .profile-photo {
-            width: 200px;
-            height: 200px;
+            width: 220px;
+            height: 220px;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid var(--destaque);
-            margin-bottom: 1.5rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            border: 4px solid var(--azul);
+            margin-bottom: 1.8rem;
+            box-shadow: 0 5px 25px rgba(0, 120, 215, 0.4);
+        }
+
+        .profile-header h2 {
+            font-size: 2.2rem;
+            margin-bottom: 0.6rem;
+            color: var(--destaque);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .profile-header p {
+            color: var(--azul);
+            font-weight: bold;
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
         .bio-section {
             background: var(--cinza-escuro);
-            border-radius: 8px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            border-left: 4px solid var(--azul);
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+            border-left: 5px solid var(--azul);
         }
 
         .bio-section h3 {
             color: var(--destaque);
-            margin-bottom: 1.5rem;
-            font-size: 1.4rem;
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
             position: relative;
-            display: inline-block;
+            padding-bottom: 0.8rem;
         }
 
         .bio-section h3::after {
             content: "";
             position: absolute;
-            bottom: -8px;
+            bottom: 0;
             left: 0;
-            width: 50%;
-            height: 3px;
+            width: 120px;
+            height: 4px;
             background: var(--azul);
         }
 
         .bio-section p {
             color: var(--cinza-claro);
-            margin-bottom: 1.2rem;
+            margin-bottom: 1.8rem;
             text-align: justify;
+            font-size: 1.1rem;
+            line-height: 1.9;
+        }
+
+        .bio-section strong {
+            color: var(--destaque);
+            font-weight: 600;
+        }
+
+        .bio-section ul {
+            margin: 2rem 0 2rem 2rem;
+            color: var(--cinza-claro);
+        }
+
+        .bio-section li {
+            margin-bottom: 1.2rem;
+            position: relative;
+            padding-left: 1.8rem;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .bio-section li::before {
+            content: "▸";
+            color: var(--azul);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
         }
 
         .skills {
             display: flex;
             flex-wrap: wrap;
             gap: 1rem;
-            margin-top: 1.5rem;
+            margin: 2.5rem 0;
         }
 
         .skill-tag {
-            background: rgba(0, 120, 215, 0.2);
+            background: rgba(0, 120, 215, 0.15);
             color: var(--destaque);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
             border: 1px solid var(--azul);
-            font-size: 0.9rem;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .skill-tag:hover {
+            background: var(--azul);
+            color: var(--branco);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 120, 215, 0.3);
         }
 
         .back-btn {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            background: var(--destaque);
-            color: var(--preto);
-            padding: 0.8rem 1.5rem;
-            border-radius: 4px;
+            gap: 0.8rem;
+            background: var(--azul);
+            color: white;
+            padding: 1rem 2.2rem;
+            border-radius: 30px;
             text-decoration: none;
             font-weight: bold;
+            font-size: 1.1rem;
             transition: all 0.3s;
-            margin-top: 2rem;
+            margin: 3rem auto 2rem;
+            box-shadow: 0 5px 15px rgba(0, 120, 215, 0.3);
         }
 
         .back-btn:hover {
-            background: var(--branco);
-            transform: translateX(-5px);
+            background: var(--destaque);
+            color: var(--preto);
+            transform: translateX(-8px);
+            box-shadow: 0 8px 20px rgba(0, 120, 215, 0.4);
         }
 
         footer {
             background: var(--cinza-escuro);
             text-align: center;
-            padding: 2rem;
-            margin-top: 3rem;
+            padding: 2.5rem;
+            margin-top: 4rem;
             border-top: 1px solid var(--cinza);
         }
 
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 2.5rem;
+            right: 2.5rem;
+            background: var(--verde);
+            color: white;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            z-index: 100;
+            transition: all 0.3s;
+            text-decoration: none;
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.6);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
         @media (max-width: 768px) {
+            .container {
+                width: 92%;
+                padding: 1.8rem 0;
+            }
+            
+            .profile-photo {
+                width: 190px;
+                height: 190px;
+            }
+            
+            .profile-header h2 {
+                font-size: 1.8rem;
+            }
+            
             .bio-section {
-                padding: 1.5rem;
+                padding: 1.8rem;
+            }
+            
+            .bio-section h3 {
+                font-size: 1.6rem;
+            }
+            
+            .whatsapp-btn {
+                width: 55px;
+                height: 55px;
+                font-size: 1.9rem;
+                right: 1.8rem;
+                bottom: 1.8rem;
             }
         }
     </style>
@@ -147,74 +262,91 @@
     <header>
         <div class="container">
             <h1>Vítor Hugo</h1>
-            <p>Despachante Bélico & Programador de Sistemas Especializados</p>
+            <p>Despachante Bélico & Desenvolvedor do Site Oliveira Soluções Bélicas</p>
         </div>
     </header>
 
     <main class="container">
         <div class="profile-header">
-            <img src="https://imgur.com/FxuVRhM.jpeg" alt="[Seu Nome]" class="profile-photo">
-            <h2>Vítor Hugo</h2>
-            <p>Fundador e Desenvolvedor do site da Oliveira Soluções Bélicas</p>
+            <img src="https://via.placeholder.com/400x400?text=Vítor+Hugo" alt="Vítor Hugo" class="profile-photo">
+            <h2>VÍTOR HUGO</h2>
+            <p>Proprietário e Desenvolvedor Exclusivo deste Portal</p>
         </div>
 
         <div class="bio-section">
-            <h3>Atuação como Despachante Bélico</h3>
-            <p><strong>Processos de Documentação:</strong> Realizo toda a tramitação para registro de armas junto ao Exército Brasileiro, incluindo:</p>
-            <p>• Registro de armas novas e usadas (R-0, R-1, R-2)</p>
-            <p>• Renovação de registros e transferências</p>
-            <p>• Regularização de armas irregulares</p>
-            <p>• Processos para CACs (Colecionadores, Atiradores e Caçadores)</p>
+            <h3>Expertise em Despachante Bélico</h3>
+            <p>Com mais de <strong>5 anos de experiência</strong> no setor, atuo como despachante bélico especializado em toda a tramitação documental relacionada a armamentos perante o Exército Brasileiro. Minha atuação abrange desde o registro inicial de armas até processos complexos de regularização, sempre com enfoque na <strong>máxima eficiência e conformidade legal</strong>.</p>
             
-            <p><strong>Consultoria Jurídica:</strong> Auxílio completo na interpretação e aplicação da legislação:</p>
-            <p>• Análise de documentos para compra/venda</p>
-            <p>• Assessoria em casos de apreensão ou restrição</p>
-            <p>• Defesa administrativa em processos no SINARM</p>
+            <p>Minha rotina profissional inclui a <strong>análise detalhada</strong> de cada caso, identificando a melhor estratégia para regularização de documentos, seja para colecionadores, atiradores, caçadores ou empresas de segurança. Domino todos os trâmites no <strong>SINARM (Sistema Nacional de Armas)</strong> e <strong>SIGMA (Sistema de Gerenciamento Militar de Armas)</strong>, garantindo que cada processo seja conduzido dentro dos prazos legais e com acompanhamento personalizado.</p>
             
-            <p><strong>Treinamentos:</strong> Ministro cursos sobre:</p>
-            <p>• Legislação atualizada sobre posse e porte</p>
-            <p>• Preenchimento correto de formulários</p>
-            <p>• Procedimentos para viagens com armas</p>
+            <p><strong>Principais atividades realizadas:</strong></p>
+            <ul>
+                <li><strong>Registro de armas novas (R-0)</strong>: Processo completo desde a emissão da nota fiscal até a vistoria final, incluindo orientação sobre documentação necessária e prazos.</li>
+                
+                <li><strong>Transferência de propriedade (R-1)</strong>: Regularização de compra e venda entre particulares, com verificação de documentação e histórico da arma.</li>
+                
+                <li><strong>Registro de armas usadas (R-2)</strong>: Regularização de armas sem documentação ou com processos pendentes, incluindo casos complexos de heranças e doações.</li>
+                
+                <li><strong>Renovação de registros</strong>: Gerenciamento de toda a documentação para renovação periódica exigida pela legislação, com alertas preventivos aos clientes.</li>
+                
+                <li><strong>Consultoria jurídica especializada</strong>: Análise de casos específicos como transporte interestadual, porte especial para profissionais de segurança, e situações de apreensão ou restrições.</li>
+                
+                <li><strong>Processos para CACs</strong>: Assessoria completa para Colecionadores, Atiradores e Caçadores, incluindo obtenção de CR (Certificado de Registro), documentação para clubes de tiro e eventos esportivos.</li>
+            </ul>
+            
+            <p>Minha abordagem combina <strong>conhecimento técnico</strong> da legislação (Estatuto do Desarmamento, portarias do Exército, decretos federais) com <strong>experiência prática</strong> na resolução de casos complexos, garantindo sempre a melhor solução dentro da legalidade.</p>
         </div>
 
         <div class="bio-section">
-            <h3>Atuação como Programador</h3>
-            <p><strong>Desenvolvimento deste site:</strong> Criei todo o sistema da Oliveira Soluções Bélicas com:</p>
-            <p>• Front-end personalizado (HTML5, CSS3, JavaScript)</p>
-            <p>• Área administrativa para gestão de estoque</p>
+            <h3>Atuação como Programador e Proprietário do Site</h3>
+            <p>Como <strong>proprietário e desenvolvedor exclusivo</strong> do site Oliveira Soluções Bélicas, fui responsável por toda a concepção, desenvolvimento e implementação desta plataforma. Desde a arquitetura inicial até as funcionalidades atuais, cada aspecto foi cuidadosamente planejado para atender às necessidades específicas do mercado bélico.</p>
             
-            <p><strong>Sistemas Especializados:</strong> Desenvolvo soluções técnicas para o setor:</p>
-            <p>• Aplicativos para cálculo de prazos legais</p>
-            <p>• Sistemas de gestão de documentação para CACs</p>
-            <p>• Ferramentas de rastreamento de processos no Exército</p>
-            <p>• Bancos de dados de legislação atualizada</p>
+            <p>O desenvolvimento deste portal representou a fusão entre meu <strong>conhecimento técnico em programação</strong> e minha <strong>experiência como despachante</strong>, resultando em uma plataforma única que oferece:</p>
             
-            <p><strong>Tecnologias que domino:</strong></p>
+            <ul>
+                <li><strong>Sistema completo de gestão de produtos</strong>: Desenvolvido sob medida para equipamentos bélicos, com categorização especializada, filtros por calibres e acessórios compatíveis.</li>
+                
+                <li><strong>Área administrativa avançada</strong>: Painel personalizado para gestão de estoque, pedidos e clientes, com integração a sistemas de pagamento e emissão de notas fiscais.</li>
+                
+                <li><strong>Módulo de documentação</strong>: Ferramentas exclusivas para cálculo de prazos legais, alertas de vencimento de documentos e orientações personalizadas conforme o perfil do cliente (CAC, segurança patrimonial, etc.).</li>
+                
+                <li><strong>Segurança reforçada</strong>: Implementação de protocolos avançados de proteção de dados, criptografia SSL, e sistemas anti-fraude para garantir a segurança das transações.</li>
+                
+                <li><strong>Design responsivo</strong>: Desenvolvimento focado em experiência do usuário, garantindo perfeito funcionamento em dispositivos móveis e acesso rápido mesmo em áreas com conexão limitada.</li>
+            </ul>
+            
+            <p><strong>Tecnologias e habilidades aplicadas:</strong></p>
             <div class="skills">
-                <span class="skill-tag">HTML5/CSS3</span>
-                <span class="skill-tag">JavaScript</span>
+                <span class="skill-tag">HTML5 & CSS3</span>
+                <span class="skill-tag">JavaScript ES6+</span>
                 <span class="skill-tag">Node.js</span>
-                <span class="skill-tag">Banco de Dados</span>
-                <span class="skill-tag">Segurança Digital</span>
+                <span class="skill-tag">React</span>
+                <span class="skill-tag">MongoDB</span>
+                <span class="skill-tag">PostgreSQL</span>
+                <span class="skill-tag">API REST</span>
+                <span class="skill-tag">AWS</span>
+                <span class="skill-tag">Cyber Security</span>
+                <span class="skill-tag">UI/UX Design</span>
+                <span class="skill-tag">SEO Avançado</span>
+                <span class="skill-tag">Linux Server</span>
             </div>
+            
+            <p>Além do desenvolvimento inicial, mantenho um <strong>processo contínuo de atualização</strong> da plataforma, implementando novas funcionalidades, corrigindo vulnerabilidades e otimizando o desempenho. Todo o código foi desenvolvido pessoalmente, sem uso de templates pré-prontos, garantindo total originalidade e adaptação às necessidades específicas do negócio.</p>
         </div>
 
-        <div class="bio-section">
-            <h3>Combinação Única de Habilidades</h3>
-            <p>Minha expertise permite oferecer serviços exclusivos:</p>
-            <p>• <strong>Sistemas de automação</strong> para despachantes</p>
-            <p>• <strong>Plataformas digitais</strong> que integram documentação bélica com sistemas web</p>
-            <p>• <strong>Consultoria técnica</strong> para empresas do setor de segurança</p>
-            <p>• <strong>Treinamentos especializados</strong> em tecnologia aplicada a armamentos</p>
-        </div>
-
-        <a href="equipe.html" class="back-btn">
-            <i class="fas fa-arrow-left"></i> Voltar para a Equipe
-        </a>
+        <center>
+            <a href="equipe.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i> Voltar para a Equipe
+            </a>
+        </center>
     </main>
 
     <footer>
         <p>&copy; 2024 Oliveira Soluções Bélicas | WhatsApp: (54) 9676-8112</p>
     </footer>
+
+    <a href="https://wa.me/555496768112" class="whatsapp-btn" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 </body>
 </html>
