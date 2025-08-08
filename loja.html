@@ -259,15 +259,6 @@
             text-shadow: 0 0 8px rgba(192, 192, 192, 0.3);
         }
         
-        .estoque-info {
-            font-size: 0.9rem;
-            color: var(--cinza-claro);
-        }
-        
-        .estoque-info i {
-            margin-right: 5px;
-        }
-        
         .btn-comprar {
             display: inline-flex;
             align-items: center;
@@ -421,25 +412,6 @@
             font-size: 0.8rem;
             font-weight: bold;
         }
-
-        /* NOVAS CLASSES ADICIONADAS DO SEGUNDO SCRIPT */
-        .sem-estoque {
-            opacity: 0.6;
-            position: relative;
-        }
-
-        .sem-estoque::after {
-            content: "ESGOTADO";
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: var(--vermelho);
-            color: white;
-            padding: 0.3rem 0.6rem;
-            border-radius: 4px;
-            font-weight: bold;
-        }
         
         @keyframes pulse {
             0% { transform: scale(1); }
@@ -539,55 +511,49 @@
     </a>
 
     <script>
-        // Dados dos produtos (sincronizados com estoque.html)
-        let produtos = JSON.parse(localStorage.getItem('estoque')) || [
+        // Dados dos produtos
+        let produtos = [
             {
                 id: 1,
                 nome: "Spray de Pimenta OSB",
                 descricao: "Defesa pessoal com alcance de 3m, formulação UV marcadora e válvula anti-retorno.",
                 preco: 129.00,
-                imagem: "https://",
-                quantidade: 15
+                imagem: "https://"
             },
             {
                 id: 2,
                 nome: "Taser OSB Defender",
                 descricao: "Eletrochoque de 50.000V com segurança ativada por PIN e lanterna LED integrada.",
                 preco: 117.90,
-                imagem: "https://i.imgur.com/placeholder-taser.jpg",
-                quantidade: 8
+                imagem: "https://i.imgur.com/placeholder-taser.jpg"
             },
             {
                 id: 3,
                 nome: "Caneta Canivete Tática",
                 descricao: "Multifuncional com lâmina oculta, design discreto e corpo em alumínio aeronáutico.",
                 preco: 34.90,
-                imagem: "https://i.imgur.com/placeholder-canivete.jpg",
-                quantidade: 22
+                imagem: "https://i.imgur.com/placeholder-canivete.jpg"
             },
             {
                 id: 4,
                 nome: "Lanterna Aegis LP-08",
                 descricao: "1.200 lumens, resistente à água IPX8, zoom ajustável e corpo em liga de magnésio.",
                 preco: 349.00,
-                imagem: "https://i.imgur.com/placeholder-lanterna.jpg",
-                quantidade: 5
+                imagem: "https://i.imgur.com/placeholder-lanterna.jpg"
             },
             {
                 id: 5,
                 nome: "Aegis TM-18F",
                 descricao: "Eletrochoque de 18 milhões de volts com lanterna LED e sistema de segurança tripla.",
                 preco: 549.00,
-                imagem: "https://i.imgur.com/placeholder-aegis.jpg",
-                quantidade: 3
+                imagem: "https://i.imgur.com/placeholder-aegis.jpg"
             },
             {
                 id: 6,
                 nome: "Blackbird",
                 descricao: "Faca tática full tang com lâmina em aço D2 (62 HRC) e cabo em micarta texturizado.",
                 preco: 419.00,
-                imagem: "https://i.imgur.com/placeholder-blackbird.jpg",
-                quantidade: 7
+                imagem: "https://i.imgur.com/placeholder-blackbird.jpg"
             }
         ];
 
@@ -597,9 +563,8 @@
             container.innerHTML = '';
             
             produtos.forEach(produto => {
-                const disponivel = produto.quantidade > 0;
                 container.innerHTML += `
-                    <div class="produto ${!disponivel ? 'sem-estoque' : ''}">
+                    <div class="produto">
                         <div class="produto-img">
                             <img src="${produto.imagem}" alt="${produto.nome}">
                         </div>
@@ -608,9 +573,6 @@
                             <p>${produto.descricao}</p>
                             <div class="preco-container">
                                 <span class="preco">R$ ${produto.preco.toFixed(2).replace('.', ',')}</span>
-                                <span class="estoque-info">
-                                    <i class="fas fa-box"></i> ${produto.quantidade} em estoque
-                                </span>
                             </div>
                             <button 
                                 class="btn-comprar" 
@@ -620,10 +582,8 @@
                                     '${produto.imagem}',
                                     ${produto.id}
                                 )"
-                                ${!disponivel ? 'disabled style="opacity: 0.5; cursor: not-allowed;"' : ''}
                             >
-                                <i class="fas fa-shopping-cart"></i> 
-                                ${!disponivel ? 'ESGOTADO' : 'Comprar'}
+                                <i class="fas fa-shopping-cart"></i> Comprar
                             </button>
                         </div>
                     </div>
@@ -652,20 +612,10 @@
         function addToCart(nome, preco, imagem, idProduto) {
             let carrinho = JSON.parse(localStorage.getItem('cart')) || [];
             
-            // Verifica estoque
-            const produtoEstoque = produtos.find(p => p.id === idProduto);
-            if (produtoEstoque.quantidade <= 0) {
-                alert('Produto esgotado!');
-                return;
-            }
-
-            // Atualiza estoque localmente (o estoque.html fará a validação final)
-            produtoEstoque.quantidade -= 1;
-            
             // Adiciona ao carrinho
             const itemExistente = carrinho.find(item => item.id === idProduto);
             if (itemExistente) {
-                itemExistente.quantidade += 1;
+                itemExistente.quantity += 1;
             } else {
                 carrinho.push({
                     id: idProduto,
@@ -678,20 +628,14 @@
             
             localStorage.setItem('cart', JSON.stringify(carrinho));
             updateCartCount();
-            carregarProdutos(); // Atualiza a exibição do estoque
             
             // Feedback visual
             const btn = event.target;
             btn.innerHTML = '<i class="fas fa-check"></i> Adicionado';
             btn.style.background = 'linear-gradient(90deg, #25D366, #128C7E)';
             setTimeout(() => {
-                btn.innerHTML = `<i class="fas fa-shopping-cart"></i> ${produtoEstoque.quantidade <= 0 ? 'ESGOTADO' : 'Comprar'}`;
+                btn.innerHTML = '<i class="fas fa-shopping-cart"></i> Comprar';
                 btn.style.background = 'linear-gradient(90deg, var(--destaque), var(--cinza-claro))';
-                if (produtoEstoque.quantidade <= 0) {
-                    btn.disabled = true;
-                    btn.style.opacity = '0.5';
-                    btn.style.cursor = 'not-allowed';
-                }
             }, 2000);
         }
 
@@ -701,20 +645,6 @@
             const totalItens = carrinho.reduce((total, item) => total + item.quantity, 0);
             document.getElementById('cart-count').textContent = totalItens;
         }
-
-        // 🔥 OUVINTE PARA ATUALIZAÇÕES DE ESTOQUE (ADICIONADO DO SEGUNDO SCRIPT)
-        window.addEventListener('estoqueAtualizado', () => {
-            carregarProdutos();
-        });
-
-        // Verifica estoque a cada 3 segundos (ADICIONADO DO SEGUNDO SCRIPT)
-        setInterval(() => {
-            const ultimaAtualizacao = localStorage.getItem('ultimaAtualizacaoEstoque') || 0;
-            if (ultimaAtualizacao > (window.ultimaVerificacao || 0)) {
-                window.ultimaVerificacao = Date.now();
-                carregarProdutos();
-            }
-        }, 3000);
 
         // Inicialização
         document.addEventListener('DOMContentLoaded', () => {
