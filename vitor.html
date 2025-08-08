@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[Seu Nome] - Oliveira Soluções Bélicas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --preto: #0A0A0A;
+            --cinza-escuro: #1A1A1A;
+            --cinza: #333333;
+            --cinza-claro: #666666;
+            --branco: #F0F0F0;
+            --azul: #0078D7;
+            --destaque: #C0C0C0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--preto);
+            color: var(--branco);
+            line-height: 1.7;
+        }
+
+        header {
+            background: linear-gradient(to bottom, var(--cinza-escuro), var(--preto));
+            padding: 2rem 0;
+            text-align: center;
+            border-bottom: 1px solid var(--destaque);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        .profile-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .profile-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--destaque);
+            margin-bottom: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .bio-section {
+            background: var(--cinza-escuro);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--azul);
+        }
+
+        .bio-section h3 {
+            color: var(--destaque);
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .bio-section h3::after {
+            content: "";
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50%;
+            height: 3px;
+            background: var(--azul);
+        }
+
+        .bio-section p {
+            color: var(--cinza-claro);
+            margin-bottom: 1.2rem;
+            text-align: justify;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .skill-tag {
+            background: rgba(0, 120, 215, 0.2);
+            color: var(--destaque);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            border: 1px solid var(--azul);
+            font-size: 0.9rem;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--destaque);
+            color: var(--preto);
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            margin-top: 2rem;
+        }
+
+        .back-btn:hover {
+            background: var(--branco);
+            transform: translateX(-5px);
+        }
+
+        footer {
+            background: var(--cinza-escuro);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            border-top: 1px solid var(--cinza);
+        }
+
+        @media (max-width: 768px) {
+            .bio-section {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>[Seu Nome]</h1>
+            <p>Despachante Bélico & Programador de Sistemas Especializados</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="profile-header">
+            <img src="https://via.placeholder.com/400x400?text=Sua+Foto" alt="[Seu Nome]" class="profile-photo">
+            <h2>[SEU NOME]</h2>
+            <p>Fundador e Desenvolvedor da Oliveira Soluções Bélicas</p>
+        </div>
+
+        <div class="bio-section">
+            <h3>Atuação como Despachante Bélico</h3>
+            <p><strong>Processos de Documentação:</strong> Realizo toda a tramitação para registro de armas junto ao Exército Brasileiro, incluindo:</p>
+            <p>• Registro de armas novas e usadas (R-0, R-1, R-2)</p>
+            <p>• Renovação de registros e transferências</p>
+            <p>• Regularização de armas irregulares</p>
+            <p>• Processos para CACs (Colecionadores, Atiradores e Caçadores)</p>
+            
+            <p><strong>Consultoria Jurídica:</strong> Auxílio completo na interpretação e aplicação da legislação:</p>
+            <p>• Análise de documentos para compra/venda</p>
+            <p>• Assessoria em casos de apreensão ou restrição</p>
+            <p>• Defesa administrativa em processos no SINARM</p>
+            
+            <p><strong>Treinamentos:</strong> Ministro cursos sobre:</p>
+            <p>• Legislação atualizada sobre posse e porte</p>
+            <p>• Preenchimento correto de formulários</p>
+            <p>• Procedimentos para viagens com armas</p>
+        </div>
+
+        <div class="bio-section">
+            <h3>Atuação como Programador</h3>
+            <p><strong>Desenvolvimento deste site:</strong> Criei todo o sistema da Oliveira Soluções Bélicas com:</p>
+            <p>• Front-end personalizado (HTML5, CSS3, JavaScript)</p>
+            <p>• Back-end robusto para gestão de produtos</p>
+            <p>• Integração com sistemas de pagamento</p>
+            <p>• Área administrativa para gestão de estoque</p>
+            
+            <p><strong>Sistemas Especializados:</strong> Desenvolvo soluções técnicas para o setor:</p>
+            <p>• Aplicativos para cálculo de prazos legais</p>
+            <p>• Sistemas de gestão de documentação para CACs</p>
+            <p>• Ferramentas de rastreamento de processos no Exército</p>
+            <p>• Bancos de dados de legislação atualizada</p>
+            
+            <p><strong>Tecnologias que domino:</strong></p>
+            <div class="skills">
+                <span class="skill-tag">HTML5/CSS3</span>
+                <span class="skill-tag">JavaScript</span>
+                <span class="skill-tag">Node.js</span>
+                <span class="skill-tag">Banco de Dados</span>
+                <span class="skill-tag">Segurança Digital</span>
+            </div>
+        </div>
+
+        <div class="bio-section">
+            <h3>Combinação Única de Habilidades</h3>
+            <p>Minha expertise permite oferecer serviços exclusivos:</p>
+            <p>• <strong>Sistemas de automação</strong> para despachantes</p>
+            <p>• <strong>Plataformas digitais</strong> que integram documentação bélica com sistemas web</p>
+            <p>• <strong>Consultoria técnica</strong> para empresas do setor de segurança</p>
+            <p>• <strong>Treinamentos especializados</strong> em tecnologia aplicada a armamentos</p>
+        </div>
+
+        <a href="equipe.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Voltar para a Equipe
+        </a>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Oliveira Soluções Bélicas | WhatsApp: (54) 9676-8112</p>
+    </footer>
+</body>
+</html>
