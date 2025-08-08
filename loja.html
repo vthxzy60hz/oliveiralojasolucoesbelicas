@@ -486,50 +486,8 @@
     ></a>
 
     <script>
-      // Dados dos produtos
+      // Dados dos produtos (já removidos os 5 primeiros e produtos duplicados)
       let produtos = [
-        {
-          id: 1,
-          nome: "Spray de Pimenta OSB",
-          descricao:
-            "Defesa pessoal com alcance de 3m, formulação UV marcadora e válvula anti-retorno.",
-          preco: 129.0,
-          imagem: "https://",
-        },
-        {
-          id: 2,
-          nome: "Taser OSB Defender",
-          descricao:
-            "Eletrochoque de 50.000V com segurança ativada por PIN e lanterna LED integrada.",
-          preco: 117.9,
-          imagem: "https://i.imgur.com/placeholder-taser.jpg",
-        },
-        {
-          id: 3,
-          nome: "Lanterna Aegis LP-08",
-          descricao:
-            "Lanterna LED recarregável de alta potência com alcance de até 200m.",
-          preco: 549.9,
-          imagem: "https://i.imgur.com/placeholder-lanterna-aegis.jpg",
-        },
-        {
-          id: 4,
-          nome: "Aegis TM-18F",
-          descricao:
-            "Equipamento multifuncional tático com design ergonômico e robusto.",
-          preco: 249.9,
-          imagem: "https://i.imgur.com/placeholder-tm18f.jpg",
-        },
-        {
-          id: 5,
-          nome: "Blackbird",
-          descricao:
-            "Canivete tático com lâmina de aço inoxidável e acabamento preto fosco.",
-          preco: 199.9,
-          imagem: "https://i.imgur.com/placeholder-blackbird.jpg",
-        },
-
-        // Novos produtos da lista
         {
           id: 6,
           nome: "Alicate Multifuncional",
@@ -542,55 +500,31 @@
           id: 7,
           nome: "Bússula Profissional C/Lupa",
           descricao:
-            "Bússola verde com lupa integrada para navegação precisa em campo.",
+            "Bússola com lupa integrada para navegação precisa em campo.",
           preco: 74.9,
           imagem: "https://i.imgur.com/placeholder-bussula.jpg",
         },
         {
           id: 8,
-          nome: "Butterfly Prata",
+          nome: "Butterfly",
           descricao:
-            "Canivete estilo borboleta com acabamento prata, lâmina resistente e design ergonômico.",
+            "Canivete estilo borboleta com lâmina resistente e design ergonômico.",
           preco: 64.9,
-          imagem: "https://i.imgur.com/placeholder-butterfly-prata.jpg",
-        },
-        {
-          id: 9,
-          nome: "Butterfly Preta",
-          descricao:
-            "Canivete estilo borboleta com acabamento preto fosco e lâmina afiada.",
-          preco: 64.9,
-          imagem: "https://i.imgur.com/placeholder-butterfly-preta.jpg",
-        },
-        {
-          id: 10,
-          nome: "Butterfly Dourado",
-          descricao:
-            "Canivete borboleta dourado com lâmina resistente e acabamento premium.",
-          preco: 64.9,
-          imagem: "https://i.imgur.com/placeholder-butterfly-dourado.jpg",
-        },
-        {
-          id: 11,
-          nome: "Butterfly Color",
-          descricao:
-            "Canivete borboleta colorido, leve e com design moderno.",
-          preco: 64.9,
-          imagem: "https://i.imgur.com/placeholder-butterfly-color.jpg",
+          imagem: "https://i.imgur.com/placeholder-butterfly.jpg",
         },
         {
           id: 12,
-          nome: "Canivete Boker Color",
+          nome: "Canivete Boker",
           descricao:
-            "Canivete Boker com acabamento colorido e lâmina afiada para uso diário.",
+            "Canivete Boker com lâmina afiada para uso diário.",
           preco: 110.0,
-          imagem: "https://i.imgur.com/placeholder-boker-color.jpg",
+          imagem: "https://i.imgur.com/placeholder-boker.jpg",
         },
         {
           id: 13,
           nome: "Canivetes Browning",
           descricao:
-            "Conjunto de canivetes Browning coloridos, ideais para colecionadores e uso prático.",
+            "Conjunto de canivetes Browning, ideais para colecionadores e uso prático.",
           preco: 99.9,
           imagem: "https://i.imgur.com/placeholder-browning.jpg",
         },
@@ -598,25 +532,17 @@
           id: 14,
           nome: "Faca Command",
           descricao:
-            "Faca tática preta com lâmina resistente e empunhadura ergonômica.",
+            "Faca tática com lâmina resistente e empunhadura ergonômica.",
           preco: 119.9,
           imagem: "https://i.imgur.com/placeholder-faca-command.jpg",
         },
         {
           id: 15,
-          nome: "Faca Operações Verde",
+          nome: "Faca Operações",
           descricao:
-            "Faca operacional verde com lâmina afiada e design para uso intenso.",
+            "Faca operacional com lâmina afiada e design para uso intenso.",
           preco: 149.9,
-          imagem: "https://i.imgur.com/placeholder-faca-operacoes-verde.jpg",
-        },
-        {
-          id: 16,
-          nome: "Faca Operações Preta",
-          descricao:
-            "Faca operacional preta com lâmina robusta para uso tático.",
-          preco: 149.9,
-          imagem: "https://i.imgur.com/placeholder-faca-operacoes-preta.jpg",
+          imagem: "https://i.imgur.com/placeholder-faca-operacoes.jpg",
         },
         {
           id: 17,
@@ -628,95 +554,71 @@
         },
         {
           id: 18,
-          nome: "Faca Pescoço Preta",
+          nome: "Faca Pescoço",
           descricao:
-            "Faca de pescoço preta, compacta e eficiente para defesa pessoal.",
+            "Faca de pescoço, compacta e eficiente para defesa pessoal.",
           preco: 64.9,
-          imagem: "https://i.imgur.com/placeholder-faca-pescoco-preta.jpg",
+          imagem: "https://i.imgur.com/placeholder-faca-pescoco.jpg",
         },
         {
           id: 19,
-          nome: "Faca Pesçoco Caveira Preta",
+          nome: "Faca Pescoço Caveira",
           descricao:
-            "Faca de pescoço preta com desenho de caveira, ideal para colecionadores.",
+            "Faca de pescoço com desenho de caveira, ideal para colecionadores.",
           preco: 64.9,
           imagem: "https://i.imgur.com/placeholder-faca-pescoco-caveira.jpg",
         },
         {
           id: 20,
-          nome: "Faca Tática G Preta",
+          nome: "Faca Tática G",
           descricao:
-            "Faca tática grande preta, com lâmina resistente e empunhadura firme.",
+            "Faca tática grande, com lâmina resistente e empunhadura firme.",
           preco: 149.9,
           imagem: "https://i.imgur.com/placeholder-faca-tatica-g.jpg",
         },
         {
           id: 21,
-          nome: "Faca Tática Rambo Preta",
+          nome: "Faca Tática Rambo",
           descricao:
-            "Faca tática estilo Rambo, preta, com lâmina robusta e design agressivo.",
+            "Faca tática estilo Rambo, com lâmina robusta e design agressivo.",
           preco: 149.9,
           imagem: "https://i.imgur.com/placeholder-faca-tatica-rambo.jpg",
         },
         {
           id: 22,
-          nome: "Karambit Preta",
+          nome: "Karambit",
           descricao:
-            "Faca karambit preta com lâmina curva para uso tático e defesa pessoal.",
+            "Faca karambit com lâmina curva para uso tático e defesa pessoal.",
           preco: 64.9,
-          imagem: "https://i.imgur.com/placeholder-karambit-preta.jpg",
-        },
-        {
-          id: 23,
-          nome: "Karambit Color",
-          descricao:
-            "Faca karambit colorida com design moderno e lâmina curva para defesa.",
-          preco: 64.9,
-          imagem: "https://i.imgur.com/placeholder-karambit-color.jpg",
+          imagem: "https://i.imgur.com/placeholder-karambit.jpg",
         },
         {
           id: 24,
-          nome: "Kit Garrafa Térmica Rosa",
+          nome: "Kit Garrafa Térmica",
           descricao:
-            "Garrafa térmica rosa, mantém bebidas quentes ou frias por horas.",
+            "Garrafa térmica, mantém bebidas quentes ou frias por horas.",
           preco: 79.9,
-          imagem: "https://i.imgur.com/placeholder-garrafa-rosa.jpg",
-        },
-        {
-          id: 25,
-          nome: "Kit Garrafa Térmica Verde",
-          descricao:
-            "Garrafa térmica verde, ideal para uso outdoor e esportes.",
-          preco: 79.9,
-          imagem: "https://i.imgur.com/placeholder-garrafa-verde.jpg",
-        },
-        {
-          id: 26,
-          nome: "Kit Garrafa Térmica Preta",
-          descricao:
-            "Garrafa térmica preta, resistente e com design moderno.",
-          preco: 79.9,
-          imagem: "https://i.imgur.com/placeholder-garrafa-preta.jpg",
+          imagem: "https://i.imgur.com/placeholder-garrafa.jpg",
         },
         {
           id: 27,
-          nome: "Kit Sobrevivência Preta",
+          nome: "Kit Sobrevivência",
           descricao:
-            "Kit completo de sobrevivência com ferramentas essenciais e estojo preto.",
+            "Kit completo de sobrevivência com ferramentas essenciais.",
           preco: 149.9,
           imagem: "https://i.imgur.com/placeholder-kit-sobrevivencia.jpg",
         },
         {
           id: 28,
-          nome: "Kit Talher Verde",
+          nome: "Kit Talher",
           descricao:
-            "Conjunto de talheres verde, prático e portátil para camping e trilhas.",
+            "Conjunto de talheres, prático e portátil para camping e trilhas.",
           preco: 49.9,
           imagem: "https://i.imgur.com/placeholder-kit-talher.jpg",
         },
         {
           id: 29,
-          nome: "Lanterna Caça AEGIS Preta",
+          nome: "Lanterna Caça AEGIS",
           descricao:
             "Lanterna tática para caça, com alta luminosidade e design compacto.",
           preco: 419.9,
@@ -724,7 +626,7 @@
         },
         {
           id: 30,
-          nome: "Lanterna Pistola LP-08 AEGIS Preta",
+          nome: "Lanterna Pistola LP-08 AEGIS",
           descricao:
             "Lanterna de pistola com alta potência e foco ajustável.",
           preco: 549.9,
@@ -732,7 +634,7 @@
         },
         {
           id: 31,
-          nome: "Lanterna Tática TL-08 AEGIS Preta",
+          nome: "Lanterna Tática TL-08 AEGIS",
           descricao:
             "Lanterna tática compacta com múltiplos modos de iluminação.",
           preco: 349.9,
@@ -740,7 +642,7 @@
         },
         {
           id: 32,
-          nome: "Laser Segurança Preta",
+          nome: "Laser Segurança",
           descricao:
             "Laser apontador para segurança, com design discreto e alta precisão.",
           preco: 79.9,
@@ -748,7 +650,7 @@
         },
         {
           id: 33,
-          nome: "Pederneira Preta",
+          nome: "Pederneira",
           descricao:
             "Pederneira para ignição de fogo, resistente e fácil de usar.",
           preco: 49.9,
@@ -756,52 +658,36 @@
         },
         {
           id: 34,
-          nome: "Pulseira Tática Preta",
+          nome: "Pulseira Tática",
           descricao:
-            "Pulseira tática preta feita com material resistente para uso diário.",
+            "Pulseira tática feita com material resistente para uso diário.",
           preco: 49.9,
-          imagem: "https://i.imgur.com/placeholder-pulseira-preta.jpg",
-        },
-        {
-          id: 35,
-          nome: "Pulseira Tática Verde",
-          descricao:
-            "Pulseira tática verde, ideal para atividades outdoor e sobrevivência.",
-          preco: 49.9,
-          imagem: "https://i.imgur.com/placeholder-pulseira-verde.jpg",
-        },
-        {
-          id: 36,
-          nome: "Pulseira Tática Camuflada",
-          descricao:
-            "Pulseira tática camuflada para amantes de aventura e natureza.",
-          preco: 49.9,
-          imagem: "https://i.imgur.com/placeholder-pulseira-camuflada.jpg",
+          imagem: "https://i.imgur.com/placeholder-pulseira.jpg",
         },
         {
           id: 37,
-          nome: "Soco Inglês Preta",
+          nome: "Soco Inglês",
           descricao:
-            "Soco inglês preto com acabamento resistente e design anatômico.",
+            "Soco inglês com acabamento resistente e design anatômico.",
           preco: 64.9,
           imagem: "https://i.imgur.com/placeholder-soco-ingles.jpg",
         },
         {
           id: 38,
-          nome: "Spray Pimenta Vermelho",
+          nome: "Spray Pimenta",
           descricao:
-            "Spray de pimenta vermelho, compacto e eficaz para defesa pessoal.",
+            "Spray de pimenta, compacto e eficaz para defesa pessoal.",
           preco: 129.9,
           imagem: "https://i.imgur.com/placeholder-spray-pimenta.jpg",
         },
         {
           id: 39,
-          nome: "Taser Preta",
+          nome: "Taser",
           descricao:
-            "Eletrochoque tático preto, potente e seguro para defesa pessoal.",
+            "Eletrochoque tático, potente e seguro para defesa pessoal.",
           preco: 149.9,
-          imagem: "https://i.imgur.com/placeholder-taser-preta.jpg",
-        },
+          imagem: "https://i.imgur.com/placeholder-taser.jpg",
+        }
       ];
 
       // Função para renderizar os produtos na página
