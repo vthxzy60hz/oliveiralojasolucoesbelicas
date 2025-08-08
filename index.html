@@ -126,6 +126,7 @@
             border-top: 1px solid var(--cinza);
         }
 
+        /* Botão do WhatsApp */
         .whatsapp-btn {
             position: fixed;
             bottom: 2rem;
@@ -141,6 +142,38 @@
             font-size: 2rem;
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
             z-index: 100;
+            transition: all 0.3s;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.6);
+        }
+
+        /* Botão de Estoque (NOVO) */
+        .estoque-btn {
+            position: fixed;
+            bottom: 8rem;
+            right: 2rem;
+            background: var(--azul);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            z-index: 100;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .estoque-btn:hover {
+            transform: scale(1.1);
+            background: #0066c4;
+            box-shadow: 0 8px 20px rgba(0, 120, 215, 0.6);
         }
 
         @media (max-width: 768px) {
@@ -151,6 +184,21 @@
             
             .menu-card {
                 width: 90%;
+            }
+
+            .estoque-btn {
+                bottom: 7rem;
+                right: 1.5rem;
+                width: 55px;
+                height: 55px;
+                font-size: 1.6rem;
+            }
+
+            .whatsapp-btn {
+                right: 1.5rem;
+                width: 55px;
+                height: 55px;
+                font-size: 1.8rem;
             }
         }
     </style>
@@ -186,6 +234,12 @@
         <p>&copy; 2024 Oliveira Soluções Bélicas | WhatsApp: (54) 9676-8112</p>
     </footer>
 
+    <!-- Botão de Estoque (NOVO) -->
+    <a href="estoque.html" class="estoque-btn">
+        <i class="fas fa-boxes"></i>
+    </a>
+
+    <!-- Botão do WhatsApp -->
     <a href="https://wa.me/555496768112" class="whatsapp-btn" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
