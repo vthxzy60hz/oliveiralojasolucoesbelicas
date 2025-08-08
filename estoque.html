@@ -92,7 +92,11 @@
             display: none;
         }
 
-        /* Estoque */
+        /* Conteúdo do Estoque */
+        #estoque-content {
+            display: none;
+        }
+
         .container {
             width: 90%;
             max-width: 1200px;
@@ -115,6 +119,7 @@
             display: flex;
             gap: 1rem;
             margin: 2rem 0;
+            justify-content: center;
         }
 
         .btn {
@@ -202,6 +207,11 @@
             .estoque-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .nav-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
         }
     </style>
 </head>
@@ -209,15 +219,15 @@
     <!-- Tela de Login -->
     <div id="login-container">
         <div class="login-box">
-            <h2><i class="fas fa-lock"></i> Acesso Restrito ao Estoque</h2>
+            <h2><i class="fas fa-lock"></i> Acesso Restrito</h2>
             <input type="password" id="senha-acesso" class="login-input" placeholder="Digite a senha">
             <button onclick="verificarSenha()" class="login-btn">Acessar</button>
             <p id="erro-login"><i class="fas fa-exclamation-circle"></i> Senha incorreta!</p>
         </div>
     </div>
 
-    <!-- Conteúdo do Estoque (oculto inicialmente) -->
-    <div id="estoque-content" style="display: none;">
+    <!-- Conteúdo do Estoque -->
+    <div id="estoque-content">
         <header>
             <div class="container">
                 <h1><i class="fas fa-boxes"></i> Controle de Estoque</h1>
@@ -226,39 +236,35 @@
 
         <div class="container">
             <div class="nav-buttons">
-                <a href="index.html" class="btn"><i class="fas fa-home"></i> Início</a>
-                <a href="cart.html" class="btn"><i class="fas fa-shopping-cart"></i> Carrinho</a>
+                <a href="index.html" class="btn"><i class="fas fa-home"></i> Voltar</a>
             </div>
 
             <div class="estoque-grid" id="estoque-container"></div>
 
             <div class="historico">
-                <h2><i class="fas fa-history"></i> Histórico de Movimentações</h2>
+                <h2><i class="fas fa-history"></i> Histórico</h2>
                 <div id="historico-container"></div>
             </div>
         </div>
     </div>
 
     <script>
-        // SENHA DE ACESSO (ALTERE PARA UMA SENHA SEGURA)
-        const SENHA_ESTOQUE = "oliveira123";
-
-        // Dados do estoque
+        // Configurações
+        const SENHA_ESTOQUE = "oliveira123"; // Altere para sua senha
+        
+        // Dados iniciais
         let estoque = JSON.parse(localStorage.getItem('estoque')) || [
             { id: 1, nome: "Spray de Pimenta OSB", quantidade: 15, preco: 129.00 },
-            { id: 2, nome: "Taser OSB Defender", quantidade: 8, preco: 117.90 },
-            { id: 3, nome: "Caneta Canivete Tática", quantidade: 22, preco: 34.90 },
-            { id: 4, nome: "Lanterna Aegis LP-08", quantidade: 5, preco: 349.00 },
-            { id: 5, nome: "Aegis TM-18F", quantidade: 3, preco: 549.00 },
-            { id: 6, nome: "Blackbird", quantidade: 7, preco: 419.00 }
+            { id: 2, nome: "Taser Defender", quantidade: 8, preco: 117.90 },
+            { id: 3, nome: "Caneta Canivete", quantidade: 22, preco: 34.90 }
         ];
 
         let historico = JSON.parse(localStorage.getItem('historico-estoque')) || [];
 
-        // Verifica a senha
+        // Verificação de senha
         function verificarSenha() {
-            const senhaDigitada = document.getElementById('senha-acesso').value;
-            if (senhaDigitada === SENHA_ESTOQUE) {
+            const senha = document.getElementById('senha-acesso').value;
+            if (senha === SENHA_ESTOQUE) {
                 document.getElementById('login-container').style.display = 'none';
                 document.getElementById('estoque-content').style.display = 'block';
                 renderizarEstoque();
@@ -268,7 +274,7 @@
             }
         }
 
-        // Renderiza o estoque
+        // Renderização do estoque
         function renderizarEstoque() {
             const container = document.getElementById('estoque-container');
             container.innerHTML = '';
@@ -282,35 +288,16 @@
                             <div>Estoque: <strong>${item.quantidade}</strong></div>
                         </div>
                         <div class="estoque-actions">
-                            <input type="number" id="quantidade-${item.id}" placeholder="Qtd">
-                            <button onclick="adicionarEstoque(${item.id})"><i class="fas fa-plus"></i></button>
-                            <button onclick="removerEstoque(${item.id})"><i class="fas fa-minus"></i></button>
+                            <input type="number" id="quantidade-${item.id}" placeholder="Qtd" min="1">
+                            <button onclick="adicionarEstoque(${item.id})"><i class="fas fa-plus"></i> Add</button>
+                            <button onclick="removerEstoque(${item.id})"><i class="fas fa-minus"></i> Rem</button>
                         </div>
                     </div>
                 `;
             });
         }
 
-        // Renderiza o histórico
-        function renderizarHistorico() {
-            const container = document.getElementById('historico-container');
-            container.innerHTML = '';
-            
-            if (historico.length === 0) {
-                container.innerHTML = '<p>Nenhuma movimentação registrada.</p>';
-                return;
-            }
-            
-            historico.slice(0, 10).forEach(item => {
-                container.innerHTML += `
-                    <div class="historico-item">
-                        <span>${new Date(item.data).toLocaleString()}</span> - ${item.mensagem}
-                    </div>
-                `;
-            });
-        }
-
-        // Adiciona ao estoque
+        // Operações de estoque
         function adicionarEstoque(id) {
             const input = document.getElementById(`quantidade-${id}`);
             const quantidade = parseInt(input.value) || 0;
@@ -323,63 +310,94 @@
             const produto = estoque.find(p => p.id === id);
             produto.quantidade += quantidade;
             
-            // Registra no histórico
-            historico.unshift({
-                data: new Date().toISOString(),
-                mensagem: `Adicionados ${quantidade} unidades de ${produto.nome}`
-            });
-            
+            registrarHistorico(`Adicionado ${quantidade} ${produto.nome}`);
             salvarDados();
+            input.value = '';
         }
 
-        // Remove do estoque
         function removerEstoque(id) {
             const input = document.getElementById(`quantidade-${id}`);
             const quantidade = parseInt(input.value) || 0;
             
-            if (quantidade <= 0) {
-                alert("Digite uma quantidade válida!");
-                return;
-            }
-            
             const produto = estoque.find(p => p.id === id);
-            
             if (produto.quantidade < quantidade) {
-                alert("Quantidade indisponível no estoque!");
+                alert("Estoque insuficiente!");
                 return;
             }
             
             produto.quantidade -= quantidade;
             
-            // Registra no histórico
-            historico.unshift({
-                data: new Date().toISOString(),
-                mensagem: `Removidos ${quantidade} unidades de ${produto.nome}`
-            });
-            
+            registrarHistorico(`Removido ${quantidade} ${produto.nome}`);
             salvarDados();
+            input.value = '';
         }
 
-        // Salva dados e notifica a loja
+        // Histórico
+        function renderizarHistorico() {
+            const container = document.getElementById('historico-container');
+            container.innerHTML = '';
+            
+            historico.slice(0, 15).forEach(item => {
+                container.innerHTML += `
+                    <div class="historico-item">
+                        <span>[${new Date(item.data).toLocaleString()}]</span> ${item.mensagem}
+                    </div>
+                `;
+            });
+        }
+
+        function registrarHistorico(mensagem) {
+            historico.unshift({
+                data: new Date().toISOString(),
+                mensagem: mensagem
+            });
+            
+            // Mantém apenas os 50 últimos registros
+            if (historico.length > 50) {
+                historico = historico.slice(0, 50);
+            }
+        }
+
+        // Sistema de sincronização
         function salvarDados() {
             localStorage.setItem('estoque', JSON.stringify(estoque));
             localStorage.setItem('historico-estoque', JSON.stringify(historico));
-            
-            // Notifica a loja sobre a atualização
-            window.dispatchEvent(new Event('estoqueAtualizado'));
+            localStorage.setItem('ultimaAtualizacao', Date.now());
             
             renderizarEstoque();
             renderizarHistorico();
         }
 
+        // Verifica atualizações a cada 2 segundos
+        function verificarAtualizacoes() {
+            const ultimaAtualizacao = localStorage.getItem('ultimaAtualizacao') || 0;
+            if (ultimaAtualizacao > (window.ultimaVerificacao || 0)) {
+                window.ultimaVerificacao = Date.now();
+                
+                // Recarrega os dados se houver mudanças
+                const novoEstoque = JSON.parse(localStorage.getItem('estoque')) || [];
+                if (JSON.stringify(novoEstoque) !== JSON.stringify(estoque)) {
+                    estoque = novoEstoque;
+                    historico = JSON.parse(localStorage.getItem('historico-estoque')) || [];
+                    renderizarEstoque();
+                    renderizarHistorico();
+                }
+            }
+        }
+
         // Inicialização
         document.addEventListener('DOMContentLoaded', () => {
-            document.getElementById('senha-acesso').focus();
-            
-            // Carrega dados salvos
+            // Carrega dados iniciais se não existirem
             if (!localStorage.getItem('estoque')) {
                 localStorage.setItem('estoque', JSON.stringify(estoque));
+                localStorage.setItem('historico-estoque', JSON.stringify(historico));
             }
+            
+            // Configura a verificação periódica
+            setInterval(verificarAtualizacoes, 2000);
+            
+            // Foca no campo de senha
+            document.getElementById('senha-acesso').focus();
         });
     </script>
 </body>
