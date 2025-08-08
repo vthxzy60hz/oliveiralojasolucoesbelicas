@@ -31,22 +31,11 @@
             line-height: 1.7;
         }
 
-        header {
-            background: linear-gradient(to bottom, var(--cinza-escuro), var(--preto));
-            padding: 1.5rem 0;
-            text-align: center;
-            border-bottom: 1px solid var(--destaque);
-        }
-
         .container {
             width: 90%;
             max-width: 1200px;
             margin: 0 auto;
             padding: 2rem 0;
-        }
-
-        h1 {
-            font-size: 2rem;
         }
 
         .cart-header {
@@ -63,11 +52,6 @@
             color: white;
             text-decoration: none;
             border-radius: 4px;
-            transition: all 0.3s;
-        }
-
-        .btn:hover {
-            background: var(--cinza-claro);
         }
 
         .cart-items {
@@ -90,16 +74,6 @@
             border-radius: 4px;
         }
 
-        .item-details {
-            flex-grow: 1;
-        }
-
-        .item-price {
-            font-weight: bold;
-            color: var(--destaque);
-            font-size: 1.2rem;
-        }
-
         .item-quantity {
             display: flex;
             align-items: center;
@@ -113,16 +87,6 @@
             width: 25px;
             height: 25px;
             cursor: pointer;
-            border-radius: 3px;
-        }
-
-        .quantity-input {
-            width: 40px;
-            text-align: center;
-            margin: 0 0.5rem;
-            background: transparent;
-            color: white;
-            border: 1px solid var(--cinza);
             border-radius: 3px;
         }
 
@@ -141,13 +105,6 @@
             border-radius: 5px;
         }
 
-        .summary-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
-        }
-
         .checkout-btn {
             width: 100%;
             padding: 1rem;
@@ -156,13 +113,8 @@
             border: none;
             font-weight: bold;
             cursor: pointer;
-            transition: all 0.3s;
             border-radius: 4px;
             margin-top: 1rem;
-        }
-
-        .checkout-btn:hover {
-            background: var(--branco);
         }
 
         .empty-cart {
@@ -175,56 +127,37 @@
             font-size: 0.8rem;
             margin-top: 0.5rem;
         }
-
-        @media (max-width: 768px) {
-            .cart-item {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .cart-item img {
-                margin-bottom: 1rem;
-            }
-            
-            .remove-item {
-                top: auto;
-                bottom: 1rem;
-            }
-        }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1><i class="fas fa-shopping-cart"></i> Carrinho de Compras</h1>
-        </div>
-    </header>
-
-    <main class="container">
+    <div class="container">
         <div class="cart-header">
-            <a href="index.html" class="btn"><i class="fas fa-arrow-left"></i> Continuar Comprando</a>
+            <h1><i class="fas fa-shopping-cart"></i> Carrinho</h1>
+            <a href="loja.html" class="btn"><i class="fas fa-arrow-left"></i> Continuar Comprando</a>
         </div>
 
         <div class="cart-items" id="cart-items-container">
-            <!-- Itens serão carregados via JavaScript -->
+            <!-- Itens serão carregados aqui -->
         </div>
 
         <div class="cart-summary" id="cart-summary">
-            <div class="summary-row">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
                 <span>Subtotal:</span>
                 <span id="subtotal">R$ 0,00</span>
             </div>
-            <div class="summary-row">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
                 <span>Frete:</span>
                 <span id="shipping">Calcular</span>
             </div>
-            <div class="summary-row">
-                <strong>Total:</strong>
-                <strong id="total">R$ 0,00</strong>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 1rem; font-weight: bold;">
+                <span>Total:</span>
+                <span id="total">R$ 0,00</span>
             </div>
-            <button class="checkout-btn" id="checkout-btn"><i class="fas fa-check"></i> Finalizar Compra</button>
+            <button class="checkout-btn" id="checkout-btn">
+                <i class="fas fa-check"></i> Finalizar Compra
+            </button>
         </div>
-    </main>
+    </div>
 
     <script>
         // Dados
@@ -234,7 +167,6 @@
         // Elementos
         const cartContainer = document.getElementById('cart-items-container');
         const subtotalEl = document.getElementById('subtotal');
-        const totalEl = document.getElementById('total');
         const checkoutBtn = document.getElementById('checkout-btn');
 
         // Renderiza o carrinho
@@ -245,7 +177,7 @@
                 cartContainer.innerHTML = `
                     <div class="empty-cart">
                         <p>Seu carrinho está vazio</p>
-                        <a href="index.html" class="btn">Voltar às compras</a>
+                        <a href="loja.html" class="btn">Voltar às compras</a>
                     </div>
                 `;
                 document.getElementById('cart-summary').style.display = 'none';
@@ -268,17 +200,15 @@
                 cartContainer.innerHTML += `
                     <div class="cart-item">
                         <img src="${item.image}" alt="${item.name}">
-                        <div class="item-details">
+                        <div style="flex-grow: 1;">
                             <h3>${item.name}</h3>
-                            <div class="item-price">R$ ${item.price.toFixed(2).replace('.', ',')}</div>
+                            <div style="font-weight: bold; color: var(--destaque);">R$ ${item.price.toFixed(2).replace('.', ',')}</div>
                             <div class="item-quantity">
                                 <button class="quantity-btn" onclick="updateQuantity(${index}, -1)">-</button>
-                                <input type="number" class="quantity-input" value="${item.quantity}" 
-                                       min="1" onchange="updateQuantityInput(${index}, this)">
+                                <input type="number" class="quantity-input" value="${item.quantity}" min="1" onchange="updateQuantityInput(${index}, this)" style="width: 40px; text-align: center; background: transparent; color: white; border: 1px solid var(--cinza); border-radius: 3px;">
                                 <button class="quantity-btn" onclick="updateQuantity(${index}, 1)">+</button>
                             </div>
-                            ${isOutOfStock ? 
-                              '<div class="alert-no-stock"><i class="fas fa-exclamation-circle"></i> Estoque insuficiente</div>' : ''}
+                            ${isOutOfStock ? '<div class="alert-no-stock"><i class="fas fa-exclamation-circle"></i> Estoque insuficiente</div>' : ''}
                         </div>
                         <span class="remove-item" onclick="removeItem(${index})">
                             <i class="fas fa-trash"></i>
@@ -288,9 +218,8 @@
             });
             
             subtotalEl.textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
-            totalEl.textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
+            document.getElementById('total').textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
             
-            // Desativa o botão se houver itens sem estoque
             checkoutBtn.disabled = hasOutOfStock;
         }
 
@@ -322,7 +251,6 @@
 
         // Finaliza compra
         checkoutBtn.addEventListener('click', () => {
-            // Verifica estoque
             const outOfStockItems = [];
             
             cart.forEach(item => {
@@ -336,17 +264,6 @@
                 alert(`Os seguintes itens não têm estoque suficiente:\n\n${outOfStockItems.join('\n')}`);
                 return;
             }
-            
-            // Atualiza estoque
-            cart.forEach(item => {
-                const produto = estoque.find(p => p.id === item.id);
-                if (produto) {
-                    produto.quantidade -= item.quantity;
-                }
-            });
-            
-            localStorage.setItem('estoque', JSON.stringify(estoque));
-            localStorage.setItem('ultimaAtualizacao', Date.now());
             
             // Prepara mensagem para WhatsApp
             const message = `Olá, gostaria de comprar:\n\n${
@@ -368,22 +285,24 @@
             renderCart();
         }
 
-        // Verifica atualizações do estoque
-        function checkStockUpdates() {
-            const lastUpdate = localStorage.getItem('ultimaAtualizacao') || 0;
-            if (lastUpdate > (window.lastStockCheck || 0)) {
-                window.lastStockCheck = Date.now();
-                estoque = JSON.parse(localStorage.getItem('estoque')) || [];
-                renderCart();
+        // 🔥 OUVINTE PARA ATUALIZAÇÕES DE ESTOQUE (NOVO)
+        window.addEventListener('estoqueAtualizado', (e) => {
+            estoque = e.detail?.estoque || JSON.parse(localStorage.getItem('estoque')) || [];
+            renderCart();
+        });
+
+        // Verifica estoque a cada 3 segundos
+        setInterval(() => {
+            const ultimaAtualizacao = localStorage.getItem('ultimaAtualizacaoEstoque') || 0;
+            if (ultimaAtualizacao > (window.ultimaVerificacao || 0)) {
+                window.ultimaVerificacao = Date.now();
+                window.dispatchEvent(new Event('estoqueAtualizado'));
             }
-        }
+        }, 3000);
 
         // Inicialização
         document.addEventListener('DOMContentLoaded', () => {
             renderCart();
-            
-            // Verifica estoque a cada 3 segundos
-            setInterval(checkStockUpdates, 3000);
         });
     </script>
 </body>
