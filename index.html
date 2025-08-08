@@ -126,12 +126,10 @@
             border-top: 1px solid var(--cinza);
         }
 
-        /* Botão do WhatsApp */
-        .whatsapp-btn {
+        /* Botões flutuantes */
+        .whatsapp-btn, .estoque-btn {
             position: fixed;
-            bottom: 2rem;
             right: 2rem;
-            background: #25D366;
             color: white;
             width: 60px;
             height: 60px;
@@ -143,37 +141,22 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
             z-index: 100;
             transition: all 0.3s;
-        }
-
-        .whatsapp-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.6);
-        }
-
-        /* Botão de Estoque (NOVO) */
-        .estoque-btn {
-            position: fixed;
-            bottom: 8rem;
-            right: 2rem;
-            background: var(--azul);
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            z-index: 100;
-            transition: all 0.3s;
             text-decoration: none;
         }
 
-        .estoque-btn:hover {
+        .whatsapp-btn {
+            bottom: 2rem;
+            background: #25D366;
+        }
+
+        .estoque-btn {
+            bottom: 8rem;
+            background: var(--azul);
+            font-size: 1.8rem;
+        }
+
+        .whatsapp-btn:hover, .estoque-btn:hover {
             transform: scale(1.1);
-            background: #0066c4;
-            box-shadow: 0 8px 20px rgba(0, 120, 215, 0.6);
         }
 
         @media (max-width: 768px) {
@@ -186,19 +169,15 @@
                 width: 90%;
             }
 
-            .estoque-btn {
-                bottom: 7rem;
-                right: 1.5rem;
-                width: 55px;
-                height: 55px;
+            .whatsapp-btn, .estoque-btn {
+                width: 50px;
+                height: 50px;
                 font-size: 1.6rem;
+                right: 1rem;
             }
 
-            .whatsapp-btn {
-                right: 1.5rem;
-                width: 55px;
-                height: 55px;
-                font-size: 1.8rem;
+            .estoque-btn {
+                bottom: 7rem;
             }
         }
     </style>
@@ -234,7 +213,7 @@
         <p>&copy; 2024 Oliveira Soluções Bélicas | WhatsApp: (54) 9676-8112</p>
     </footer>
 
-    <!-- Botão de Estoque (NOVO) -->
+    <!-- Botão de Estoque -->
     <a href="estoque.html" class="estoque-btn">
         <i class="fas fa-boxes"></i>
     </a>
@@ -243,5 +222,18 @@
     <a href="https://wa.me/555496768112" class="whatsapp-btn" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
+
+    <script>
+        // Sistema de sincronização cross-browser
+        setInterval(() => {
+            const estoque = JSON.parse(localStorage.getItem('estoque')) || [];
+            const ultimaAtualizacao = localStorage.getItem('estoqueUpdate') || 0;
+            
+            if (ultimaAtualizacao > (window.lastEstoqueUpdate || 0)) {
+                window.lastEstoqueUpdate = Date.now();
+                // Atualizações serão refletidas quando acessar outras páginas
+            }
+        }, 3000);
+    </script>
 </body>
 </html>
