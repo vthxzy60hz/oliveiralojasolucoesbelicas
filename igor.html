@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Igor Oliveira - Oliveira Soluções Bélicas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --preto: #0A0A0A;
+            --cinza-escuro: #1A1A1A;
+            --cinza: #333333;
+            --cinza-claro: #666666;
+            --branco: #F0F0F0;
+            --azul: #0078D7;
+            --destaque: #C0C0C0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--preto);
+            color: var(--branco);
+            line-height: 1.7;
+        }
+
+        header {
+            background: linear-gradient(to bottom, var(--cinza-escuro), var(--preto));
+            padding: 2rem 0;
+            text-align: center;
+            border-bottom: 1px solid var(--destaque);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        .profile-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .profile-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--destaque);
+            margin-bottom: 1rem;
+        }
+
+        .profile-content {
+            margin-top: 2rem;
+        }
+
+        .profile-section {
+            margin-bottom: 2rem;
+        }
+
+        .profile-section h3 {
+            color: var(--destaque);
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--cinza);
+            padding-bottom: 0.5rem;
+        }
+
+        .profile-section p {
+            color: var(--cinza-claro);
+            margin-bottom: 1rem;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+            transition: transform 0.3s;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: var(--destaque);
+            color: var(--preto);
+            padding: 0.6rem 1.2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            margin-top: 1rem;
+        }
+
+        .back-btn:hover {
+            background: var(--branco);
+        }
+
+        footer {
+            background: var(--cinza-escuro);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            border-top: 1px solid var(--cinza);
+        }
+
+        @media (max-width: 768px) {
+            .gallery {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Igor Oliveira</h1>
+            <p>Especialista em Armamentos</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="profile-header">
+            <img src="https://via.placeholder.com/400x400?text=Foto+do+Igor" alt="Igor Oliveira" class="profile-photo">
+            <h2>Igor Oliveira</h2>
+            <p>Fundador e Especialista em Armamentos</p>
+            <a href="equipe.html" class="back-btn">Voltar para a Equipe</a>
+        </div>
+
+        <div class="profile-content">
+            <div class="profile-section">
+                <h3>Sobre</h3>
+                <p>Profissional com mais de 15 anos de experiência no mercado de armamentos e defesa pessoal. Especialista em treinamento tático e manuseio de equipamentos.</p>
+                
+                <!-- Espaço para imagens -->
+                <div class="gallery">
+                    <img src="https://via.placeholder.com/300x200?text=Certificação+1" alt="Certificação 1">
+                    <img src="https://via.placeholder.com/300x200?text=Certificação+2" alt="Certificação 2">
+                    <img src="https://via.placeholder.com/300x200?text=Treinamento" alt="Treinamento">
+                </div>
+            </div>
+
+            <div class="profile-section">
+                <h3>Especializações</h3>
+                <p>• Armamentos de fogo</p>
+                <p>• Equipamentos táticos</p>
+                <p>• Treinamento de segurança</p>
+                <p>• Documentação legal</p>
+                
+                <!-- Mais imagens -->
+                <div class="gallery">
+                    <img src="https://via.placeholder.com/300x200?text=Especialização+1" alt="Especialização 1">
+                    <img src="https://via.placeholder.com/300x200?text=Especialização+2" alt="Especialização 2">
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Oliveira Soluções Bélicas | WhatsApp: (54) 9676-8112</p>
+    </footer>
+</body>
+</html>
