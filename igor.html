@@ -47,7 +47,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
             text-align: center;
         }
 
@@ -64,7 +64,7 @@
         .presentation {
             background: var(--cinza-escuro);
             border-radius: 8px;
-            padding: 2rem;
+            padding: 1.5rem;
             margin: 2rem auto;
             max-width: 800px;
             text-align: center;
@@ -80,22 +80,32 @@
         .gallery {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
+            gap: 2rem;
             margin-top: 2rem;
         }
 
-        .certificate-img {
-            width: 100%;
-            height: 400px;
-            object-fit: contain;
+        .certificate-item {
+            display: flex;
+            justify-content: center;
             background: var(--cinza-escuro);
+            padding: 1rem;
             border-radius: 5px;
             border: 1px solid var(--cinza);
-            transition: transform 0.3s;
+            transition: all 0.3s;
         }
 
-        .certificate-img:hover {
-            transform: scale(1.03);
+        .certificate-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            border-color: var(--azul);
+        }
+
+        .certificate-img {
+            max-width: 100%;
+            height: auto;
+            max-height: 500px;
+            object-fit: contain;
+            border-radius: 3px;
         }
 
         .back-btn {
@@ -109,7 +119,7 @@
             text-decoration: none;
             font-weight: bold;
             transition: all 0.3s;
-            margin: 2rem auto;
+            margin: 3rem auto 1rem;
         }
 
         .back-btn:hover {
@@ -128,10 +138,11 @@
         @media (max-width: 768px) {
             .gallery {
                 grid-template-columns: 1fr;
+                gap: 1.5rem;
             }
             
             .certificate-img {
-                height: 300px;
+                max-height: 400px;
             }
         }
     </style>
@@ -146,7 +157,7 @@
 
     <main class="container">
         <div class="profile-header">
-            <img src="https://via.placeholder.com/400x400?text=Foto+Igor+Oliveira" alt="Igor Oliveira" class="profile-photo">
+            <img src="https://i.imgur.com/PUucTxT.jpeg" alt="Igor Oliveira" class="profile-photo">
             <h2>IGOR OLIVEIRA</h2>
         </div>
 
@@ -156,12 +167,29 @@
         </div>
 
         <div class="gallery">
-            <img src="WhatsApp Image 2025-08-08 at 16.06.15 (1).jpeg" alt="Certificação Pescafista" class="certificate-img">
-            <img src="WhatsApp Image 2025-08-08 at 16.06.15.jpeg" alt="Certificação Socorrista" class="certificate-img">
-            <img src="WhatsApp Image 2025-08-08 at 16.06.14 (1).jpeg" alt="Certificação Instrutor de Tiro" class="certificate-img">
-            <img src="WhatsApp Image 2025-08-08 at 16.06.14 (2).jpeg" alt="Certificação Medicina de Combate" class="certificate-img">
-            <img src="WhatsApp Image 2025-08-08 at 16.06.14 (3).jpeg" alt="Certificação Multiplicador APH" class="certificate-img">
-            <img src="WhatsApp Image 2025-08-08 at 16.06.14.jpeg" alt="Certificação Instrutor" class="certificate-img">
+            <div class="certificate-item">
+                <img src="https://i.imgur.com/8hIi5j4.jpeg" alt="Pescafista" class="certificate-img">
+            </div>
+            
+            <div class="certificate-item">
+                <img src="https://i.imgur.com/6bIrcEq.jpeg" alt="Socorrista" class="certificate-img">
+            </div>
+            
+            <div class="certificate-item">
+                <img src="https://i.imgur.com/vWhTRKY.jpeg" alt="Instrutor de Tiro" class="certificate-img">
+            </div>
+            
+            <div class="certificate-item">
+                <img src="https://i.imgur.com/P931v7S.jpeg" alt="Medicina de Combate" class="certificate-img">
+            </div>
+            
+            <div class="certificate-item">
+                <img src="WhatsApp Image 2025-08-08 at 16.06.14 (3).jpeg" alt="Multiplicador APH" class="certificate-img">
+            </div>
+            
+            <div class="certificate-item">
+                <img src="https://i.imgur.com/ZkjQNru.jpeg" alt="Instrutor" class="certificate-img">
+            </div>
         </div>
 
         <a href="equipe.html" class="back-btn">
