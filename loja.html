@@ -16,6 +16,8 @@
             --azul-neon-solid: #0078D7;
             --destaque: #C0C0C0;
             --destaque-brilho: #E0E0E0;
+            --verde: #25D366;
+            --vermelho: #FF4444;
         }
         
         * {
@@ -140,6 +142,38 @@
             background: linear-gradient(90deg, var(--destaque), transparent);
         }
         
+        /* BARRA DE PESQUISA (NOVO) */
+        .search-container {
+            margin: 2rem 0;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .search-input {
+            padding: 0.8rem 1rem;
+            width: 100%;
+            background: var(--cinza-escuro);
+            border: 1px solid var(--cinza);
+            color: var(--branco);
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .search-btn {
+            padding: 0 1.5rem;
+            background: var(--azul-neon-solid);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .search-btn:hover {
+            background: var(--azul-neon);
+        }
+        
         .produtos-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -211,13 +245,27 @@
             font-size: 0.9rem;
         }
         
+        .preco-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 1.2rem 0;
+        }
+        
         .preco {
-            display: block;
             color: var(--destaque);
             font-weight: bold;
             font-size: 1.5rem;
-            margin: 1.2rem 0;
             text-shadow: 0 0 8px rgba(192, 192, 192, 0.3);
+        }
+        
+        .estoque-info {
+            font-size: 0.9rem;
+            color: var(--cinza-claro);
+        }
+        
+        .estoque-info i {
+            margin-right: 5px;
         }
         
         .btn-comprar {
@@ -417,103 +465,28 @@
     </header>
     
     <main class="container">
+        <!-- BARRA DE PESQUISA (NOVO) -->
+        <div class="search-container">
+            <input 
+                type="text" 
+                id="search-input" 
+                placeholder="Pesquisar produtos..." 
+                class="search-input"
+            >
+            <button onclick="searchProducts()" class="search-btn">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+
         <section id="produtos">
             <h2>Catálogo</h2>
             
-            <div class="produtos-grid">
-                <!-- Spray de Pimenta -->
-                <div class="produto">
-                    <div class="produto-img">
-                        <img src="https://i.imgur.com/7Gm6KBL.jpeg" alt="Spray de Pimenta">
-                    </div>
-                    <div class="produto-info">
-                        <h3>Spray de Pimenta OSB</h3>
-                        <p>Defesa pessoal com alcance de 3m, formulação UV marcadora e válvula anti-retorno.</p>
-                        <span class="preco">R$ 129,00</span>
-                        <button class="btn-comprar" onclick="addToCart('Spray de Pimenta OSB', 129.00, 'https://i.imgur.com/7Gm6KBL.jpeg')">
-                            <i class="fas fa-shopping-cart"></i> Comprar
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Taser -->
-                <div class="produto">
-                    <div class="produto-img">
-                        <img src="https://i.imgur.com/placeholder-taser.jpg" alt="Taser de Defesa">
-                    </div>
-                    <div class="produto-info">
-                        <h3>Taser OSB Defender</h3>
-                        <p>Eletrochoque de 50.000V com segurança ativada por PIN e lanterna LED integrada.</p>
-                        <span class="preco">R$ 117,90</span>
-                        <button class="btn-comprar" onclick="addToCart('Taser OSB Defender', 117.90, 'https://i.imgur.com/placeholder-taser.jpg')">
-                            <i class="fas fa-shopping-cart"></i> Comprar
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Caneta Canivete -->
-                <div class="produto">
-                    <div class="produto-img">
-                        <img src="https://i.imgur.com/placeholder-canivete.jpg" alt="Caneta Canivete">
-                    </div>
-                    <div class="produto-info">
-                        <h3>Caneta Canivete Tática</h3>
-                        <p>Multifuncional com lâmina oculta, design discreto e corpo em alumínio aeronáutico.</p>
-                        <span class="preco">R$ 34,90</span>
-                        <button class="btn-comprar" onclick="addToCart('Caneta Canivete Tática', 34.90, 'https://i.imgur.com/placeholder-canivete.jpg')">
-                            <i class="fas fa-shopping-cart"></i> Comprar
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Lanterna -->
-                <div class="produto">
-                    <div class="produto-img">
-                        <img src="https://i.imgur.com/placeholder-lanterna.jpg" alt="Lanterna Aegis">
-                    </div>
-                    <div class="produto-info">
-                        <h3>Lanterna Aegis LP-08</h3>
-                        <p>1.200 lumens, resistente à água IPX8, zoom ajustável e corpo em liga de magnésio.</p>
-                        <span class="preco">R$ 349,00</span>
-                        <button class="btn-comprar" onclick="addToCart('Lanterna Aegis LP-08', 349.00, 'https://i.imgur.com/placeholder-lanterna.jpg')">
-                            <i class="fas fa-shopping-cart"></i> Comprar
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Aegis TM-18F -->
-                <div class="produto">
-                    <div class="produto-img">
-                        <img src="https://i.imgur.com/placeholder-aegis.jpg" alt="Aegis TM-18F">
-                    </div>
-                    <div class="produto-info">
-                        <h3>Aegis TM-18F</h3>
-                        <p>Eletrochoque de 18 milhões de volts com lanterna LED e sistema de segurança tripla.</p>
-                        <span class="preco">R$ 549,00</span>
-                        <button class="btn-comprar" onclick="addToCart('Aegis TM-18F', 549.00, 'https://i.imgur.com/placeholder-aegis.jpg')">
-                            <i class="fas fa-shopping-cart"></i> Comprar
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Blackbird -->
-                <div class="produto">
-                    <div class="produto-img">
-                        <img src="https://i.imgur.com/placeholder-blackbird.jpg" alt="Blackbird">
-                    </div>
-                    <div class="produto-info">
-                        <h3>Blackbird</h3>
-                        <p>Faca tática full tang com lâmina em aço D2 (62 HRC) e cabo em micarta texturizado.</p>
-                        <span class="preco">R$ 419,00</span>
-                        <button class="btn-comprar" onclick="addToCart('Blackbird', 419.00, 'https://i.imgur.com/placeholder-blackbird.jpg')">
-                            <i class="fas fa-shopping-cart"></i> Comprar
-                        </button>
-                    </div>
-                </div>
+            <div class="produtos-grid" id="produtos-container">
+                <!-- Produtos serão carregados via JavaScript -->
             </div>
             
             <div class="disclaimer">
-                <p><strong>AVISO LEGAL IMPORTANTE:</strong> Todos os produtos Oliveira Soluções Bélicas são comercializados em estrita conformidade com a legislação brasileira. A compra está condicionada à apresentação de documentação válida quando exigido por lei. Consulte as regulamentações específicas do seu estado/município.</p>
+                <p><strong>AVISO LEGAL IMPORTANTE:</strong> Todos os produtos Oliveira Soluções Bélicas são comercializados em estrita conformidade com a legislação brasileira.</p>
             </div>
         </section>
     </main>
@@ -547,46 +520,176 @@
     </a>
 
     <script>
-        // Função para adicionar ao carrinho
-        function addToCart(productName, productPrice, productImage) {
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        // Dados dos produtos (sincronizados com estoque.html)
+        let produtos = JSON.parse(localStorage.getItem('estoque')) || [
+            {
+                id: 1,
+                nome: "Spray de Pimenta OSB",
+                descricao: "Defesa pessoal com alcance de 3m, formulação UV marcadora e válvula anti-retorno.",
+                preco: 129.00,
+                imagem: "https://i.imgur.com/7Gm6KBL.jpeg",
+                quantidade: 15
+            },
+            {
+                id: 2,
+                nome: "Taser OSB Defender",
+                descricao: "Eletrochoque de 50.000V com segurança ativada por PIN e lanterna LED integrada.",
+                preco: 117.90,
+                imagem: "https://i.imgur.com/placeholder-taser.jpg",
+                quantidade: 8
+            },
+            {
+                id: 3,
+                nome: "Caneta Canivete Tática",
+                descricao: "Multifuncional com lâmina oculta, design discreto e corpo em alumínio aeronáutico.",
+                preco: 34.90,
+                imagem: "https://i.imgur.com/placeholder-canivete.jpg",
+                quantidade: 22
+            },
+            {
+                id: 4,
+                nome: "Lanterna Aegis LP-08",
+                descricao: "1.200 lumens, resistente à água IPX8, zoom ajustável e corpo em liga de magnésio.",
+                preco: 349.00,
+                imagem: "https://i.imgur.com/placeholder-lanterna.jpg",
+                quantidade: 5
+            },
+            {
+                id: 5,
+                nome: "Aegis TM-18F",
+                descricao: "Eletrochoque de 18 milhões de volts com lanterna LED e sistema de segurança tripla.",
+                preco: 549.00,
+                imagem: "https://i.imgur.com/placeholder-aegis.jpg",
+                quantidade: 3
+            },
+            {
+                id: 6,
+                nome: "Blackbird",
+                descricao: "Faca tática full tang com lâmina em aço D2 (62 HRC) e cabo em micarta texturizado.",
+                preco: 419.00,
+                imagem: "https://i.imgur.com/placeholder-blackbird.jpg",
+                quantidade: 7
+            }
+        ];
+
+        // Carrega produtos na página
+        function carregarProdutos() {
+            const container = document.getElementById('produtos-container');
+            container.innerHTML = '';
             
-            // Verifica se o produto já está no carrinho
-            const existingItem = cart.find(item => item.name === productName);
+            produtos.forEach(produto => {
+                container.innerHTML += `
+                    <div class="produto">
+                        <div class="produto-img">
+                            <img src="${produto.imagem}" alt="${produto.nome}">
+                        </div>
+                        <div class="produto-info">
+                            <h3>${produto.nome}</h3>
+                            <p>${produto.descricao}</p>
+                            <div class="preco-container">
+                                <span class="preco">R$ ${produto.preco.toFixed(2).replace('.', ',')}</span>
+                                <span class="estoque-info">
+                                    <i class="fas fa-box"></i> ${produto.quantidade} em estoque
+                                </span>
+                            </div>
+                            <button 
+                                class="btn-comprar" 
+                                onclick="addToCart(
+                                    '${produto.nome}', 
+                                    ${produto.preco}, 
+                                    '${produto.imagem}',
+                                    ${produto.id}
+                                )"
+                                ${produto.quantidade <= 0 ? 'disabled style="opacity: 0.5; cursor: not-allowed;"' : ''}
+                            >
+                                <i class="fas fa-shopping-cart"></i> 
+                                ${produto.quantidade <= 0 ? 'ESGOTADO' : 'Comprar'}
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        // Função de pesquisa
+        function searchProducts() {
+            const searchTerm = document.getElementById('search-input').value.toLowerCase();
+            const produtosElements = document.querySelectorAll('.produto');
             
-            if (existingItem) {
-                existingItem.quantity += 1;
+            produtosElements.forEach(produto => {
+                const nome = produto.querySelector('h3').textContent.toLowerCase();
+                const descricao = produto.querySelector('p').textContent.toLowerCase();
+                
+                if (nome.includes(searchTerm) || descricao.includes(searchTerm)) {
+                    produto.style.display = 'block';
+                } else {
+                    produto.style.display = 'none';
+                }
+            });
+        }
+
+        // Adiciona ao carrinho
+        function addToCart(nome, preco, imagem, idProduto) {
+            let carrinho = JSON.parse(localStorage.getItem('cart')) || [];
+            
+            // Verifica estoque
+            const produtoEstoque = produtos.find(p => p.id === idProduto);
+            if (produtoEstoque.quantidade <= 0) {
+                alert('Produto esgotado!');
+                return;
+            }
+
+            // Atualiza estoque localmente (o estoque.html fará a validação final)
+            produtoEstoque.quantidade -= 1;
+            
+            // Adiciona ao carrinho
+            const itemExistente = carrinho.find(item => item.id === idProduto);
+            if (itemExistente) {
+                itemExistente.quantidade += 1;
             } else {
-                cart.push({
-                    name: productName,
-                    price: productPrice,
-                    image: productImage,
+                carrinho.push({
+                    id: idProduto,
+                    name: nome,
+                    price: preco,
+                    image: imagem,
                     quantity: 1
                 });
             }
             
-            localStorage.setItem('cart', JSON.stringify(cart));
+            localStorage.setItem('cart', JSON.stringify(carrinho));
             updateCartCount();
+            carregarProdutos(); // Atualiza a exibição do estoque
             
             // Feedback visual
             const btn = event.target;
             btn.innerHTML = '<i class="fas fa-check"></i> Adicionado';
             btn.style.background = 'linear-gradient(90deg, #25D366, #128C7E)';
             setTimeout(() => {
-                btn.innerHTML = '<i class="fas fa-shopping-cart"></i> Comprar';
+                btn.innerHTML = `<i class="fas fa-shopping-cart"></i> ${produtoEstoque.quantidade <= 0 ? 'ESGOTADO' : 'Comprar'}`;
                 btn.style.background = 'linear-gradient(90deg, var(--destaque), var(--cinza-claro))';
+                if (produtoEstoque.quantidade <= 0) {
+                    btn.disabled = true;
+                    btn.style.opacity = '0.5';
+                    btn.style.cursor = 'not-allowed';
+                }
             }, 2000);
         }
-        
-        // Atualiza o contador do carrinho
+
+        // Atualiza contador do carrinho
         function updateCartCount() {
-            const cart = JSON.parse(localStorage.getItem('cart')) || [];
-            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
-            document.getElementById('cart-count').textContent = totalItems;
+            const carrinho = JSON.parse(localStorage.getItem('cart')) || [];
+            const totalItens = carrinho.reduce((total, item) => total + item.quantity, 0);
+            document.getElementById('cart-count').textContent = totalItens;
         }
-        
-        // Atualiza ao carregar a página
-        document.addEventListener('DOMContentLoaded', updateCartCount);
+
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', () => {
+            carregarProdutos();
+            updateCartCount();
+            
+            // Pesquisa em tempo real (opcional)
+            document.getElementById('search-input').addEventListener('input', searchProducts);
+        });
     </script>
 </body>
 </html>
