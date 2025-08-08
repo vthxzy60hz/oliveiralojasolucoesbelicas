@@ -252,14 +252,47 @@
         // Configurações
         const SENHA_ESTOQUE = "oliveira123"; // Altere para sua senha
         
-        // Dados iniciais (com todos os produtos solicitados)
+        // Dados iniciais (com todos os produtos da lista ampliada)
         let estoque = JSON.parse(localStorage.getItem('estoque')) || [
-            { id: 1, nome: "Spray de Pimenta OSB", quantidade: 15, preco: 129.00 },
-            { id: 2, nome: "Taser OSB Defender", quantidade: 8, preco: 117.90 },
-            { id: 3, nome: "Caneta Canivete Tática", quantidade: 22, preco: 34.90 },
-            { id: 4, nome: "Lanterna Aegis LP-08", quantidade: 5, preco: 349.00 },
-            { id: 5, nome: "Aegis TM-18F", quantidade: 3, preco: 549.00 },
-            { id: 6, nome: "Blackbird", quantidade: 7, preco: 419.00 }
+            { id: 1, nome: "Spray de Pimenta OSB", quantidade: 15, preco: 129.90 },
+            { id: 2, nome: "Taser OSB Defender", quantidade: 8, preco: 149.90 },
+            { id: 3, nome: "Lanterna Aegis LP-08", quantidade: 10, preco: 549.90 },
+            { id: 4, nome: "Aegis TM-18F", quantidade: 5, preco: 249.90 },
+            { id: 5, nome: "Blackbird", quantidade: 12, preco: 199.90 },
+            { id: 6, nome: "Alicate Multifuncional", quantidade: 25, preco: 54.90 },
+            { id: 7, nome: "Bússola Profissional C/Lupa", quantidade: 18, preco: 74.90 },
+            { id: 8, nome: "Butterfly Prata", quantidade: 20, preco: 64.90 },
+            { id: 9, nome: "Butterfly Preta", quantidade: 20, preco: 64.90 },
+            { id: 10, nome: "Butterfly Dourado", quantidade: 20, preco: 64.90 },
+            { id: 11, nome: "Butterfly Color", quantidade: 20, preco: 64.90 },
+            { id: 12, nome: "Canivete Boker Color", quantidade: 15, preco: 110.00 },
+            { id: 13, nome: "Canivetes Browning", quantidade: 10, preco: 99.90 },
+            { id: 14, nome: "Faca Command", quantidade: 8, preco: 119.90 },
+            { id: 15, nome: "Faca Operações Verde", quantidade: 7, preco: 149.90 },
+            { id: 16, nome: "Faca Operações Preta", quantidade: 7, preco: 149.90 },
+            { id: 17, nome: "Faca Operações TAM", quantidade: 7, preco: 149.90 },
+            { id: 18, nome: "Faca Pescoço Preta", quantidade: 30, preco: 64.90 },
+            { id: 19, nome: "Faca Pescoço Caveira Preta", quantidade: 30, preco: 64.90 },
+            { id: 20, nome: "Faca Tática G Preta", quantidade: 9, preco: 149.90 },
+            { id: 21, nome: "Faca Tática Rambo Preta", quantidade: 9, preco: 149.90 },
+            { id: 22, nome: "Karambit Preta", quantidade: 15, preco: 64.90 },
+            { id: 23, nome: "Karambit Color", quantidade: 15, preco: 64.90 },
+            { id: 24, nome: "Kit Garrafa Térmica Rosa", quantidade: 25, preco: 79.90 },
+            { id: 25, nome: "Kit Garrafa Térmica Verde", quantidade: 25, preco: 79.90 },
+            { id: 26, nome: "Kit Garrafa Térmica Preta", quantidade: 25, preco: 79.90 },
+            { id: 27, nome: "Kit Sobrevivência Preta", quantidade: 20, preco: 149.90 },
+            { id: 28, nome: "Kit Talher Verde", quantidade: 50, preco: 49.90 },
+            { id: 29, nome: "Lanterna Caça AEGIS Preta", quantidade: 10, preco: 419.90 },
+            { id: 30, nome: "Lanterna Pistola LP-08 AEGIS Preta", quantidade: 10, preco: 549.90 },
+            { id: 31, nome: "Lanterna Tática TL-08 AEGIS Preta", quantidade: 12, preco: 349.90 },
+            { id: 32, nome: "Laser Segurança Preta", quantidade: 30, preco: 79.90 },
+            { id: 33, nome: "Pederneira Preta", quantidade: 40, preco: 49.90 },
+            { id: 34, nome: "Pulseira Tática Preta", quantidade: 50, preco: 49.90 },
+            { id: 35, nome: "Pulseira Tática Verde", quantidade: 50, preco: 49.90 },
+            { id: 36, nome: "Pulseira Tática Camuflada", quantidade: 50, preco: 49.90 },
+            { id: 37, nome: "Soco Inglês Preta", quantidade: 20, preco: 64.90 },
+            { id: 38, nome: "Spray Pimenta Vermelho", quantidade: 15, preco: 129.90 },
+            { id: 39, nome: "Taser Preta", quantidade: 10, preco: 149.90 }
         ];
 
         let historico = JSON.parse(localStorage.getItem('historico-estoque')) || [];
@@ -287,7 +320,7 @@
                     <div class="estoque-item">
                         <h3>${item.nome}</h3>
                         <div class="estoque-info">
-                            <div>Preço: R$ ${item.preco.toFixed(2)}</div>
+                            <div>Preço: R$ ${item.preco.toFixed(2).replace('.', ',')}</div>
                             <div>Estoque: <strong>${item.quantidade}</strong></div>
                         </div>
                         <div class="estoque-actions">
