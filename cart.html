@@ -407,14 +407,6 @@
         </div>
 
         <div class="cart-summary" id="cart-summary">
-            <div class="summary-row">
-                <span>Subtotal:</span>
-                <span id="subtotal">R$ 0,00</span>
-            </div>
-            <div class="summary-row">
-                <span>Frete:</span>
-                <span id="shipping">A calcular</span>
-            </div>
             <div class="summary-row summary-total">
                 <span>Total:</span>
                 <span id="total">R$ 0,00</span>
@@ -438,16 +430,13 @@
 
         // Elementos DOM
         const cartContainer = document.getElementById('cart-items-container');
-        const subtotalEl = document.getElementById('subtotal');
         const totalEl = document.getElementById('total');
         const checkoutBtn = document.getElementById('checkout-btn');
-        const shippingEl = document.getElementById('shipping');
 
         // Função para carregar os produtos da loja
         async function loadProducts() {
             try {
                 // Simula carregamento dos produtos (na prática, poderia ser uma API)
-                // Usamos os mesmos produtos da loja.html
                 produtos = [
                     // ... (mesma lista de produtos da loja.html)
                 ];
@@ -515,11 +504,7 @@
             });
             
             // Atualiza totais
-            subtotalEl.textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
             totalEl.textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
-            
-            // Atualiza frete (simulação)
-            updateShipping(subtotal);
             
             // Habilita/desabilita botão de finalizar
             checkoutBtn.disabled = hasOutOfStock || cart.length === 0;
@@ -594,30 +579,6 @@
             }
         }
 
-        // Simula cálculo de frete
-        function updateShipping(subtotal) {
-            if (subtotal === 0) {
-                shippingEl.textContent = 'A calcular';
-                return;
-            }
-            
-            // Frete fictício baseado no valor
-            let shipping = 0;
-            
-            if (subtotal < 100) {
-                shipping = 25;
-            } else if (subtotal < 300) {
-                shipping = 15;
-            } else if (subtotal < 500) {
-                shipping = 10;
-            } else {
-                shipping = 0; // Frete grátis
-            }
-            
-            shippingEl.textContent = shipping === 0 ? 'Grátis' : `R$ ${shipping.toFixed(2).replace('.', ',')}`;
-            totalEl.textContent = `R$ ${(subtotal + shipping).toFixed(2).replace('.', ',')}`;
-        }
-
         // Finaliza a compra
         function checkout() {
             // Verifica itens sem estoque
@@ -639,9 +600,7 @@
             const message = `✅ *PEDIDO OLIVEIRA SOLUÇÕES BÉLICAS* ✅\n\n` +
                 `📋 *Itens do Pedido:*\n${cart.map(item => 
                     `➡ ${item.name} - ${item.quantity}x R$ ${item.price.toFixed(2).replace('.', ',')}`).join('\n')}\n\n` +
-                `💰 *Subtotal:* R$ ${cart.reduce((total, item) => total + (item.price * item.quantity), 0).toFixed(2).replace('.', ',')}\n` +
-                `🚚 *Frete:* ${shippingEl.textContent}\n` +
-                `💳 *Total:* ${totalEl.textContent}\n\n` +
+                `💰 *Total:* ${totalEl.textContent}\n\n` +
                 `📝 *Informações Adicionais:*\n(Envie seu endereço completo para entrega e forma de pagamento)`;
             
             // Abre WhatsApp
