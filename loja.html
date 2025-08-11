@@ -4,10 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Oliveira Soluções Bélicas - Equipamentos de Defesa</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <style>
       :root {
         --preto: #0a0a0a;
@@ -41,10 +38,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: linear-gradient(
-            rgba(10, 10, 10, 0.9),
-            rgba(10, 10, 10, 0.9)
-          ),
+        background: linear-gradient(rgba(10, 10, 10, 0.9), rgba(10, 10, 10, 0.9)),
           url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'><path fill='%23333' d='M50 0 L100 50 L50 100 L0 50 Z'/></svg>");
         background-size: 15px 15px;
         z-index: -1;
@@ -105,12 +99,7 @@
         left: 0;
         width: 100%;
         height: 2px;
-        background: linear-gradient(
-          90deg,
-          var(--destaque),
-          var(--azul-neon-solid),
-          transparent
-        );
+        background: linear-gradient(90deg, var(--destaque), var(--azul-neon-solid), transparent);
       }
       .tagline {
         text-align: center;
@@ -138,7 +127,6 @@
         height: 3px;
         background: linear-gradient(90deg, var(--destaque), transparent);
       }
-      /* BARRA DE PESQUISA (NOVO) */
       .search-container {
         margin: 2rem 0;
         display: flex;
@@ -262,6 +250,10 @@
       .btn-comprar:hover {
         background: linear-gradient(90deg, var(--destaque-brilho), var(--destaque));
         box-shadow: 0 0 15px rgba(192, 192, 192, 0.6);
+      }
+      .btn-comprar:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
       }
       .disclaimer {
         background-color: rgba(255, 0, 0, 0.1);
@@ -409,8 +401,8 @@
         }
       }
     </style>
-  </head>
-  <body>
+</head>
+<body>
     <header>
       <div class="container">
         <div class="logo">
@@ -424,14 +416,9 @@
     </header>
 
     <main class="container">
-      <!-- BARRA DE PESQUISA (NOVO) -->
+      <!-- BARRA DE PESQUISA -->
       <div class="search-container">
-        <input
-          type="text"
-          id="search-input"
-          placeholder="Pesquisar produtos..."
-          class="search-input"
-        />
+        <input type="text" id="search-input" placeholder="Pesquisar produtos..." class="search-input" />
         <button onclick="searchProducts()" class="search-btn">
           <i class="fas fa-search"></i>
         </button>
@@ -478,228 +465,239 @@
     </a>
 
     <!-- Botão do WhatsApp -->
-    <a
-      href="https://wa.me/555496768112"
-      class="whatsapp-btn"
-      target="_blank"
-      ><i class="fab fa-whatsapp"></i
-    ></a>
+    <a href="https://wa.me/555496768112" class="whatsapp-btn" target="_blank">
+      <i class="fab fa-whatsapp"></i>
+    </a>
 
     <script>
-      // Dados dos produtos (já removidos os 5 primeiros e produtos duplicados)
+      // Dados dos produtos com estoque
       let produtos = [
         {
           id: 6,
           nome: "Alicate Multifuncional",
-          descricao:
-            "Ferramenta prática com múltiplas funções, design robusto e acabamento preto.",
+          descricao: "Ferramenta prática com múltiplas funções, design robusto e acabamento preto.",
           preco: 54.9,
           imagem: "https://i.imgur.com/i4kSoZV.jpeg",
+          estoque: 10
         },
         {
           id: 7,
           nome: "Bússula Profissional C/Lupa",
-          descricao:
-            "Bússola com lupa integrada para navegação precisa em campo.",
+          descricao: "Bússola com lupa integrada para navegação precisa em campo.",
           preco: 74.9,
           imagem: "https://i.imgur.com/younn6i.jpeg",
+          estoque: 8
         },
         {
           id: 8,
           nome: "Butterfly",
-          descricao:
-            "Canivete estilo borboleta com lâmina resistente e design ergonômico.",
+          descricao: "Canivete estilo borboleta com lâmina resistente e design ergonômico.",
           preco: 64.9,
           imagem: "https://i.imgur.com/mXxwzKw.jpeg",
+          estoque: 15
         },
         {
           id: 12,
           nome: "Canivete Boker",
-          descricao:
-            "Canivete Boker com lâmina afiada para uso diário.",
+          descricao: "Canivete Boker com lâmina afiada para uso diário.",
           preco: 110.0,
           imagem: "https://i.imgur.com/AqXoaof.jpeg",
+          estoque: 5
         },
         {
           id: 13,
           nome: "Canivetes Browning",
-          descricao:
-            "Conjunto de canivetes Browning, ideais para colecionadores e uso prático.",
+          descricao: "Conjunto de canivetes Browning, ideais para colecionadores e uso prático.",
           preco: 99.9,
           imagem: "https://i.imgur.com/WcTxGkB.jpeg",
+          estoque: 7
         },
         {
           id: 14,
           nome: "Faca Command",
-          descricao:
-            "Faca tática com lâmina resistente e empunhadura ergonômica.",
+          descricao: "Faca tática com lâmina resistente e empunhadura ergonômica.",
           preco: 119.9,
           imagem: "https://i.imgur.com/72jE5Za.jpeg",
+          estoque: 3
         },
         {
           id: 15,
           nome: "Faca Operações",
-          descricao:
-            "Faca operacional com lâmina afiada e design para uso intenso.",
+          descricao: "Faca operacional com lâmina afiada e design para uso intenso.",
           preco: 149.9,
           imagem: "https://i.imgur.com/hXkqJgn.jpeg",
+          estoque: 6
         },
         {
           id: 17,
           nome: "Faca Operações TAM",
-          descricao:
-            "Faca operacional tamanho TAM, ideal para diversas situações táticas.",
+          descricao: "Faca operacional tamanho TAM, ideal para diversas situações táticas.",
           preco: 149.9,
           imagem: "https://i.imgur.com/8tPGBSS.jpeg",
+          estoque: 4
         },
         {
           id: 18,
           nome: "Faca Pescoço",
-          descricao:
-            "Faca de pescoço, compacta e eficiente para defesa pessoal.",
+          descricao: "Faca de pescoço, compacta e eficiente para defesa pessoal.",
           preco: 64.9,
           imagem: "https://i.imgur.com/3n7vqVH.jpeg",
+          estoque: 12
         },
         {
           id: 19,
           nome: "Faca Pescoço Caveira",
-          descricao:
-            "Faca de pescoço com desenho de caveira, ideal para colecionadores.",
+          descricao: "Faca de pescoço com desenho de caveira, ideal para colecionadores.",
           preco: 64.9,
           imagem: "https://i.imgur.com/xIUkdNv.jpeg",
+          estoque: 9
         },
         {
           id: 20,
           nome: "Faca Tática G",
-          descricao:
-            "Faca tática grande, com lâmina resistente e empunhadura firme.",
+          descricao: "Faca tática grande, com lâmina resistente e empunhadura firme.",
           preco: 149.9,
           imagem: "https://i.imgur.com/l8bYZ1n.jpeg",
+          estoque: 5
         },
         {
           id: 21,
           nome: "Faca Tática Rambo",
-          descricao:
-            "Faca tática estilo Rambo, com lâmina robusta e design agressivo.",
+          descricao: "Faca tática estilo Rambo, com lâmina robusta e design agressivo.",
           preco: 149.9,
           imagem: "https://i.imgur.com/RplwguL.jpeg",
+          estoque: 2
         },
         {
           id: 22,
           nome: "Karambit",
-          descricao:
-            "Faca karambit com lâmina curva para uso tático e defesa pessoal.",
+          descricao: "Faca karambit com lâmina curva para uso tático e defesa pessoal.",
           preco: 64.9,
           imagem: "https://i.imgur.com/E4sDOWv.jpeg",
+          estoque: 8
         },
         {
           id: 24,
           nome: "Kit Garrafa Térmica",
-          descricao:
-            "Garrafa térmica, mantém bebidas quentes ou frias por horas.",
+          descricao: "Garrafa térmica, mantém bebidas quentes ou frias por horas.",
           preco: 79.9,
           imagem: "https://i.imgur.com/3YqMzxq.jpeg",
+          estoque: 10
         },
         {
           id: 27,
           nome: "Kit Sobrevivência",
-          descricao:
-            "Kit completo de sobrevivência com ferramentas essenciais.",
+          descricao: "Kit completo de sobrevivência com ferramentas essenciais.",
           preco: 149.9,
           imagem: "https://i.imgur.com/x4Luk0W.jpeg",
+          estoque: 7
         },
         {
           id: 28,
           nome: "Kit Talher",
-          descricao:
-            "Conjunto de talheres, prático e portátil para camping e trilhas.",
+          descricao: "Conjunto de talheres, prático e portátil para camping e trilhas.",
           preco: 49.9,
           imagem: "",
+          estoque: 15
         },
         {
           id: 29,
           nome: "Lanterna Caça AEGIS",
-          descricao:
-            "Lanterna tática para caça, com alta luminosidade e design compacto.",
+          descricao: "Lanterna tática para caça, com alta luminosidade e design compacto.",
           preco: 419.9,
           imagem: "https://i.imgur.com/placeholder-lanterna-caca.jpg",
+          estoque: 3
         },
         {
           id: 30,
           nome: "Lanterna Pistola LP-08 AEGIS",
-          descricao:
-            "Lanterna de pistola com alta potência e foco ajustável.",
+          descricao: "Lanterna de pistola com alta potência e foco ajustável.",
           preco: 549.9,
           imagem: "https://i.imgur.com/placeholder-lanterna-pistola.jpg",
+          estoque: 2
         },
         {
           id: 31,
           nome: "Lanterna Tática TL-08 AEGIS",
-          descricao:
-            "Lanterna tática compacta com múltiplos modos de iluminação.",
+          descricao: "Lanterna tática compacta com múltiplos modos de iluminação.",
           preco: 349.9,
           imagem: "https://i.imgur.com/placeholder-lanterna-tatica.jpg",
+          estoque: 4
         },
         {
           id: 32,
           nome: "Laser Segurança",
-          descricao:
-            "Laser apontador para segurança, com design discreto e alta precisão.",
+          descricao: "Laser apontador para segurança, com design discreto e alta precisão.",
           preco: 79.9,
           imagem: "https://i.imgur.com/placeholder-laser.jpg",
+          estoque: 6
         },
         {
           id: 33,
           nome: "Pederneira",
-          descricao:
-            "Pederneira para ignição de fogo, resistente e fácil de usar.",
+          descricao: "Pederneira para ignição de fogo, resistente e fácil de usar.",
           preco: 49.9,
           imagem: "https://i.imgur.com/placeholder-pederneira.jpg",
+          estoque: 10
         },
         {
           id: 34,
           nome: "Pulseira Tática",
-          descricao:
-            "Pulseira tática feita com material resistente para uso diário.",
+          descricao: "Pulseira tática feita com material resistente para uso diário.",
           preco: 49.9,
           imagem: "https://i.imgur.com/placeholder-pulseira.jpg",
+          estoque: 12
         },
         {
           id: 37,
           nome: "Soco Inglês",
-          descricao:
-            "Soco inglês com acabamento resistente e design anatômico.",
+          descricao: "Soco inglês com acabamento resistente e design anatômico.",
           preco: 64.9,
           imagem: "https://i.imgur.com/placeholder-soco-ingles.jpg",
+          estoque: 8
         },
         {
           id: 38,
           nome: "Spray Pimenta",
-          descricao:
-            "Spray de pimenta, compacto e eficaz para defesa pessoal.",
+          descricao: "Spray de pimenta, compacto e eficaz para defesa pessoal.",
           preco: 129.9,
           imagem: "https://i.imgur.com/placeholder-spray-pimenta.jpg",
+          estoque: 5
         },
         {
           id: 39,
           nome: "Taser",
-          descricao:
-            "Eletrochoque tático, potente e seguro para defesa pessoal.",
+          descricao: "Eletrochoque tático, potente e seguro para defesa pessoal.",
           preco: 149.9,
           imagem: "https://i.imgur.com/placeholder-taser.jpg",
+          estoque: 3
         }
       ];
 
-      // Função para renderizar os produtos na página
+      // Carrinho
+      let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+      
+      // Atualiza contador do carrinho
+      function atualizarContadorCarrinho() {
+        const totalItens = carrinho.reduce((total, item) => total + item.quantidade, 0);
+        document.getElementById('cart-count').textContent = totalItens;
+      }
+
+      // Renderiza produtos
       const containerProdutos = document.getElementById("produtos-container");
 
       function renderProdutos(listaProdutos) {
-        containerProdutos.innerHTML = ""; // limpa antes
+        containerProdutos.innerHTML = "";
         if (listaProdutos.length === 0) {
           containerProdutos.innerHTML = "<p>Nenhum produto encontrado.</p>";
           return;
         }
+        
         listaProdutos.forEach((produto) => {
+          const produtoNoCarrinho = carrinho.find(item => item.id === produto.id);
+          const quantidadeNoCarrinho = produtoNoCarrinho ? produtoNoCarrinho.quantidade : 0;
+          const estoqueDisponivel = produto.estoque - quantidadeNoCarrinho;
+          
           const produtoHTML = `
             <article class="produto">
               <div class="produto-img">
@@ -710,8 +708,13 @@
                 <p>${produto.descricao}</p>
                 <div class="preco-container">
                   <div class="preco">R$ ${produto.preco.toFixed(2).replace('.', ',')}</div>
-                  <button class="btn-comprar" onclick="adicionarAoCarrinho(${produto.id})">
-                    <i class="fas fa-cart-plus"></i> Comprar
+                  <div style="font-size: 0.8rem; color: ${estoqueDisponivel > 0 ? 'var(--destaque)' : 'var(--vermelho)'}">
+                    ${estoqueDisponivel > 0 ? `Disponível: ${estoqueDisponivel}` : 'ESGOTADO'}
+                  </div>
+                  <button class="btn-comprar" onclick="adicionarAoCarrinho(${produto.id})" 
+                    ${estoqueDisponivel <= 0 ? 'disabled' : ''}>
+                    <i class="fas fa-cart-plus"></i> 
+                    ${estoqueDisponivel <= 0 ? 'Sem Estoque' : 'Comprar'}
                   </button>
                 </div>
               </div>
@@ -721,47 +724,73 @@
         });
       }
 
-      // Inicializa mostrando todos os produtos
-      renderProdutos(produtos);
+      // Adiciona item ao carrinho
+      function adicionarAoCarrinho(idProduto) {
+        const produto = produtos.find(p => p.id === idProduto);
+        if (!produto) return;
 
-      // Função de pesquisa simples
+        // Verifica estoque
+        const produtoNoCarrinho = carrinho.find(item => item.id === idProduto);
+        const quantidadeNoCarrinho = produtoNoCarrinho ? produtoNoCarrinho.quantidade : 0;
+        
+        if (quantidadeNoCarrinho >= produto.estoque) {
+          alert(`Não há estoque suficiente de ${produto.nome}`);
+          return;
+        }
+
+        // Adiciona ao carrinho
+        if (produtoNoCarrinho) {
+          produtoNoCarrinho.quantidade++;
+        } else {
+          carrinho.push({
+            id: produto.id,
+            nome: produto.nome,
+            preco: produto.preco,
+            imagem: produto.imagem,
+            quantidade: 1
+          });
+        }
+
+        // Salva e atualiza
+        localStorage.setItem('carrinho', JSON.stringify(carrinho));
+        atualizarContadorCarrinho();
+        renderProdutos(produtos); // Atualiza a exibição de estoque
+        
+        // Feedback visual
+        const btn = document.querySelector(`.btn-comprar[onclick="adicionarAoCarrinho(${idProduto})"]`);
+        if (btn) {
+          btn.innerHTML = '<i class="fas fa-check"></i> Adicionado';
+          setTimeout(() => {
+            btn.innerHTML = '<i class="fas fa-cart-plus"></i> Comprar';
+          }, 1000);
+        }
+      }
+
+      // Pesquisa produtos
       function searchProducts() {
-        const termo = document
-          .getElementById("search-input")
-          .value.toLowerCase()
-          .trim();
+        const termo = document.getElementById("search-input").value.toLowerCase().trim();
         if (termo === "") {
           renderProdutos(produtos);
           return;
         }
-        const resultados = produtos.filter((p) =>
-          p.nome.toLowerCase().includes(termo)
-        );
+        const resultados = produtos.filter(p => p.nome.toLowerCase().includes(termo));
         renderProdutos(resultados);
       }
 
-      // Carrinho simples (exemplo)
-      let carrinho = [];
-
-      function adicionarAoCarrinho(idProduto) {
-        const produto = produtos.find((p) => p.id === idProduto);
-        if (!produto) return;
-
-        const itemNoCarrinho = carrinho.find((i) => i.produto.id === idProduto);
-        if (itemNoCarrinho) {
-          itemNoCarrinho.quantidade++;
-        } else {
-          carrinho.push({ produto, quantidade: 1 });
-        }
-        alert(`Produto "${produto.nome}" adicionado ao carrinho!`);
+      // Inicialização
+      document.addEventListener('DOMContentLoaded', () => {
+        renderProdutos(produtos);
         atualizarContadorCarrinho();
-      }
-
-      function atualizarContadorCarrinho() {
-        const contador = document.getElementById("cart-count");
-        const total = carrinho.reduce((acc, item) => acc + item.quantidade, 0);
-        contador.textContent = total;
-      }
+        
+        // Atualiza estoque quando outras abas modificam o carrinho
+        window.addEventListener('storage', (e) => {
+          if (e.key === 'carrinho') {
+            carrinho = JSON.parse(e.newValue) || [];
+            atualizarContadorCarrinho();
+            renderProdutos(produtos);
+          }
+        });
+      });
     </script>
-  </body>
+</body>
 </html>
