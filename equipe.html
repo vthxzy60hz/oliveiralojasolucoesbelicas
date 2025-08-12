@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Nossa Equipe - Oliveira Soluções Bélicas</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="description" content="Conheça os profissionais especializados em documentação, armamentos e programação da Oliveira Soluções Bélicas." />
+    <meta name="keywords" content="Oliveira Soluções Bélicas, equipe, documentação, armamentos, programação" />
+    <meta name="author" content="Oliveira Soluções Bélicas" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <style>
         :root {
             --preto: #0A0A0A;
@@ -91,14 +94,18 @@
             background: var(--cinza-escuro);
             border-radius: 8px;
             overflow: hidden;
-            transition: all 0.3s;
+            transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
             text-align: center;
             border: 1px solid var(--cinza);
+            cursor: pointer;
+            outline-offset: 4px;
         }
 
+        /* Foco para acessibilidade */
+        .team-member:focus-within,
         .team-member:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.5);
             border-color: var(--azul);
         }
 
@@ -107,6 +114,13 @@
             height: 300px;
             object-fit: cover;
             border-bottom: 1px solid var(--cinza);
+            transition: transform 0.4s ease;
+        }
+
+        /* Zoom suave na foto ao passar o mouse */
+        .team-member:hover .member-photo,
+        .team-member:focus-within .member-photo {
+            transform: scale(1.05);
         }
 
         .member-info {
@@ -132,12 +146,14 @@
             border-radius: 4px;
             text-decoration: none;
             font-weight: bold;
-            transition: all 0.3s;
+            transition: background 0.3s ease;
             font-size: 0.9rem;
         }
 
-        .btn:hover {
+        .btn:hover,
+        .btn:focus {
             background: var(--branco);
+            outline: none;
         }
 
         footer {
@@ -164,12 +180,14 @@
             font-size: 2rem;
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
             z-index: 100;
-            transition: all 0.3s;
+            transition: transform 0.3s ease;
             text-decoration: none;
         }
 
-        .whatsapp-btn:hover {
+        .whatsapp-btn:hover,
+        .whatsapp-btn:focus {
             transform: scale(1.1);
+            outline: none;
         }
 
         @media (max-width: 768px) {
@@ -194,7 +212,7 @@
     <header>
         <div class="container">
             <div class="logo">
-                <div class="logo-icon">
+                <div class="logo-icon" aria-hidden="true">
                     <i class="fas fa-shield-alt"></i>
                 </div>
                 <h1>OLIVEIRA SOLUÇÕES BÉLICAS</h1>
@@ -203,35 +221,47 @@
     </header>
 
     <main class="container">
-        <div class="page-title">
+        <div class="page-title" role="banner">
             <h2>Nossa Equipe</h2>
             <p>Conheça os profissionais por trás da Oliveira Soluções Bélicas</p>
         </div>
 
-        <div class="team-grid">
+        <div class="team-grid" role="list">
             <!-- Membro 1 - Igor -->
-            <div class="team-member">
-                <a href="igor.html">
-                    <img src="https://i.imgur.com/ncJk6VV.jpeg" alt="Igor" class="member-photo">
+            <article class="team-member" role="listitem" tabindex="0" aria-label="Perfil de Igor Oliveira, Especialista em Documentação e Armamentos">
+                <a href="igor.html" aria-label="Ver perfil completo de Igor Oliveira">
+                    <img src="https://i.imgur.com/ncJk6VV.jpeg" alt="Foto do Igor Oliveira" class="member-photo" />
                 </a>
                 <div class="member-info">
                     <h3>Igor Oliveira</h3>
                     <p>Especialista em Documentação e Armamentos</p>
-                    <a href="igor.html" class="btn">Ver Perfil Completo</a>
+                    <a href="igor.html" class="btn" aria-label="Ver perfil completo de Igor Oliveira">Ver Perfil Completo</a>
                 </div>
-            </div>
+            </article>
 
-            <!-- Membro 2 - Você -->
-            <div class="team-member">
-                <a href="vitor.html">
-                    <img src="https://imgur.com/FxuVRhM.jpeg" alt="Seu Nome" class="member-photo">
+            <!-- Membro 2 - Vítor -->
+            <article class="team-member" role="listitem" tabindex="0" aria-label="Perfil de Vítor Hugo, Especialista em Documentação e Programação">
+                <a href="vitor.html" aria-label="Ver perfil completo de Vítor Hugo">
+                    <img src="https://i.imgur.com/FxuVRhM.jpeg" alt="Foto do Vítor Hugo" class="member-photo" />
                 </a>
                 <div class="member-info">
                     <h3>Vítor Hugo</h3>
                     <p>Especialista em Documentação e Programação</p>
-                    <a href="vitor.html" class="btn">Ver Perfil Completo</a>
+                    <a href="vitor.html" class="btn" aria-label="Ver perfil completo de Vítor Hugo">Ver Perfil Completo</a>
                 </div>
-            </div>
+            </article>
+
+            <!-- Membro 3 - Paloma -->
+            <article class="team-member" role="listitem" tabindex="0" aria-label="Perfil de Paloma, Especialista em Atendimento ao Cliente">
+                <a href="paloma.html" aria-label="Ver perfil completo de Paloma">
+                    <img src="https://i.imgur.com/8Jw82zD.jpeg" alt="Foto da Paloma" class="member-photo" />
+                </a>
+                <div class="member-info">
+                    <h3>Paloma</h3>
+                    <p>Especialista em Atendimento ao Cliente</p>
+                    <a href="paloma.html" class="btn" aria-label="Ver perfil completo de Paloma">Ver Perfil Completo</a>
+                </div>
+            </article>
         </div>
     </main>
 
@@ -240,8 +270,8 @@
     </footer>
 
     <!-- Botão do WhatsApp -->
-    <a href="https://wa.me/555496768112" class="whatsapp-btn" target="_blank">
-        <i class="fab fa-whatsapp"></i>
+    <a href="https://wa.me/555496768112" class="whatsapp-btn" target="_blank" aria-label="Contato via WhatsApp">
+        <i class="fab fa-whatsapp" aria-hidden="true"></i>
     </a>
 </body>
 </html>
