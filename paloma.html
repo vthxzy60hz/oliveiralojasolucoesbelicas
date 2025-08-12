@@ -1,2 +1,208 @@
 <!DOCTYPE html>
-<strong> EM CONSTRUÇÃO </strong>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Paloma - Oliveira Soluções Bélicas</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<style>
+    :root {
+        --preto: #0A0A0A;
+        --cinza-escuro: #1A1A1A;
+        --cinza: #333333;
+        --cinza-claro: #666666;
+        --branco: #F0F0F0;
+        --azul: #0078D7;
+        --destaque: #C0C0C0;
+        --verde: #25D366;
+    }
+    * {
+        margin: 0; padding: 0; box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body {
+        background-color: var(--preto);
+        color: var(--branco);
+        line-height: 1.8;
+    }
+    header {
+        background: linear-gradient(to bottom, var(--cinza-escuro), var(--preto));
+        padding: 2.5rem 0;
+        text-align: center;
+        border-bottom: 2px solid var(--azul);
+    }
+    .container {
+        width: 90%;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 2rem 0;
+    }
+    .profile-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 3rem;
+        text-align: center;
+    }
+    .profile-photo {
+        width: 220px;
+        height: 220px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 4px solid var(--azul);
+        margin-bottom: 1.8rem;
+        box-shadow: 0 5px 25px rgba(0, 120, 215, 0.4);
+        background: var(--cinza-escuro);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--cinza-claro);
+        font-size: 3rem;
+        font-weight: bold;
+        user-select: none;
+    }
+    .profile-header h2 {
+        font-size: 2.2rem;
+        margin-bottom: 0.6rem;
+        color: var(--destaque);
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+    }
+    .profile-header p {
+        color: var(--azul);
+        font-weight: bold;
+        font-size: 1.2rem;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    .bio-section {
+        background: var(--cinza-escuro);
+        border-radius: 12px;
+        padding: 2.5rem;
+        margin-bottom: 3rem;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+        border-left: 5px solid var(--azul);
+        text-align: center;
+        font-size: 1.3rem;
+        color: var(--cinza-claro);
+        font-style: italic;
+    }
+    .back-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.8rem;
+        background: var(--azul);
+        color: white;
+        padding: 1rem 2.2rem;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 1.1rem;
+        transition: all 0.3s;
+        margin: 3rem auto 2rem;
+        box-shadow: 0 5px 15px rgba(0, 120, 215, 0.3);
+        cursor: pointer;
+    }
+    .back-btn:hover {
+        background: var(--destaque);
+        color: var(--preto);
+        transform: translateX(-8px);
+        box-shadow: 0 8px 20px rgba(0, 120, 215, 0.4);
+    }
+    footer {
+        background: var(--cinza-escuro);
+        text-align: center;
+        padding: 2.5rem;
+        margin-top: 4rem;
+        border-top: 1px solid var(--cinza);
+    }
+    .whatsapp-btn {
+        position: fixed;
+        bottom: 2.5rem;
+        right: 2.5rem;
+        background: var(--verde);
+        color: white;
+        width: 65px;
+        height: 65px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.2rem;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        z-index: 100;
+        transition: all 0.3s;
+        text-decoration: none;
+        animation: pulse 2s infinite;
+    }
+    .whatsapp-btn:hover {
+        transform: scale(1.1);
+        box-shadow: 0 8px 30px rgba(37, 211, 102, 0.6);
+    }
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+        100% { transform: scale(1); }
+    }
+    @media (max-width: 768px) {
+        .container {
+            width: 92%;
+            padding: 1.8rem 0;
+        }
+        .profile-photo {
+            width: 190px;
+            height: 190px;
+            font-size: 2.5rem;
+        }
+        .profile-header h2 {
+            font-size: 1.8rem;
+        }
+        .bio-section {
+            padding: 1.8rem;
+            font-size: 1.1rem;
+        }
+        .whatsapp-btn {
+            width: 55px;
+            height: 55px;
+            font-size: 1.9rem;
+            right: 1.8rem;
+            bottom: 1.8rem;
+        }
+    }
+</style>
+</head>
+<body>
+<header>
+    <div class="container">
+        <h1>Paloma</h1>
+        <p>Especialista em Atendimento ao Cliente</p>
+    </div>
+</header>
+
+<main class="container">
+    <div class="profile-header">
+        <div class="profile-photo" aria-label="Foto de perfil da Paloma">P</div>
+        <h2>PALOMA</h2>
+        <p>Perfil dela virá em breve</p>
+    </div>
+
+    <div class="bio-section">
+        <p>Estamos preparando um perfil completo da Paloma. Fique ligado!</p>
+    </div>
+
+    <center>
+        <a href="equipe.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Voltar para a Equipe
+        </a>
+    </center>
+</main>
+
+<footer>
+    <p>&copy; 2024 Oliveira Soluções Bélicas | WhatsApp: (54) 9676-8112</p>
+</footer>
+
+<a href="https://wa.me/555496768112" class="whatsapp-btn" target="_blank" aria-label="Contato via WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+</a>
+</body>
+</html>
