@@ -1,439 +1,426 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Estoque | Oliveira Soluções Bélicas</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <style>
-        :root {
-            --preto: #0A0A0A;
-            --cinza-escuro: #1A1A1A;
-            --cinza: #333333;
-            --cinza-claro: #666666;
-            --branco: #F0F0F0;
-            --azul: #0078D7;
-            --verde: #25D366;
-            --vermelho: #FF4444;
-            --destaque: #C0C0C0;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Roboto, sans-serif;
-        }
-
-        body {
-            background-color: var(--preto);
-            color: var(--branco);
-            line-height: 1.7;
-        }
-
-        /* Tela de Login */
-        #login-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background: var(--preto);
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-        }
-
-        .login-box {
-            background: var(--cinza-escuro);
-            padding: 2rem;
-            border-radius: 8px;
-            max-width: 400px;
-            width: 90%;
-            text-align: center;
-        }
-
-        .login-box h2 {
-            margin-bottom: 1.5rem;
-            color: var(--destaque);
-        }
-
-        .login-input {
-            width: 100%;
-            padding: 0.8rem 1rem;
-            margin-bottom: 1rem;
-            background: var(--cinza);
-            border: none;
-            color: white;
-            border-radius: 4px;
-            font-size: 1rem;
-        }
-
-        .login-btn {
-            width: 100%;
-            padding: 0.8rem;
-            background: var(--azul);
-            color: white;
-            border: none;
-            border-radius: 4px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .login-btn:hover {
-            opacity: 0.9;
-        }
-
-        #erro-login {
-            color: var(--vermelho);
-            margin-top: 1rem;
-            display: none;
-        }
-
-        /* Conteúdo do Estoque */
-        #estoque-content {
-            display: none;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem 0;
-        }
-
-        header {
-            background: linear-gradient(to bottom, var(--cinza-escuro), var(--preto));
-            padding: 1.5rem 0;
-            border-bottom: 1px solid var(--destaque);
-        }
-
-        h1 {
-            font-size: 2rem;
-            text-align: center;
-        }
-
-        .nav-buttons {
-            display: flex;
-            gap: 1rem;
-            margin: 2rem 0;
-            justify-content: center;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 0.8rem 1.5rem;
-            background: var(--cinza);
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-            transition: all 0.3s;
-        }
-
-        .btn:hover {
-            background: var(--cinza-claro);
-        }
-
-        .estoque-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-
-        .estoque-item {
-            background: var(--cinza-escuro);
-            padding: 1.5rem;
-            border-radius: 5px;
-            border-left: 4px solid var(--azul);
-        }
-
-        .estoque-item h3 {
-            margin-bottom: 1rem;
-            color: var(--destaque);
-        }
-
-        .estoque-info {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 1rem;
-        }
-
-        .estoque-actions {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .estoque-actions input {
-            width: 60px;
-            padding: 0.5rem;
-            text-align: center;
-            background: var(--cinza);
-            border: none;
-            color: white;
-            border-radius: 4px;
-        }
-
-        .estoque-actions button {
-            padding: 0.5rem 1rem;
-            background: var(--azul);
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .historico {
-            margin-top: 3rem;
-            border-top: 1px solid var(--cinza);
-            padding-top: 2rem;
-        }
-
-        .historico-item {
-            background: var(--cinza-escuro);
-            padding: 1rem;
-            margin-bottom: 1rem;
-            border-radius: 5px;
-            font-size: 0.9rem;
-        }
-
-        .historico-item span {
-            color: var(--destaque);
-        }
-
-        @media (max-width: 768px) {
-            .estoque-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .nav-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
-    </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Controle de Estoque - Oliveira Soluções Bélicas</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<style>
+  :root {
+    --preto: #0a0a0a;
+    --cinza-escuro: #1a1a1a;
+    --cinza: #333333;
+    --cinza-claro: #666666;
+    --branco: #f0f0f0;
+    --azul-neon: rgba(0, 120, 215, 0.7);
+    --azul-neon-solid: #0078d7;
+    --destaque: #c0c0c0;
+    --verde: #25d366;
+    --vermelho: #ff4444;
+  }
+  body {
+    background-color: var(--preto);
+    color: var(--branco);
+    font-family: "Segoe UI", "Roboto", sans-serif;
+    margin: 0;
+    padding: 2rem;
+  }
+  h1 {
+    text-align: center;
+    color: var(--azul-neon-solid);
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+  }
+  #estoque-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(320px,1fr));
+    gap: 1.8rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .item-estoque {
+    background: linear-gradient(145deg, var(--cinza-escuro), var(--preto));
+    border: 1px solid var(--cinza);
+    border-radius: 6px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.3s ease;
+  }
+  .item-estoque:hover {
+    box-shadow: 0 8px 25px var(--azul-neon-solid);
+  }
+  .item-img {
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .item-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  .item-estoque:hover .item-img img {
+    transform: scale(1.1);
+  }
+  .item-info {
+    padding: 1rem 1.5rem 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .item-nome {
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 0.6rem;
+    color: var(--destaque);
+  }
+  .item-desc {
+    flex-grow: 1;
+    font-size: 0.9rem;
+    color: var(--cinza-claro);
+    margin-bottom: 1rem;
+  }
+  .item-preco {
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: var(--verde);
+    margin-bottom: 1rem;
+  }
+  .controle-estoque {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .quantidade {
+    font-size: 1.1rem;
+    font-weight: 700;
+    min-width: 40px;
+    text-align: center;
+    color: var(--azul-neon-solid);
+  }
+  button {
+    background: var(--azul-neon-solid);
+    border: none;
+    padding: 0.3rem 0.7rem;
+    border-radius: 4px;
+    color: var(--branco);
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: background 0.3s ease;
+    user-select: none;
+  }
+  button:hover {
+    background: var(--destaque);
+    color: var(--preto);
+  }
+  #historico {
+    max-width: 1200px;
+    margin: 2rem auto 0;
+    background: var(--cinza-escuro);
+    border-radius: 6px;
+    padding: 1rem 1.5rem;
+    max-height: 200px;
+    overflow-y: auto;
+    font-size: 0.9rem;
+    color: var(--cinza-claro);
+  }
+  #historico h2 {
+    color: var(--destaque);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+  }
+</style>
 </head>
 <body>
-    <!-- Tela de Login -->
-    <div id="login-container">
-        <div class="login-box">
-            <h2><i class="fas fa-lock"></i> Acesso Restrito</h2>
-            <input type="password" id="senha-acesso" class="login-input" placeholder="Digite a senha" />
-            <button onclick="verificarSenha()" class="login-btn">Acessar</button>
-            <p id="erro-login"><i class="fas fa-exclamation-circle"></i> Senha incorreta!</p>
+
+<h1>Controle de Estoque</h1>
+
+<div id="estoque-container"></div>
+
+<div id="historico">
+  <h2>Histórico de alterações</h2>
+  <ul id="lista-historico"></ul>
+</div>
+
+<script>
+  const produtos = [
+    {
+      id: 6,
+      nome: "Alicate Multifuncional",
+      descricao: "Ferramenta prática com múltiplas funções, design robusto e acabamento preto.",
+      preco: 54.9,
+      imagem: "https://i.imgur.com/i4kSoZV.jpeg",
+      estoque: 10
+    },
+    {
+      id: 7,
+      nome: "Bússula Profissional C/Lupa",
+      descricao: "Bússola com lupa integrada para navegação precisa em campo.",
+      preco: 74.9,
+      imagem: "https://i.imgur.com/younn6i.jpeg",
+      estoque: 8
+    },
+    {
+      id: 8,
+      nome: "Butterfly",
+      descricao: "Canivete estilo borboleta com lâmina resistente e design ergonômico.",
+      preco: 64.9,
+      imagem: "https://i.imgur.com/mXxwzKw.jpeg",
+      estoque: 12
+    },
+    {
+      id: 12,
+      nome: "Canivete Boker",
+      descricao: "Canivete Boker com lâmina afiada para uso diário.",
+      preco: 110.0,
+      imagem: "https://i.imgur.com/AqXoaof.jpeg",
+      estoque: 5
+    },
+    {
+      id: 13,
+      nome: "Canivetes Browning",
+      descricao: "Conjunto de canivetes Browning, ideais para colecionadores e uso prático.",
+      preco: 99.9,
+      imagem: "https://i.imgur.com/WcTxGkB.jpeg",
+      estoque: 7
+    },
+    {
+      id: 14,
+      nome: "Faca Command",
+      descricao: "Faca tática com lâmina resistente e empunhadura ergonômica.",
+      preco: 119.9,
+      imagem: "https://i.imgur.com/72jE5Za.jpeg",
+      estoque: 6
+    },
+    {
+      id: 15,
+      nome: "Faca Operações",
+      descricao: "Faca operacional com lâmina afiada e design para uso intenso.",
+      preco: 149.9,
+      imagem: "https://i.imgur.com/hXkqJgn.jpeg",
+      estoque: 4
+    },
+    {
+      id: 17,
+      nome: "Faca Operações TAM",
+      descricao: "Faca operacional tamanho TAM, ideal para diversas situações táticas.",
+      preco: 149.9,
+      imagem: "https://i.imgur.com/8tPGBSS.jpeg",
+      estoque: 3
+    },
+    {
+      id: 18,
+      nome: "Faca Pescoço",
+      descricao: "Faca de pescoço, compacta e eficiente para defesa pessoal.",
+      preco: 64.9,
+      imagem: "https://i.imgur.com/3n7vqVH.jpeg",
+      estoque: 9
+    },
+    {
+      id: 19,
+      nome: "Faca Pescoço Caveira",
+      descricao: "Faca de pescoço com desenho de caveira, ideal para colecionadores.",
+      preco: 64.9,
+      imagem: "https://i.imgur.com/xIUkdNv.jpeg",
+      estoque: 5
+    },
+    {
+      id: 20,
+      nome: "Faca Tática G",
+      descricao: "Faca tática grande, com lâmina resistente e empunhadura firme.",
+      preco: 149.9,
+      imagem: "https://i.imgur.com/l8bYZ1n.jpeg",
+      estoque: 7
+    },
+    {
+      id: 21,
+      nome: "Faca Tática Rambo",
+      descricao: "Faca tática estilo Rambo, com lâmina robusta e design agressivo.",
+      preco: 149.9,
+      imagem: "https://i.imgur.com/RplwguL.jpeg",
+      estoque: 6
+    },
+    {
+      id: 22,
+      nome: "Karambit",
+      descricao: "Faca karambit com lâmina curva para uso tático e defesa pessoal.",
+      preco: 64.9,
+      imagem: "https://i.imgur.com/E4sDOWv.jpeg",
+      estoque: 8
+    },
+    {
+      id: 24,
+      nome: "Kit Garrafa Térmica",
+      descricao: "Garrafa térmica, mantém bebidas quentes ou frias por horas.",
+      preco: 79.9,
+      imagem: "https://i.imgur.com/3YqMzxq.jpeg",
+      estoque: 11
+    },
+    {
+      id: 27,
+      nome: "Kit Sobrevivência",
+      descricao: "Kit completo de sobrevivência com ferramentas essenciais.",
+      preco: 149.9,
+      imagem: "https://i.imgur.com/x4Luk0W.jpeg",
+      estoque: 5
+    },
+    {
+      id: 28,
+      nome: "Kit Talher",
+      descricao: "Conjunto de talheres, prático e portátil para camping e trilhas.",
+      preco: 49.9,
+      imagem: "", // Sem imagem
+      estoque: 20
+    },
+    {
+      id: 29,
+      nome: "Lanterna Caça AEGIS",
+      descricao: "Lanterna tática para caça, com alta luminosidade e design compacto.",
+      preco: 419.9,
+      imagem: "https://i.imgur.com/placeholder-lanterna-caca.jpg",
+      estoque: 3
+    },
+    {
+      id: 30,
+      nome: "Lanterna Pistola LP-08 AEGIS",
+      descricao: "Lanterna de pistola com alta potência e foco ajustável.",
+      preco: 549.9,
+      imagem: "https://i.imgur.com/placeholder-lanterna-pistola.jpg",
+      estoque: 2
+    },
+    {
+      id: 31,
+      nome: "Lanterna Tática TL-08 AEGIS",
+      descricao: "Lanterna tática compacta com múltiplos modos de iluminação.",
+      preco: 349.9,
+      imagem: "https://i.imgur.com/placeholder-lanterna-tatica.jpg",
+      estoque: 4
+    },
+    {
+      id: 32,
+      nome: "Laser Segurança",
+      descricao: "Laser apontador para segurança, com design discreto e alta precisão.",
+      preco: 79.9,
+      imagem: "https://i.imgur.com/placeholder-laser.jpg",
+      estoque: 9
+    },
+    {
+      id: 33,
+      nome: "Pederneira",
+      descricao: "Pederneira para ignição de fogo, resistente e fácil de usar.",
+      preco: 49.9,
+      imagem: "https://i.imgur.com/placeholder-pederneira.jpg",
+      estoque: 15
+    },
+    {
+      id: 34,
+      nome: "Pulseira Tática",
+      descricao: "Pulseira tática feita com material resistente para uso diário.",
+      preco: 49.9,
+      imagem: "https://i.imgur.com/placeholder-pulseira.jpg",
+      estoque: 12
+    },
+    {
+      id: 37,
+      nome: "Soco Inglês",
+      descricao: "Soco inglês com acabamento resistente e design anatômico.",
+      preco: 64.9,
+      imagem: "https://i.imgur.com/placeholder-soco-ingles.jpg",
+      estoque: 7
+    },
+    {
+      id: 38,
+      nome: "Spray Pimenta",
+      descricao: "Spray de pimenta, compacto e eficaz para defesa pessoal.",
+      preco: 129.9,
+      imagem: "https://i.imgur.com/placeholder-spray-pimenta.jpg",
+      estoque: 6
+    },
+    {
+      id: 39,
+      nome: "Taser",
+      descricao: "Eletrochoque tático, potente e seguro para defesa pessoal.",
+      preco: 149.9,
+      imagem: "https://i.imgur.com/placeholder-taser.jpg",
+      estoque: 4
+    }
+  ];
+
+  const container = document.getElementById("estoque-container");
+  const historicoLista = document.getElementById("lista-historico");
+
+  function criarItemEstoque(produto) {
+    return `
+      <article class="item-estoque" data-id="${produto.id}">
+        <div class="item-img">
+          <img src="${produto.imagem || 'https://via.placeholder.com/320x180?text=Sem+imagem'}" alt="${produto.nome}" />
         </div>
-    </div>
-
-    <!-- Conteúdo do Estoque -->
-    <div id="estoque-content">
-        <header>
-            <div class="container">
-                <h1><i class="fas fa-boxes"></i> Controle de Estoque</h1>
-            </div>
-        </header>
-
-        <div class="container">
-            <div class="nav-buttons">
-                <a href="index.html" class="btn"><i class="fas fa-home"></i> Voltar</a>
-            </div>
-
-            <div class="estoque-grid" id="estoque-container"></div>
-
-            <div class="historico">
-                <h2><i class="fas fa-history"></i> Histórico</h2>
-                <div id="historico-container"></div>
-            </div>
+        <div class="item-info">
+          <div>
+            <h3 class="item-nome">${produto.nome}</h3>
+            <p class="item-desc">${produto.descricao}</p>
+            <div class="item-preco">R$ ${produto.preco.toFixed(2).replace('.', ',')}</div>
+          </div>
+          <div class="controle-estoque">
+            <button onclick="alterarEstoque(${produto.id}, -1)" aria-label="Diminuir estoque de ${produto.nome}">-</button>
+            <div class="quantidade" id="quantidade-${produto.id}">${produto.estoque}</div>
+            <button onclick="alterarEstoque(${produto.id}, 1)" aria-label="Aumentar estoque de ${produto.nome}">+</button>
+          </div>
         </div>
-    </div>
+      </article>
+    `;
+  }
 
-    <script>
-        // Configurações
-        const SENHA_ESTOQUE = "oliveira123"; // Altere para sua senha
-        
-        // Dados iniciais (com todos os produtos da lista ampliada)
-        let estoque = JSON.parse(localStorage.getItem('estoque')) || [
-            { id: 1, nome: "Spray de Pimenta OSB", quantidade: 15, preco: 129.90 },
-            { id: 2, nome: "Taser OSB Defender", quantidade: 8, preco: 149.90 },
-            { id: 3, nome: "Lanterna Aegis LP-08", quantidade: 10, preco: 549.90 },
-            { id: 4, nome: "Aegis TM-18F", quantidade: 5, preco: 249.90 },
-            { id: 5, nome: "Blackbird", quantidade: 12, preco: 199.90 },
-            { id: 6, nome: "Alicate Multifuncional", quantidade: 25, preco: 54.90 },
-            { id: 7, nome: "Bússola Profissional C/Lupa", quantidade: 18, preco: 74.90 },
-            { id: 8, nome: "Butterfly Prata", quantidade: 20, preco: 64.90 },
-            { id: 9, nome: "Butterfly Preta", quantidade: 20, preco: 64.90 },
-            { id: 10, nome: "Butterfly Dourado", quantidade: 20, preco: 64.90 },
-            { id: 11, nome: "Butterfly Color", quantidade: 20, preco: 64.90 },
-            { id: 12, nome: "Canivete Boker Color", quantidade: 15, preco: 110.00 },
-            { id: 13, nome: "Canivetes Browning", quantidade: 10, preco: 99.90 },
-            { id: 14, nome: "Faca Command", quantidade: 8, preco: 119.90 },
-            { id: 15, nome: "Faca Operações Verde", quantidade: 7, preco: 149.90 },
-            { id: 16, nome: "Faca Operações Preta", quantidade: 7, preco: 149.90 },
-            { id: 17, nome: "Faca Operações TAM", quantidade: 7, preco: 149.90 },
-            { id: 18, nome: "Faca Pescoço Preta", quantidade: 30, preco: 64.90 },
-            { id: 19, nome: "Faca Pescoço Caveira Preta", quantidade: 30, preco: 64.90 },
-            { id: 20, nome: "Faca Tática G Preta", quantidade: 9, preco: 149.90 },
-            { id: 21, nome: "Faca Tática Rambo Preta", quantidade: 9, preco: 149.90 },
-            { id: 22, nome: "Karambit Preta", quantidade: 15, preco: 64.90 },
-            { id: 23, nome: "Karambit Color", quantidade: 15, preco: 64.90 },
-            { id: 24, nome: "Kit Garrafa Térmica Rosa", quantidade: 25, preco: 79.90 },
-            { id: 25, nome: "Kit Garrafa Térmica Verde", quantidade: 25, preco: 79.90 },
-            { id: 26, nome: "Kit Garrafa Térmica Preta", quantidade: 25, preco: 79.90 },
-            { id: 27, nome: "Kit Sobrevivência Preta", quantidade: 20, preco: 149.90 },
-            { id: 28, nome: "Kit Talher Verde", quantidade: 50, preco: 49.90 },
-            { id: 29, nome: "Lanterna Caça AEGIS Preta", quantidade: 10, preco: 419.90 },
-            { id: 30, nome: "Lanterna Pistola LP-08 AEGIS Preta", quantidade: 10, preco: 549.90 },
-            { id: 31, nome: "Lanterna Tática TL-08 AEGIS Preta", quantidade: 12, preco: 349.90 },
-            { id: 32, nome: "Laser Segurança Preta", quantidade: 30, preco: 79.90 },
-            { id: 33, nome: "Pederneira Preta", quantidade: 40, preco: 49.90 },
-            { id: 34, nome: "Pulseira Tática Preta", quantidade: 50, preco: 49.90 },
-            { id: 35, nome: "Pulseira Tática Verde", quantidade: 50, preco: 49.90 },
-            { id: 36, nome: "Pulseira Tática Camuflada", quantidade: 50, preco: 49.90 },
-            { id: 37, nome: "Soco Inglês Preta", quantidade: 20, preco: 64.90 },
-            { id: 38, nome: "Spray Pimenta Vermelho", quantidade: 15, preco: 129.90 },
-        ];
+  function renderizarEstoque() {
+    container.innerHTML = "";
+    produtos.forEach(produto => {
+      container.insertAdjacentHTML("beforeend", criarItemEstoque(produto));
+    });
+  }
 
-        let historico = JSON.parse(localStorage.getItem('historico-estoque')) || [];
+  function alterarEstoque(id, delta) {
+    const produto = produtos.find(p => p.id === id);
+    if (!produto) return;
 
-        // Verificação de senha
-        function verificarSenha() {
-            const senha = document.getElementById('senha-acesso').value;
-            if (senha === SENHA_ESTOQUE) {
-                document.getElementById('login-container').style.display = 'none';
-                document.getElementById('estoque-content').style.display = 'block';
-                renderizarEstoque();
-                renderizarHistorico();
-            } else {
-                document.getElementById('erro-login').style.display = 'block';
-            }
-        }
+    const novaQuantidade = produto.estoque + delta;
+    if (novaQuantidade < 0) return; // Não permitir estoque negativo
 
-        // Renderização do estoque
-        function renderizarEstoque() {
-            const container = document.getElementById('estoque-container');
-            container.innerHTML = '';
-            
-            estoque.forEach(item => {
-                container.innerHTML += `
-                    <div class="estoque-item">
-                        <h3>${item.nome}</h3>
-                        <div class="estoque-info">
-                            <div>Preço: R$ ${item.preco.toFixed(2).replace('.', ',')}</div>
-                            <div>Estoque: <strong>${item.quantidade}</strong></div>
-                        </div>
-                        <div class="estoque-actions">
-                            <input type="number" id="quantidade-${item.id}" placeholder="Qtd" min="1" />
-                            <button onclick="adicionarEstoque(${item.id})"><i class="fas fa-plus"></i> Add</button>
-                            <button onclick="removerEstoque(${item.id})"><i class="fas fa-minus"></i> Rem</button>
-                        </div>
-                    </div>
-                `;
-            });
-        }
+    produto.estoque = novaQuantidade;
 
-        // Operações de estoque
-        function adicionarEstoque(id) {
-            const input = document.getElementById(`quantidade-${id}`);
-            const quantidade = parseInt(input.value) || 0;
-            
-            if (quantidade <= 0) {
-                alert("Digite uma quantidade válida!");
-                return;
-            }
-            
-            const produto = estoque.find(p => p.id === id);
-            produto.quantidade += quantidade;
-            
-            registrarHistorico(`Adicionado ${quantidade} ${produto.nome}`);
-            salvarDados();
-            input.value = '';
-        }
+    // Atualiza a quantidade na tela
+    const quantidadeElem = document.getElementById(`quantidade-${id}`);
+    if (quantidadeElem) {
+      quantidadeElem.textContent = produto.estoque;
+    }
 
-        function removerEstoque(id) {
-            const input = document.getElementById(`quantidade-${id}`);
-            const quantidade = parseInt(input.value) || 0;
-            
-            const produto = estoque.find(p => p.id === id);
-            if (produto.quantidade < quantidade) {
-                alert("Estoque insuficiente!");
-                return;
-            }
-            
-            produto.quantidade -= quantidade;
-            
-            registrarHistorico(`Removido ${quantidade} ${produto.nome}`);
-            salvarDados();
-            input.value = '';
-        }
+    // Adiciona ao histórico
+    adicionarAoHistorico(produto.nome, delta);
+  }
 
-        // Histórico
-        function renderizarHistorico() {
-            const container = document.getElementById('historico-container');
-            container.innerHTML = '';
-            
-            historico.slice(0, 15).forEach(item => {
-                container.innerHTML += `
-                    <div class="historico-item">
-                        <span>[${new Date(item.data).toLocaleString()}]</span> ${item.mensagem}
-                    </div>
-                `;
-            });
-        }
+  function adicionarAoHistorico(nomeProduto, delta) {
+    const acao = delta > 0 ? "adicionado" : "removido";
+    const quantidade = Math.abs(delta);
+    const dataHora = new Date().toLocaleString("pt-BR");
 
-        function registrarHistorico(mensagem) {
-            historico.unshift({
-                data: new Date().toISOString(),
-                mensagem: mensagem
-            });
-            
-            // Mantém apenas os 50 últimos registros
-            if (historico.length > 50) {
-                historico = historico.slice(0, 50);
-            }
-        }
+    const log = document.createElement("li");
+    log.textContent = `[${dataHora}] ${quantidade} unidade(s) ${acao} em "${nomeProduto}"`;
 
-        // Sistema de sincronização
-        function salvarDados() {
-            localStorage.setItem('estoque', JSON.stringify(estoque));
-            localStorage.setItem('historico-estoque', JSON.stringify(historico));
-            localStorage.setItem('ultimaAtualizacao', Date.now());
-            
-            renderizarEstoque();
-            renderizarHistorico();
-        }
+    historicoLista.prepend(log);
 
-        // Verifica atualizações a cada 2 segundos
-        function verificarAtualizacoes() {
-            const ultimaAtualizacao = localStorage.getItem('ultimaAtualizacao') || 0;
-            if (ultimaAtualizacao > (window.ultimaVerificacao || 0)) {
-                window.ultimaVerificacao = Date.now();
-                
-                // Recarrega os dados se houver mudanças
-                const novoEstoque = JSON.parse(localStorage.getItem('estoque')) || [];
-                if (JSON.stringify(novoEstoque) !== JSON.stringify(estoque)) {
-                    estoque = novoEstoque;
-                    historico = JSON.parse(localStorage.getItem('historico-estoque')) || [];
-                    renderizarEstoque();
-                    renderizarHistorico();
-                }
-            }
-        }
+    // Limitar histórico a 20 entradas
+    if (historicoLista.children.length > 20) {
+      historicoLista.removeChild(historicoLista.lastChild);
+    }
+  }
 
-        // Inicialização
-        document.addEventListener('DOMContentLoaded', () => {
-            // Carrega dados iniciais se não existirem
-            if (!localStorage.getItem('estoque')) {
-                localStorage.setItem('estoque', JSON.stringify(estoque));
-                localStorage.setItem('historico-estoque', JSON.stringify(historico));
-            }
-            
-            // Configura a verificação periódica
-            setInterval(verificarAtualizacoes, 2000);
-            
-            // Foca no campo de senha
-            document.getElementById('senha-acesso').focus();
-        });
-    </script>
+  // Inicializa a renderização
+  renderizarEstoque();
+</script>
+
 </body>
 </html>
