@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Igor Oliveira - Oliveira Soluções Bélicas</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
     <style>
         :root {
             --preto: #0A0A0A;
@@ -27,6 +30,29 @@
             background-color: var(--preto);
             color: var(--branco);
             line-height: 1.7;
+        }
+
+        /* Skip link para acessibilidade */
+        .skip-link {
+            position: absolute;
+            left: -999px;
+            top: auto;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            z-index: 10000;
+        }
+        .skip-link:focus {
+            left: 10px;
+            top: 10px;
+            width: auto;
+            height: auto;
+            background: var(--azul);
+            color: var(--branco);
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
         }
 
         header {
@@ -52,13 +78,14 @@
         }
 
         .profile-photo {
-            width: 200px;
-            height: 200px;
+            width: 12.5rem; /* 200px */
+            height: 12.5rem;
             border-radius: 50%;
             object-fit: cover;
             border: 3px solid var(--destaque);
             margin-bottom: 1.5rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 0.3rem 0.94rem rgba(0,0,0,0.3); /* 5px 15px */
+            loading: lazy;
         }
 
         .presentation {
@@ -91,13 +118,15 @@
             padding: 1rem;
             border-radius: 5px;
             border: 1px solid var(--cinza);
-            transition: all 0.3s;
+            transition: all 0.3s ease;
         }
 
-        .certificate-item:hover {
+        .certificate-item:hover,
+        .certificate-item:focus-within {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            box-shadow: 0 0.63rem 1.25rem rgba(0,0,0,0.3); /* 10px 20px */
             border-color: var(--azul);
+            outline: none;
         }
 
         .certificate-img {
@@ -106,6 +135,11 @@
             max-height: 500px;
             object-fit: contain;
             border-radius: 3px;
+        }
+
+        .back-btn-container {
+            text-align: center;
+            margin: 3rem auto 1rem;
         }
 
         .back-btn {
@@ -118,13 +152,16 @@
             border-radius: 4px;
             text-decoration: none;
             font-weight: bold;
-            transition: all 0.3s;
-            margin: 3rem auto 1rem;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            cursor: pointer;
         }
 
-        .back-btn:hover {
+        .back-btn:hover,
+        .back-btn:focus-visible {
             background: var(--branco);
             transform: translateX(-5px);
+            outline-offset: 3px;
+            outline: 3px solid var(--azul);
         }
 
         footer {
@@ -148,6 +185,8 @@
     </style>
 </head>
 <body>
+    <a href="#maincontent" class="skip-link">Pular para o conteúdo</a>
+
     <header>
         <div class="container">
             <h1>Igor Oliveira</h1>
@@ -155,46 +194,53 @@
         </div>
     </header>
 
-    <main class="container">
-        <div class="profile-header">
-            <img src="https://i.imgur.com/PUucTxT.jpeg" alt="Igor Oliveira" class="profile-photo">
+    <main id="maincontent" class="container">
+        <section class="profile-header" aria-label="Perfil profissional de Igor Oliveira">
+            <img
+              src="https://i.imgur.com/PUucTxT.jpeg"
+              alt="Foto de perfil de Igor Oliveira, especialista em processos bélicos"
+              class="profile-photo"
+              loading="lazy"
+            />
             <h2>IGOR OLIVEIRA</h2>
-        </div>
+        </section>
 
-        <div class="presentation">
+        <section class="presentation" aria-label="Apresentação profissional">
             <p>Profissional com vasta experiência em despacho bélico, operações e instrutor de armamento e tiro.</p>
             <p>Certificado em diversas áreas de segurança e atendimento pré-hospitalar.</p>
-        </div>
+        </section>
 
-        <div class="gallery">
-            <div class="certificate-item">
-                <img src="https://i.imgur.com/8hIi5j4.jpeg" alt="Pescafista" class="certificate-img">
-            </div>
+        <section class="gallery" aria-label="Galeria de certificados">
+            <article class="certificate-item" tabindex="0">
+                <img src="https://i.imgur.com/8hIi5j4.jpeg" alt="Certificado de Pescafista" class="certificate-img" loading="lazy" />
+            </article>
             
-            <div class="certificate-item">
-                <img src="https://i.imgur.com/6bIrcEq.jpeg" alt="Socorrista" class="certificate-img">
-            </div>
+            <article class="certificate-item" tabindex="0">
+                <img src="https://i.imgur.com/6bIrcEq.jpeg" alt="Certificado de Socorrista" class="certificate-img" loading="lazy" />
+            </article>
             
-            <div class="certificate-item">
-                <img src="https://i.imgur.com/vWhTRKY.jpeg" alt="Instrutor de Tiro" class="certificate-img">
-            </div>
+            <article class="certificate-item" tabindex="0">
+                <img src="https://i.imgur.com/vWhTRKY.jpeg" alt="Certificado de Instrutor de Tiro" class="certificate-img" loading="lazy" />
+            </article>
             
-            <div class="certificate-item">
-                <img src="https://i.imgur.com/P931v7S.jpeg" alt="Medicina de Combate" class="certificate-img">
-            </div>
+            <article class="certificate-item" tabindex="0">
+                <img src="https://i.imgur.com/P931v7S.jpeg" alt="Certificado de Medicina de Combate" class="certificate-img" loading="lazy" />
+            </article>
             
-            <div class="certificate-item">
-                <img src="https://i.imgur.com/YnV55cW.jpeg" alt="Multiplicador APH" class="certificate-img">
-            </div>
+            <article class="certificate-item" tabindex="0">
+                <img src="https://i.imgur.com/YnV55cW.jpeg" alt="Certificado de Multiplicador APH" class="certificate-img" loading="lazy" />
+            </article>
             
-            <div class="certificate-item">
-                <img src="https://i.imgur.com/ZkjQNru.jpeg" alt="Instrutor" class="certificate-img">
-            </div>
-        </div>
+            <article class="certificate-item" tabindex="0">
+                <img src="https://i.imgur.com/ZkjQNru.jpeg" alt="Certificado de Instrutor" class="certificate-img" loading="lazy" />
+            </article>
+        </section>
 
-        <a href="equipe.html" class="back-btn">
-            <i class="fas fa-arrow-left"></i> Voltar para a Equipe
-        </a>
+        <div class="back-btn-container">
+            <a href="equipe.html" class="back-btn" aria-label="Voltar para a equipe">
+                <i class="fas fa-arrow-left" aria-hidden="true"></i> Voltar para a Equipe
+            </a>
+        </div>
     </main>
 
     <footer>
