@@ -1,563 +1,439 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Oliveira Soluções Bélicas - Equipamentos de Defesa</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <style>
-    :root {
-      --preto: #0a0a0a;
-      --cinza-escuro: #1a1a1a;
-      --cinza: #333333;
-      --cinza-claro: #666666;
-      --branco: #f0f0f0;
-      --azul-neon: rgba(0, 120, 215, 0.7);
-      --azul-neon-solid: #0078d7;
-      --destaque: #c0c0c0;
-      --destaque-brilho: #e0e0e0;
-      --verde: #25d366;
-      --vermelho: #ff4444;
-    }
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: "Segoe UI", "Roboto", sans-serif;
-    }
-    body {
-      background-color: var(--preto);
-      color: var(--branco);
-      line-height: 1.7;
-      overflow-x: hidden;
-    }
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(
-          rgba(10, 10, 10, 0.9),
-          rgba(10, 10, 10, 0.9)
-        ),
-        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'><path fill='%23333' d='M50 0 L100 50 L50 100 L0 50 Z'/></svg>");
-      background-size: 15px 15px;
-      z-index: -1;
-      opacity: 0.3;
-    }
-    header {
-      background: linear-gradient(to bottom, var(--cinza-escuro), var(--preto));
-      padding: 1.5rem 0;
-      border-bottom: 1px solid var(--destaque);
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-      position: relative;
-    }
-    header::after {
-      content: "EQUIPAMENTOS PROFISSIONAIS";
-      position: absolute;
-      bottom: -12px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--destaque);
-      color: var(--preto);
-      padding: 0.2rem 1rem;
-      font-size: 0.7rem;
-      font-weight: bold;
-      border-radius: 3px;
-      letter-spacing: 1px;
-    }
-    .container {
-      width: 90%;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 2rem 0;
-    }
-    .logo {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-      margin-bottom: 1rem;
-    }
-    .logo-icon {
-      color: var(--destaque);
-      font-size: 2.8rem;
-      margin-bottom: 0.5rem;
-    }
-    h1 {
-      font-size: 2.3rem;
-      color: var(--branco);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      text-align: center;
-      position: relative;
-      display: inline-block;
-    }
-    h1::after {
-      content: "";
-      position: absolute;
-      bottom: -8px;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background: linear-gradient(
-        90deg,
-        var(--destaque),
-        var(--azul-neon-solid),
-        transparent
-      );
-    }
-    .tagline {
-      text-align: center;
-      color: var(--cinza-claro);
-      font-weight: 300;
-      margin-top: 0.5rem;
-      font-size: 1rem;
-      letter-spacing: 1px;
-    }
-    h2 {
-      color: var(--azul-neon-solid);
-      font-size: 1.8rem;
-      margin: 3rem 0 1.5rem;
-      position: relative;
-      display: inline-block;
-      text-transform: uppercase;
-      font-weight: 600;
-    }
-    h2::after {
-      content: "";
-      position: absolute;
-      bottom: -10px;
-      left: 0;
-      width: 100%;
-      height: 3px;
-      background: linear-gradient(90deg, var(--destaque), transparent);
-    }
-    .produtos-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-    .produto {
-      background: linear-gradient(145deg, var(--cinza-escuro), var(--preto));
-      border: 1px solid var(--cinza);
-      border-radius: 5px;
-      overflow: hidden;
-      transition: all 0.3s ease;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-      position: relative;
-    }
-    .produto::before {
-      content: "OLIVEIRA";
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background: rgba(0, 0, 0, 0.7);
-      color: var(--destaque);
-      padding: 0.2rem 0.5rem;
-      font-size: 0.7rem;
-      font-weight: bold;
-      border-radius: 3px;
-      z-index: 2;
-    }
-    .produto:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 25px rgba(0, 120, 215, 0.4);
-      border-color: var(--azul-neon-solid);
-    }
-    .produto-img {
-      height: 220px;
-      overflow: hidden;
-      position: relative;
-    }
-    .produto-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s;
-    }
-    .produto:hover .produto-img img {
-      transform: scale(1.1);
-    }
-    .produto-info {
-      padding: 1.5rem;
-    }
-    .produto h3 {
-      color: var(--branco);
-      font-size: 1.3rem;
-      margin-bottom: 0.8rem;
-      font-weight: 600;
-    }
-    .produto p {
-      color: var(--cinza-claro);
-      margin-bottom: 1.5rem;
-      font-size: 0.9rem;
-    }
-    .preco {
-      color: var(--destaque);
-      font-weight: bold;
-      font-size: 1.5rem;
-      text-shadow: 0 0 8px rgba(192, 192, 192, 0.3);
-      margin: 1.2rem 0;
-    }
-    .btn-comprar {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.7rem;
-      background: linear-gradient(90deg, var(--destaque), var(--cinza-claro));
-      color: var(--preto);
-      padding: 0.9rem 1.8rem;
-      text-decoration: none;
-      border-radius: 4px;
-      font-weight: 700;
-      transition: all 0.3s;
-      border: none;
-      cursor: pointer;
-      width: 100%;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      font-size: 0.9rem;
-    }
-    .btn-comprar:disabled {
-      background: var(--cinza);
-      color: var(--cinza-claro);
-      cursor: not-allowed;
-      box-shadow: none;
-      transform: none !important;
-    }
-    .btn-comprar:hover:not(:disabled) {
-      background: linear-gradient(90deg, var(--destaque-brilho), var(--destaque));
-      box-shadow: 0 0 15px rgba(192, 192, 192, 0.6);
-    }
-    .disclaimer {
-      background-color: rgba(255, 0, 0, 0.1);
-      color: #ff4444;
-      padding: 1.5rem;
-      border-radius: 5px;
-      border-left: 4px solid #ff4444;
-      margin-top: 3rem;
-      font-size: 0.85rem;
-      line-height: 1.6;
-    }
-    footer {
-      background: linear-gradient(to top, var(--cinza-escuro), var(--preto));
-      padding: 2.5rem 0;
-      margin-top: 4rem;
-      border-top: 1px solid var(--cinza);
-      position: relative;
-    }
-    footer::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 3px;
-      background: linear-gradient(90deg, var(--destaque), var(--azul-neon-solid), transparent);
-    }
-    .footer-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1.5rem;
-    }
-    .footer-logo {
-      font-size: 1.8rem;
-      font-weight: bold;
-      color: var(--branco);
-      display: flex;
-      align-items: center;
-      gap: 0.7rem;
-    }
-    .footer-logo span {
-      color: var(--destaque);
-    }
-    .social-links {
-      display: flex;
-      gap: 1.5rem;
-    }
-    .social-links a {
-      color: var(--cinza-claro);
-      font-size: 1.5rem;
-      transition: color 0.3s;
-    }
-    .social-links a:hover {
-      color: var(--destaque);
-    }
-    .whatsapp-btn {
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      background: linear-gradient(135deg, #25d366, #128c7e);
-      color: white;
-      width: 4.2rem;
-      height: 4.2rem;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.2rem;
-      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.4);
-      z-index: 100;
-      transition: all 0.3s;
-      animation: pulse 2s infinite;
-      text-decoration: none;
-    }
-    .whatsapp-btn:hover {
-      transform: scale(1.1) rotate(10deg);
-      box-shadow: 0 5px 30px rgba(37, 211, 102, 0.7);
-    }
-    @keyframes pulse {
-      0% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(1.1);
-      }
-      100% {
-        transform: scale(1);
-      }
-    }
-    @media (max-width: 768px) {
-      .produtos-grid {
-        grid-template-columns: 1fr;
-      }
-      h1 {
-        font-size: 1.8rem;
-      }
-      .whatsapp-btn {
-        width: 3.8rem;
-        height: 3.8rem;
-        font-size: 1.8rem;
-        bottom: 1.5rem;
-        right: 1.5rem;
-      }
-    }
-    
-    /* Overlay de senha */
-    #overlaySenha {
-      position: fixed;
-      inset: 0;
-      background-color: rgba(0,0,0,0.95);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      flex-direction: column;
-      padding: 2rem;
-      color: var(--branco);
-    }
-    #overlaySenha h2 {
-      margin-bottom: 1rem;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: var(--azul-neon-solid);
-    }
-    #overlaySenha input {
-      padding: 0.8rem 1rem;
-      font-size: 1.2rem;
-      border: none;
-      border-radius: 4px;
-      width: 260px;
-      max-width: 90vw;
-      margin-bottom: 1rem;
-    }
-    #overlaySenha button {
-      background: var(--azul-neon-solid);
-      color: var(--branco);
-      font-weight: 700;
-      border: none;
-      padding: 0.8rem 2rem;
-      border-radius: 4px;
-      cursor: pointer;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      font-size: 1rem;
-      transition: background 0.3s;
-    }
-    #overlaySenha button:hover {
-      background: var(--destaque-brilho);
-      color: var(--preto);
-    }
-    #overlaySenha .erro {
-      margin-top: 0.7rem;
-      color: var(--vermelho);
-      font-weight: 700;
-      font-size: 0.9rem;
-      height: 1.2rem;
-    }
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Estoque | Oliveira Soluções Bélicas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        :root {
+            --preto: #0A0A0A;
+            --cinza-escuro: #1A1A1A;
+            --cinza: #333333;
+            --cinza-claro: #666666;
+            --branco: #F0F0F0;
+            --azul: #0078D7;
+            --verde: #25D366;
+            --vermelho: #FF4444;
+            --destaque: #C0C0C0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--preto);
+            color: var(--branco);
+            line-height: 1.7;
+        }
+
+        /* Tela de Login */
+        #login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: var(--preto);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .login-box {
+            background: var(--cinza-escuro);
+            padding: 2rem;
+            border-radius: 8px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+        }
+
+        .login-box h2 {
+            margin-bottom: 1.5rem;
+            color: var(--destaque);
+        }
+
+        .login-input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            margin-bottom: 1rem;
+            background: var(--cinza);
+            border: none;
+            color: white;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 0.8rem;
+            background: var(--azul);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .login-btn:hover {
+            opacity: 0.9;
+        }
+
+        #erro-login {
+            color: var(--vermelho);
+            margin-top: 1rem;
+            display: none;
+        }
+
+        /* Conteúdo do Estoque */
+        #estoque-content {
+            display: none;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        header {
+            background: linear-gradient(to bottom, var(--cinza-escuro), var(--preto));
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--destaque);
+        }
+
+        h1 {
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+            margin: 2rem 0;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: var(--cinza);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            background: var(--cinza-claro);
+        }
+
+        .estoque-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .estoque-item {
+            background: var(--cinza-escuro);
+            padding: 1.5rem;
+            border-radius: 5px;
+            border-left: 4px solid var(--azul);
+        }
+
+        .estoque-item h3 {
+            margin-bottom: 1rem;
+            color: var(--destaque);
+        }
+
+        .estoque-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .estoque-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .estoque-actions input {
+            width: 60px;
+            padding: 0.5rem;
+            text-align: center;
+            background: var(--cinza);
+            border: none;
+            color: white;
+            border-radius: 4px;
+        }
+
+        .estoque-actions button {
+            padding: 0.5rem 1rem;
+            background: var(--azul);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .historico {
+            margin-top: 3rem;
+            border-top: 1px solid var(--cinza);
+            padding-top: 2rem;
+        }
+
+        .historico-item {
+            background: var(--cinza-escuro);
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+
+        .historico-item span {
+            color: var(--destaque);
+        }
+
+        @media (max-width: 768px) {
+            .estoque-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
 </head>
 <body>
-  <!-- Overlay de senha -->
-  <div id="overlaySenha">
-    <h2>Digite a senha para entrar</h2>
-    <input type="password" id="inputSenha" placeholder="Senha" autocomplete="off" />
-    <button id="btnEntrar">Entrar</button>
-    <div class="erro" id="erroSenha"></div>
-  </div>
-
-  <header style="display:none;">
-    <div class="container">
-      <div class="logo">
-        <div class="logo-icon">
-          <i class="fas fa-crosshairs"></i>
+    <!-- Tela de Login -->
+    <div id="login-container">
+        <div class="login-box">
+            <h2><i class="fas fa-lock"></i> Acesso Restrito</h2>
+            <input type="password" id="senha-acesso" class="login-input" placeholder="Digite a senha" />
+            <button onclick="verificarSenha()" class="login-btn">Acessar</button>
+            <p id="erro-login"><i class="fas fa-exclamation-circle"></i> Senha incorreta!</p>
         </div>
-        <h1>OLIVEIRA SOLUÇÕES BÉLICAS</h1>
-        <p class="tagline">Tecnologia e segurança em equipamentos de defesa</p>
-      </div>
     </div>
-  </header>
 
-  <main class="container" style="display:none;">
-    <section id="produtos">
-      <h2>Catálogo</h2>
+    <!-- Conteúdo do Estoque -->
+    <div id="estoque-content">
+        <header>
+            <div class="container">
+                <h1><i class="fas fa-boxes"></i> Controle de Estoque</h1>
+            </div>
+        </header>
 
-      <div class="produtos-grid" id="produtos-container">
-        <!-- Produtos serão carregados via JavaScript -->
-      </div>
+        <div class="container">
+            <div class="nav-buttons">
+                <a href="index.html" class="btn"><i class="fas fa-home"></i> Voltar</a>
+            </div>
 
-      <div class="disclaimer">
-        <p>
-          <strong>AVISO LEGAL IMPORTANTE:</strong> Todos os produtos Oliveira
-          Soluções Bélicas são comercializados em estrita conformidade com a
-          legislação brasileira.
-        </p>
-      </div>
-    </section>
-  </main>
+            <div class="estoque-grid" id="estoque-container"></div>
 
-  <footer style="display:none;">
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-logo">
-          <span>OLIVEIRA</span> SOLUÇÕES BÉLICAS
+            <div class="historico">
+                <h2><i class="fas fa-history"></i> Histórico</h2>
+                <div id="historico-container"></div>
+            </div>
         </div>
-        <div class="social-links">
-          <a href="https://www.instagram.com/osolucoes_belicas/"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fab fa-facebook"></i></a>
-          <a href="#"><i class="fab fa-youtube"></i></a>
-        </div>
-        <p>&copy; 2024 Oliveira Soluções Bélicas. Todos os direitos reservados.</p>
-        <p>WhatsApp: <strong>(54) 9676-8112</strong></p>
-      </div>
     </div>
-  </footer>
 
-  <!-- Botão do WhatsApp -->
-  <a href="https://wa.me/555496768112" class="whatsapp-btn" target="_blank">
-    <i class="fab fa-whatsapp"></i>
-  </a>
+    <script>
+        // Configurações
+        const SENHA_ESTOQUE = "oliveira123"; // Altere para sua senha
+        
+        // Dados iniciais com estoque zerado
+        let estoque = JSON.parse(localStorage.getItem('estoque')) || [
+            { id: 1, nome: "Spray de Pimenta OSB", quantidade: 0, preco: 129.90 },
+            { id: 2, nome: "Taser OSB Defender", quantidade: 0, preco: 149.90 },
+            { id: 3, nome: "Lanterna Aegis LP-08", quantidade: 0, preco: 549.90 },
+            { id: 4, nome: "Aegis TM-18F", quantidade: 0, preco: 249.90 },
+            { id: 5, nome: "Blackbird", quantidade: 0, preco: 199.90 },
+            { id: 6, nome: "Alicate Multifuncional", quantidade: 0, preco: 54.90 },
+            { id: 7, nome: "Bússola Profissional C/Lupa", quantidade: 0, preco: 74.90 },
+            { id: 8, nome: "Butterfly Prata", quantidade: 0, preco: 64.90 },
+            { id: 9, nome: "Butterfly Preta", quantidade: 0, preco: 64.90 },
+            { id: 10, nome: "Butterfly Dourado", quantidade: 0, preco: 64.90 },
+            { id: 11, nome: "Butterfly Color", quantidade: 0, preco: 64.90 },
+            { id: 12, nome: "Canivete Boker Color", quantidade: 0, preco: 110.00 },
+            { id: 13, nome: "Canivetes Browning", quantidade: 0, preco: 99.90 },
+            { id: 14, nome: "Faca Command", quantidade: 0, preco: 119.90 },
+            { id: 15, nome: "Faca Operações Verde", quantidade: 0, preco: 149.90 },
+            { id: 16, nome: "Faca Operações Preta", quantidade: 0, preco: 149.90 },
+            { id: 17, nome: "Faca Operações TAM", quantidade: 0, preco: 149.90 },
+            { id: 18, nome: "Faca Pescoço Preta", quantidade: 0, preco: 64.90 },
+            { id: 19, nome: "Faca Pescoço Caveira Preta", quantidade: 0, preco: 64.90 },
+            { id: 20, nome: "Faca Tática G Preta", quantidade: 0, preco: 149.90 },
+            { id: 21, nome: "Faca Tática Rambo Preta", quantidade: 0, preco: 149.90 },
+            { id: 22, nome: "Karambit Preta", quantidade: 0, preco: 64.90 },
+            { id: 23, nome: "Karambit Color", quantidade: 0, preco: 64.90 },
+            { id: 24, nome: "Kit Garrafa Térmica Rosa", quantidade: 0, preco: 79.90 },
+            { id: 25, nome: "Kit Garrafa Térmica Verde", quantidade: 0, preco: 79.90 },
+            { id: 26, nome: "Kit Garrafa Térmica Preta", quantidade: 0, preco: 79.90 },
+            { id: 27, nome: "Kit Sobrevivência Preta", quantidade: 0, preco: 149.90 },
+            { id: 28, nome: "Kit Talher Verde", quantidade: 0, preco: 49.90 },
+            { id: 29, nome: "Lanterna Caça AEGIS Preta", quantidade: 0, preco: 419.90 },
+            { id: 30, nome: "Lanterna Pistola LP-08 AEGIS Preta", quantidade: 0, preco: 549.90 },
+            { id: 31, nome: "Lanterna Tática TL-08 AEGIS Preta", quantidade: 0, preco: 349.90 },
+            { id: 32, nome: "Laser Segurança Preta", quantidade: 0, preco: 79.90 },
+            { id: 33, nome: "Pederneira Preta", quantidade: 0, preco: 49.90 },
+            { id: 34, nome: "Pulseira Tática Preta", quantidade: 0, preco: 49.90 },
+            { id: 35, nome: "Pulseira Tática Verde", quantidade: 0, preco: 49.90 },
+            { id: 36, nome: "Pulseira Tática Camuflada", quantidade: 0, preco: 49.90 },
+            { id: 37, nome: "Soco Inglês Preta", quantidade: 0, preco: 64.90 },
+            { id: 38, nome: "Spray Pimenta Vermelho", quantidade: 0, preco: 129.90 },
+        ];
 
-  <script>
-    const senhaCorreta = "oliveira123";
+        let historico = JSON.parse(localStorage.getItem('historico-estoque')) || [];
 
-    const overlay = document.getElementById("overlaySenha");
-    const inputSenha = document.getElementById("inputSenha");
-    const btnEntrar = document.getElementById("btnEntrar");
-    const erroSenha = document.getElementById("erroSenha");
+        // Verificação de senha
+        function verificarSenha() {
+            const senha = document.getElementById('senha-acesso').value;
+            if (senha === SENHA_ESTOQUE) {
+                document.getElementById('login-container').style.display = 'none';
+                document.getElementById('estoque-content').style.display = 'block';
+                renderizarEstoque();
+                renderizarHistorico();
+            } else {
+                document.getElementById('erro-login').style.display = 'block';
+            }
+        }
 
-    const header = document.querySelector("header");
-    const main = document.querySelector("main");
-    const footer = document.querySelector("footer");
+        // Renderização do estoque
+        function renderizarEstoque() {
+            const container = document.getElementById('estoque-container');
+            container.innerHTML = '';
+            
+            estoque.forEach(item => {
+                container.innerHTML += `
+                    <div class="estoque-item">
+                        <h3>${item.nome}</h3>
+                        <div class="estoque-info">
+                            <div>Preço: R$ ${item.preco.toFixed(2).replace('.', ',')}</div>
+                            <div>Estoque: <strong>${item.quantidade}</strong></div>
+                        </div>
+                        <div class="estoque-actions">
+                            <input type="number" id="quantidade-${item.id}" placeholder="Qtd" min="1" />
+                            <button onclick="adicionarEstoque(${item.id})"><i class="fas fa-plus"></i> Add</button>
+                            <button onclick="removerEstoque(${item.id})"><i class="fas fa-minus"></i> Rem</button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
 
-    btnEntrar.addEventListener("click", () => {
-      if(inputSenha.value.trim().toLowerCase() === senhaCorreta) {
-        overlay.style.display = "none";
-        header.style.display = "block";
-        main.style.display = "block";
-        footer.style.display = "block";
-        renderProdutos();
-      } else {
-        erroSenha.textContent = "Senha incorreta. Tente novamente.";
-        inputSenha.value = "";
-        inputSenha.focus();
-      }
-    });
+        // Operações de estoque
+        function adicionarEstoque(id) {
+            const input = document.getElementById(`quantidade-${id}`);
+            const quantidade = parseInt(input.value) || 0;
+            
+            if (quantidade <= 0) {
+                alert("Digite uma quantidade válida!");
+                return;
+            }
+            
+            const produto = estoque.find(p => p.id === id);
+            produto.quantidade += quantidade;
+            
+            registrarHistorico(`Adicionado ${quantidade} ${produto.nome}`);
+            salvarDados();
+            input.value = '';
+        }
 
-    inputSenha.addEventListener("keypress", (e) => {
-      if(e.key === "Enter") btnEntrar.click();
-    });
+        function removerEstoque(id) {
+            const input = document.getElementById(`quantidade-${id}`);
+            const quantidade = parseInt(input.value) || 0;
+            
+            const produto = estoque.find(p => p.id === id);
+            if (produto.quantidade < quantidade) {
+                alert("Estoque insuficiente!");
+                return;
+            }
+            
+            produto.quantidade -= quantidade;
+            
+            registrarHistorico(`Removido ${quantidade} ${produto.nome}`);
+            salvarDados();
+            input.value = '';
+        }
 
-    const produtos = [
-      {
-        id: 6,
-        nome: "Alicate Multifuncional",
-        descricao: "Ferramenta prática com múltiplas funções, design robusto e acabamento preto.",
-        preco: 54.9,
-        imagem: "https://i.imgur.com/i4kSoZV.jpeg",
-        estoque: 0
-      },
-      {
-        id: 7,
-        nome: "Bússula Profissional C/Lupa",
-        descricao: "Bússola com lupa integrada para navegação precisa em campo.",
-        preco: 74.9,
-        imagem: "https://i.imgur.com/younn6i.jpeg",
-        estoque: 0
-      },
-      {
-        id: 8,
-        nome: "Butterfly",
-        descricao: "Canivete estilo borboleta com lâmina resistente e acabamento preto fosco.",
-        preco: 45.0,
-        imagem: "https://i.imgur.com/VRbJbIj.jpeg",
-        estoque: 0
-      },
-      {
-        id: 9,
-        nome: "Coldres Modulares",
-        descricao: "Coldres modulares para diversos tipos de armas, com sistema de fixação MOLLE.",
-        preco: 89.9,
-        imagem: "https://i.imgur.com/7h3m37Q.jpeg",
-        estoque: 0
-      },
-      {
-        id: 10,
-        nome: "Lanterna Tática",
-        descricao: "Lanterna potente com múltiplos modos, ideal para situações táticas.",
-        preco: 75.0,
-        imagem: "https://i.imgur.com/E8hX0rF.jpeg",
-        estoque: 0
-      },
-      {
-        id: 11,
-        nome: "Mochila Tática",
-        descricao: "Mochila resistente com vários compartimentos e sistema MOLLE.",
-        preco: 120.5,
-        imagem: "https://i.imgur.com/WBq0Jrz.jpeg",
-        estoque: 0
-      }
-    ];
+        // Histórico
+        function renderizarHistorico() {
+            const container = document.getElementById('historico-container');
+            container.innerHTML = '';
+            
+            historico.slice(0, 15).forEach(item => {
+                container.innerHTML += `
+                    <div class="historico-item">
+                        <span>[${new Date(item.data).toLocaleString()}]</span> ${item.mensagem}
+                    </div>
+                `;
+            });
+        }
 
-    function renderProdutos() {
-      const container = document.getElementById("produtos-container");
-      container.innerHTML = ""; // limpa
+        function registrarHistorico(mensagem) {
+            historico.unshift({
+                data: new Date().toISOString(),
+                mensagem: mensagem
+            });
+            
+            // Mantém apenas os 50 últimos registros
+            if (historico.length > 50) {
+                historico = historico.slice(0, 50);
+            }
+        }
 
-      produtos.forEach(prod => {
-        const div = document.createElement("div");
-        div.classList.add("produto");
-        div.innerHTML = `
-          <div class="produto-img">
-            <img src="${prod.imagem}" alt="${prod.nome}" />
-          </div>
-          <div class="produto-info">
-            <h3>${prod.nome}</h3>
-            <p>${prod.descricao}</p>
-            <div class="preco">R$ ${prod.preco.toFixed(2).replace(".", ",")}</div>
-            <button class="btn-comprar" disabled title="Produto indisponível (estoque zerado)">
-              <i class="fas fa-shopping-cart"></i> Comprar
-            </button>
-          </div>
-        `;
-        container.appendChild(div);
-      });
-    }
-  </script>
+        // Sistema de sincronização
+        function salvarDados() {
+            localStorage.setItem('estoque', JSON.stringify(estoque));
+            localStorage.setItem('historico-estoque', JSON.stringify(historico));
+            localStorage.setItem('ultimaAtualizacao', Date.now());
+            
+            renderizarEstoque();
+            renderizarHistorico();
+        }
+
+        // Verifica atualizações a cada 2 segundos
+        function verificarAtualizacoes() {
+            const ultimaAtualizacao = localStorage.getItem('ultimaAtualizacao') || 0;
+            if (ultimaAtualizacao > (window.ultimaVerificacao || 0)) {
+                window.ultimaVerificacao = Date.now();
+                
+                // Recarrega os dados se houver mudanças
+                const novoEstoque = JSON.parse(localStorage.getItem('estoque')) || [];
+                if (JSON.stringify(novoEstoque) !== JSON.stringify(estoque)) {
+                    estoque = novoEstoque;
+                    historico = JSON.parse(localStorage.getItem('historico-estoque')) || [];
+                    renderizarEstoque();
+                    renderizarHistorico();
+                }
+            }
+        }
+
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', () => {
+            // Carrega dados iniciais se não existirem
+            if (!localStorage.getItem('estoque')) {
+                localStorage.setItem('estoque', JSON.stringify(estoque));
+                localStorage.setItem('historico-estoque', JSON.stringify(historico));
+            }
+            
+            // Configura a verificação periódica
+            setInterval(verificarAtualizacoes, 2000);
+            
+            // Foca no campo de senha
+            document.getElementById('senha-acesso').focus();
+        });
+    </script>
 </body>
 </html>
