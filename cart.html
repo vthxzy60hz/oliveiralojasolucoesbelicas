@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Carrinho - Oliveira Soluções Bélicas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+      :root {
+        --preto: #0a0a0a;
+        --cinza-escuro: #1a1a1a;
+        --cinza: #333333;
+        --cinza-claro: #666666;
+        --branco: #f0f0f0;
+        --azul-neon: rgba(0, 120, 215, 0.7);
+        --azul-neon-solid: #0078d7;
+        --destaque: #c0c0c0;
+        --destaque-brilho: #e0e0e0;
+        --verde: #25d366;
+        --vermelho: #ff4444;
+        --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", "Roboto", sans-serif;
+      }
+      body {
+        background-color: var(--preto);
+        color: var(--branco);
+        line-height: 1.7;
+        overflow-x: hidden;
+      }
+      .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem 0;
+      }
+      .voltar-inicio {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--destaque);
+        text-decoration: none;
+        margin-bottom: 1.5rem;
+        transition: var(--transition);
+      }
+      .voltar-inicio:hover {
+        color: var(--azul-neon-solid);
+      }
+      h1 {
+        font-size: 2.3rem;
+        color: var(--branco);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+      .carrinho-container {
+        background: var(--cinza-escuro);
+        border-radius: 8px;
+        padding: 2rem;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      }
+      .carrinho-vazio {
+        text-align: center;
+        padding: 2rem;
+        color: var(--cinza-claro);
+      }
+      .carrinho-itens {
+        margin-bottom: 2rem;
+      }
+      .carrinho-item {
+        display: flex;
+        align-items: center;
+        padding: 1rem;
+        border-bottom: 1px solid var(--cinza);
+        gap: 1.5rem;
+      }
+      .carrinho-item-img {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 4px;
+      }
+      .carrinho-item-info {
+        flex: 1;
+      }
+      .carrinho-item-nome {
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+      }
+      .carrinho-item-preco {
+        color: var(--destaque);
+      }
+      .carrinho-item-quantidade {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .carrinho-item-quantidade button {
+        background: var(--cinza);
+        color: var(--branco);
+        border: none;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: var(--transition);
+      }
+      .carrinho-item-quantidade button:hover {
+        background: var(--azul-neon-solid);
+      }
+      .remover-item {
+        color: var(--vermelho);
+        cursor: pointer;
+        margin-left: 1rem;
+      }
+      .carrinho-total {
+        text-align: right;
+        font-size: 1.3rem;
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
+        border-top: 2px solid var(--azul-neon-solid);
+      }
+      .carrinho-acoes {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 2rem;
+      }
+      .btn {
+        padding: 0.8rem 1.5rem;
+        border-radius: 4px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: var(--transition);
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .btn-continuar {
+        background: var(--cinza);
+        color: var(--branco);
+      }
+      .btn-continuar:hover {
+        background: var(--cinza-claro);
+      }
+      .btn-finalizar {
+        background: linear-gradient(90deg, var(--verde), #128c7e);
+        color: var(--branco);
+      }
+      .btn-finalizar:hover {
+        background: linear-gradient(90deg, #128c7e, var(--verde));
+        box-shadow: 0 0 15px rgba(37, 211, 102, 0.3);
+      }
+      .whatsapp-btn {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        background: linear-gradient(135deg, var(--verde), #128c7e);
+        color: white;
+        width: 4.2rem;
+        height: 4.2rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.2rem;
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.4);
+        z-index: 100;
+        transition: var(--transition);
+        animation: pulse 2s infinite;
+        text-decoration: none;
+      }
+      @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+        100% { transform: scale(1); }
+      }
+      @media (max-width: 768px) {
+        .carrinho-item {
+          flex-wrap: wrap;
+        }
+        .carrinho-acoes {
+          flex-direction: column;
+          gap: 1rem;
+        }
+        .btn {
+          width: 100%;
+          justify-content: center;
+        }
+      }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="voltar-inicio">
+            <i class="fas fa-home"></i> Voltar para o início
+        </a>
+        
+        <h1>SEU CARRINHO</h1>
+        
+        <div class="carrinho-container">
+            <div id="carrinho-itens" class="carrinho-itens">
+                <!-- Itens serão carregados via JavaScript -->
+            </div>
+            
+            <div id="carrinho-total" class="carrinho-total">
+                <!-- Total será calculado via JavaScript -->
+            </div>
+            
+            <div class="carrinho-acoes">
+                <a href="loja.html" class="btn btn-continuar">
+                    <i class="fas fa-arrow-left"></i> Continuar Comprando
+                </a>
+                <button id="finalizar-compra" class="btn btn-finalizar">
+                    <i class="fab fa-whatsapp"></i> Finalizar pelo WhatsApp
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <a href="https://wa.me/555496768112" class="whatsapp-btn" target="_blank" aria-label="Contato pelo WhatsApp">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+      // Carrega o carrinho do localStorage
+      let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+      const carrinhoItens = document.getElementById('carrinho-itens');
+      const carrinhoTotal = document.getElementById('carrinho-total');
+      const finalizarCompraBtn = document.getElementById('finalizar-compra');
+
+      // Renderiza os itens do carrinho
+      function renderCarrinho() {
+        if (carrinho.length === 0) {
+          carrinhoItens.innerHTML = `
+            <div class="carrinho-vazio">
+              <i class="fas fa-shopping-cart" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.3;"></i>
+              <p>Seu carrinho está vazio</p>
+            </div>
+          `;
+          carrinhoTotal.innerHTML = '';
+          finalizarCompraBtn.style.display = 'none';
+          return;
+        }
+
+        carrinhoItens.innerHTML = '';
+        let total = 0;
+
+        carrinho.forEach((item, index) => {
+          total += item.preco * item.quantidade;
+          
+          const itemHTML = `
+            <div class="carrinho-item">
+              <img src="${item.imagem || 'https://via.placeholder.com/80x80?text=Produto'}" 
+                   alt="${item.nome}" 
+                   class="carrinho-item-img"
+                   onerror="this.src='https://via.placeholder.com/80x80?text=Imagem'">
+              <div class="carrinho-item-info">
+                <div class="carrinho-item-nome">${item.nome}</div>
+                <div class="carrinho-item-preco">R$ ${item.preco.toFixed(2).replace('.', ',')}</div>
+                <div class="carrinho-item-quantidade">
+                  <button onclick="alterarQuantidade(${index}, -1)">-</button>
+                  <span>${item.quantidade}</span>
+                  <button onclick="alterarQuantidade(${index}, 1)">+</button>
+                  <span class="remover-item" onclick="removerItem(${index})">
+                    <i class="fas fa-trash"></i> Remover
+                  </span>
+                </div>
+              </div>
+              <div>R$ ${(item.preco * item.quantidade).toFixed(2).replace('.', ',')}</div>
+            </div>
+          `;
+          carrinhoItens.insertAdjacentHTML('beforeend', itemHTML);
+        });
+
+        carrinhoTotal.innerHTML = `
+          <strong>TOTAL: R$ ${total.toFixed(2).replace('.', ',')}</strong>
+        `;
+      }
+
+      // Altera quantidade do item
+      function alterarQuantidade(index, alteracao) {
+        carrinho[index].quantidade += alteracao;
+        
+        if (carrinho[index].quantidade < 1) {
+          carrinho.splice(index, 1);
+        }
+        
+        localStorage.setItem('carrinho', JSON.stringify(carrinho));
+        renderCarrinho();
+      }
+
+      // Remove item do carrinho
+      function removerItem(index) {
+        carrinho.splice(index, 1);
+        localStorage.setItem('carrinho', JSON.stringify(carrinho));
+        renderCarrinho();
+      }
+
+      // Finalizar compra via WhatsApp
+      function finalizarCompra() {
+        if (carrinho.length === 0) return;
+        
+        const numeroWhatsApp = '555496768112';
+        let mensagem = 'Olá, eu gostaria de comprar:%0A%0A';
+        
+        carrinho.forEach(item => {
+          mensagem += `- ${item.nome} (${item.quantidade}x) - R$ ${(item.preco * item.quantidade).toFixed(2)}%0A`;
+        });
+        
+        const total = carrinho.reduce((sum, item) => sum + (item.preco * item.quantidade), 0);
+        mensagem += `%0ATotal: R$ ${total.toFixed(2)}`;
+        
+        const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${mensagem}`;
+        window.open(urlWhatsApp, '_blank');
+      }
+
+      // Event listeners
+      finalizarCompraBtn.addEventListener('click', finalizarCompra);
+
+      // Inicializa a página
+      document.addEventListener('DOMContentLoaded', renderCarrinho);
+
+      // Funções globais para os botões
+      window.alterarQuantidade = alterarQuantidade;
+      window.removerItem = removerItem;
+    </script>
+</body>
+</html>
