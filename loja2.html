@@ -4,6 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Oliveira Soluções Bélicas - Equipamentos de Defesa</title>
+    <meta name="description" content="Oliveira Soluções Bélicas - Equipamentos de defesa e segurança de alta qualidade. Encontre facas táticas, kits de sobrevivência e mais.">
+    <meta name="keywords" content="equipamentos de defesa, facas táticas, segurança pessoal, kit sobrevivência, solução bélica">
+    <meta property="og:title" content="Oliveira Soluções Bélicas - Equipamentos de Defesa">
+    <meta property="og:description" content="Tecnologia e segurança em equipamentos de defesa">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <style>
       :root {
@@ -18,6 +23,7 @@
         --destaque-brilho: #e0e0e0;
         --verde: #25d366;
         --vermelho: #ff4444;
+        --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
       }
       * {
         margin: 0;
@@ -47,14 +53,14 @@
         z-index: -1;
         opacity: 0.3;
       }
-      header {
+      [role="banner"] {
         background: linear-gradient(to bottom, var(--cinza-escuro), var(--preto));
         padding: 1.5rem 0;
         border-bottom: 1px solid var(--destaque);
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
         position: relative;
       }
-      header::after {
+      [role="banner"]::after {
         content: "EQUIPAMENTOS PROFISSIONAIS";
         position: absolute;
         bottom: -12px;
@@ -73,6 +79,18 @@
         max-width: 1200px;
         margin: 0 auto;
         padding: 2rem 0;
+      }
+      .voltar-inicio {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--destaque);
+        text-decoration: none;
+        margin-bottom: 1.5rem;
+        transition: var(--transition);
+      }
+      .voltar-inicio:hover {
+        color: var(--azul-neon-solid);
       }
       .logo {
         display: flex;
@@ -135,6 +153,22 @@
         height: 3px;
         background: linear-gradient(90deg, var(--destaque), transparent);
       }
+      .filtros {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+      }
+      .filtros input,
+      .filtros select {
+        padding: 0.8rem 1rem;
+        border-radius: 4px;
+        border: 1px solid var(--cinza);
+        background-color: var(--cinza-escuro);
+        color: var(--branco);
+        flex: 1;
+        min-width: 200px;
+      }
       .produtos-grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -146,10 +180,29 @@
         border: 1px solid var(--cinza);
         border-radius: 5px;
         overflow: hidden;
-        transition: all 0.3s ease;
+        transition: var(--transition);
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         position: relative;
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeInUp 0.5s forwards;
       }
+      @keyframes fadeInUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .produto:nth-child(1) { animation-delay: 0.1s; }
+      .produto:nth-child(2) { animation-delay: 0.2s; }
+      .produto:nth-child(3) { animation-delay: 0.3s; }
+      .produto:nth-child(4) { animation-delay: 0.4s; }
+      .produto:nth-child(5) { animation-delay: 0.5s; }
+      .produto:nth-child(6) { animation-delay: 0.6s; }
+      .produto:nth-child(7) { animation-delay: 0.7s; }
+      .produto:nth-child(8) { animation-delay: 0.8s; }
+      .produto:nth-child(9) { animation-delay: 0.9s; }
+      .produto:nth-child(10) { animation-delay: 1s; }
       .produto::before {
         content: "OLIVEIRA";
         position: absolute;
@@ -214,7 +267,7 @@
         text-decoration: none;
         border-radius: 4px;
         font-weight: 700;
-        transition: all 0.3s;
+        transition: var(--transition);
         border: none;
         cursor: pointer;
         width: 100%;
@@ -226,6 +279,10 @@
         background: linear-gradient(90deg, var(--destaque-brilho), var(--destaque));
         box-shadow: 0 0 15px rgba(192, 192, 192, 0.6);
       }
+      .btn-comprar:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+      }
       .disclaimer {
         background-color: rgba(255, 0, 0, 0.1);
         color: #ff4444;
@@ -236,14 +293,14 @@
         font-size: 0.85rem;
         line-height: 1.6;
       }
-      footer {
+      [role="contentinfo"] {
         background: linear-gradient(to top, var(--cinza-escuro), var(--preto));
         padding: 2.5rem 0;
         margin-top: 4rem;
         border-top: 1px solid var(--cinza);
         position: relative;
       }
-      footer::before {
+      [role="contentinfo"]::before {
         content: "";
         position: absolute;
         top: 0;
@@ -276,16 +333,41 @@
       .social-links a {
         color: var(--cinza-claro);
         font-size: 1.5rem;
-        transition: color 0.3s;
+        transition: var(--transition);
       }
       .social-links a:hover {
         color: var(--destaque);
       }
+      /* Botão do Carrinho */
+      .carrinho-btn {
+        position: fixed;
+        bottom: 2rem;
+        left: 2rem;
+        background: linear-gradient(135deg, var(--azul-neon-solid), #005a9e);
+        color: white;
+        width: 4.2rem;
+        height: 4.2rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8rem;
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.4);
+        z-index: 100;
+        transition: var(--transition);
+        animation: pulse 2s infinite;
+        text-decoration: none;
+      }
+      .carrinho-btn:hover {
+        transform: scale(1.1);
+        box-shadow: 0 5px 30px rgba(0, 120, 215, 0.7);
+      }
+      /* Botão do WhatsApp */
       .whatsapp-btn {
         position: fixed;
         bottom: 2rem;
         right: 2rem;
-        background: linear-gradient(135deg, #25d366, #128c7e);
+        background: linear-gradient(135deg, var(--verde), #128c7e);
         color: white;
         width: 4.2rem;
         height: 4.2rem;
@@ -296,7 +378,7 @@
         font-size: 2.2rem;
         box-shadow: 0 5px 25px rgba(0, 0, 0, 0.4);
         z-index: 100;
-        transition: all 0.3s;
+        transition: var(--transition);
         animation: pulse 2s infinite;
         text-decoration: none;
       }
@@ -322,19 +404,45 @@
         h1 {
           font-size: 1.8rem;
         }
+        .carrinho-btn,
         .whatsapp-btn {
           width: 3.8rem;
           height: 3.8rem;
           font-size: 1.8rem;
           bottom: 1.5rem;
+        }
+        .carrinho-btn {
+          left: 1.5rem;
+        }
+        .whatsapp-btn {
           right: 1.5rem;
+        }
+      }
+      @media (max-width: 480px) {
+        .container {
+          width: 95%;
+          padding: 1rem 0;
+        }
+        h1 {
+          font-size: 1.5rem;
+        }
+        .filtros {
+          flex-direction: column;
+        }
+        .filtros input,
+        .filtros select {
+          width: 100%;
+          min-width: auto;
         }
       }
     </style>
   </head>
   <body>
-    <header>
+    <header role="banner">
       <div class="container">
+        <a href="index.html" class="voltar-inicio">
+          <i class="fas fa-home"></i> Voltar para o início
+        </a>
         <div class="logo">
           <div class="logo-icon">
             <i class="fas fa-crosshairs"></i>
@@ -345,9 +453,20 @@
       </div>
     </header>
 
-    <main class="container">
+    <main class="container" role="main">
       <section id="produtos">
         <h2>Catálogo</h2>
+
+        <div class="filtros">
+          <input type="text" id="busca-produto" placeholder="Buscar produtos..." aria-label="Buscar produtos">
+          <select id="filtro-preco" aria-label="Filtrar por preço">
+            <option value="">Todos os preços</option>
+            <option value="50">Até R$ 50</option>
+            <option value="100">Até R$ 100</option>
+            <option value="150">Até R$ 150</option>
+            <option value="500">Até R$ 500</option>
+          </select>
+        </div>
 
         <div class="produtos-grid" id="produtos-container">
           <!-- Produtos serão carregados via JavaScript -->
@@ -363,16 +482,16 @@
       </section>
     </main>
 
-    <footer>
+    <footer role="contentinfo">
       <div class="container">
         <div class="footer-content">
           <div class="footer-logo">
             <span>OLIVEIRA</span> SOLUÇÕES BÉLICAS
           </div>
           <div class="social-links">
-            <a href="https://www.instagram.com/osolucoes_belicas/"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.instagram.com/osolucoes_belicas/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
           </div>
           <p>&copy; 2024 Oliveira Soluções Bélicas. Todos os direitos reservados.</p>
           <p>WhatsApp: <strong>(54) 9676-8112</strong></p>
@@ -380,13 +499,18 @@
       </div>
     </footer>
 
+    <!-- Botão do Carrinho -->
+    <a href="#" class="carrinho-btn" id="carrinho-btn" aria-label="Ver carrinho">
+      <i class="fas fa-shopping-cart"></i>
+    </a>
+
     <!-- Botão do WhatsApp -->
-    <a href="https://wa.me/555496768112" class="whatsapp-btn" target="_blank">
+    <a href="https://wa.me/555496768112" class="whatsapp-btn" target="_blank" aria-label="Contato pelo WhatsApp">
       <i class="fab fa-whatsapp"></i>
     </a>
 
     <script>
-      // Lista de produtos (simplificada, sem pesquisa)
+      // Lista de produtos
       const produtos = [
         {
           id: 6,
@@ -505,83 +629,104 @@
           nome: "Lanterna Caça AEGIS",
           descricao: "Lanterna tática para caça, com alta luminosidade e design compacto.",
           preco: 419.9,
-          imagem: "https://i.imgur.com/placeholder-lanterna-caca.jpg"
+          imagem: "https://via.placeholder.com/300x200?text=Lanterna+Ca%C3%A7a"
         },
         {
           id: 30,
           nome: "Lanterna Pistola LP-08 AEGIS",
           descricao: "Lanterna de pistola com alta potência e foco ajustável.",
           preco: 549.9,
-          imagem: "https://i.imgur.com/placeholder-lanterna-pistola.jpg"
+          imagem: "https://via.placeholder.com/300x200?text=Lanterna+Pistola"
         },
         {
           id: 31,
           nome: "Lanterna Tática TL-08 AEGIS",
           descricao: "Lanterna tática compacta com múltiplos modos de iluminação.",
           preco: 349.9,
-          imagem: "https://i.imgur.com/placeholder-lanterna-tatica.jpg"
+          imagem: "https://via.placeholder.com/300x200?text=Lanterna+T%C3%A1tica"
         },
         {
           id: 32,
           nome: "Laser Segurança",
           descricao: "Laser apontador para segurança, com design discreto e alta precisão.",
           preco: 79.9,
-          imagem: "https://i.imgur.com/placeholder-laser.jpg"
+          imagem: "https://via.placeholder.com/300x200?text=Laser+Seguran%C3%A7a"
         },
         {
           id: 33,
           nome: "Pederneira",
           descricao: "Pederneira para ignição de fogo, resistente e fácil de usar.",
           preco: 49.9,
-          imagem: "https://i.imgur.com/placeholder-pederneira.jpg"
+          imagem: "https://via.placeholder.com/300x200?text=Pederneira"
         },
         {
           id: 34,
           nome: "Pulseira Tática",
           descricao: "Pulseira tática feita com material resistente para uso diário.",
           preco: 49.9,
-          imagem: "https://i.imgur.com/placeholder-pulseira.jpg"
+          imagem: "https://via.placeholder.com/300x200?text=Pulseira+T%C3%A1tica"
         },
         {
           id: 37,
           nome: "Soco Inglês",
           descricao: "Soco inglês com acabamento resistente e design anatômico.",
           preco: 64.9,
-          imagem: "https://i.imgur.com/placeholder-soco-ingles.jpg"
+          imagem: "https://via.placeholder.com/300x200?text=Soco+Ingl%C3%AAs"
         },
         {
           id: 38,
           nome: "Spray Pimenta",
           descricao: "Spray de pimenta, compacto e eficaz para defesa pessoal.",
           preco: 129.9,
-          imagem: "https://i.imgur.com/placeholder-spray-pimenta.jpg"
+          imagem: "https://via.placeholder.com/300x200?text=Spray+Pimenta"
         },
         {
           id: 39,
           nome: "Taser",
           descricao: "Eletrochoque tático, potente e seguro para defesa pessoal.",
           preco: 149.9,
-          imagem: "https://i.imgur.com/placeholder-taser.jpg"
+          imagem: "https://via.placeholder.com/300x200?text=Taser"
         }
       ];
 
-      // Renderiza os produtos na página
+      // Carrinho de compras
+      let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+      
+      // Elementos do DOM
       const containerProdutos = document.getElementById("produtos-container");
+      const buscaProduto = document.getElementById("busca-produto");
+      const filtroPreco = document.getElementById("filtro-preco");
+      const carrinhoBtn = document.getElementById("carrinho-btn");
 
-      function renderProdutos() {
-        containerProdutos.innerHTML = ""; // limpa antes
+      // Renderiza os produtos na página
+      function renderProdutos(produtosParaRenderizar = produtos) {
+        containerProdutos.innerHTML = "";
         
-        produtos.forEach((produto) => {
+        if (produtosParaRenderizar.length === 0) {
+          containerProdutos.innerHTML = '<p style="grid-column: 1/-1; text-align: center;">Nenhum produto encontrado</p>';
+          return;
+        }
+        
+        produtosParaRenderizar.forEach((produto, index) => {
           const produtoHTML = `
-            <article class="produto">
+            <article class="produto" style="animation-delay: ${0.1 * index}s">
               <div class="produto-img">
-                <img src="${produto.imagem || 'https://via.placeholder.com/300x200?text=Produto+sem+imagem'}" alt="${produto.nome}" />
+                <img 
+                  src="${produto.imagem || 'https://via.placeholder.com/300x200?text=Produto+sem+imagem'}" 
+                  alt="${produto.nome}" 
+                  loading="lazy"
+                  onerror="this.src='https://via.placeholder.com/300x200?text=Imagem+não+disponível'"
+                />
               </div>
               <div class="produto-info">
                 <h3>${produto.nome}</h3>
                 <p>${produto.descricao}</p>
                 <div class="preco">R$ ${produto.preco.toFixed(2).replace('.', ',')}</div>
-                <button class="btn-comprar" onclick="adicionarAoCarrinho(${produto.id})">
+                <button 
+                  class="btn-comprar" 
+                  onclick="adicionarAoCarrinho(${produto.id})" 
+                  aria-label="Adicionar ${produto.nome} ao carrinho"
+                >
                   <i class="fas fa-cart-plus"></i> Comprar
                 </button>
               </div>
@@ -591,20 +736,73 @@
         });
       }
 
-      // Função simulada de "Comprar" (sem carrinho complexo)
-      function adicionarAoCarrinho(idProduto) {
-        const btn = event.target;
-        btn.innerHTML = '<i class="fas fa-check"></i> Adicionado';
-        btn.style.background = 'linear-gradient(90deg, var(--verde), #128c7e)';
+      // Filtra produtos
+      function filtrarProdutos() {
+        const termoBusca = buscaProduto.value.toLowerCase();
+        const precoMaximo = parseFloat(filtroPreco.value) || Infinity;
         
-        setTimeout(() => {
-          btn.innerHTML = '<i class="fas fa-cart-plus"></i> Comprar';
-          btn.style.background = 'linear-gradient(90deg, var(--destaque), var(--cinza-claro))';
-        }, 1000);
+        const produtosFiltrados = produtos.filter(produto => {
+          const nomeMatch = produto.nome.toLowerCase().includes(termoBusca);
+          const descricaoMatch = produto.descricao.toLowerCase().includes(termoBusca);
+          const precoMatch = produto.preco <= precoMaximo;
+          
+          return (nomeMatch || descricaoMatch) && precoMatch;
+        });
+        
+        renderProdutos(produtosFiltrados);
       }
 
-      // Carrega os produtos ao abrir a página
-      document.addEventListener('DOMContentLoaded', renderProdutos);
+      // Adiciona produto ao carrinho
+      function adicionarAoCarrinho(idProduto) {
+        const produto = produtos.find(p => p.id === idProduto);
+        const itemExistente = carrinho.find(item => item.id === idProduto);
+        
+        if (itemExistente) {
+          itemExistente.quantidade += 1;
+        } else {
+          carrinho.push({ ...produto, quantidade: 1 });
+        }
+        
+        // Feedback visual
+        const btn = event.target;
+        const originalHTML = btn.innerHTML;
+        
+        btn.innerHTML = '<i class="fas fa-check"></i> Adicionado';
+        btn.style.background = 'linear-gradient(90deg, var(--verde), #128c7e)';
+        btn.disabled = true;
+        
+        // Atualiza carrinho
+        localStorage.setItem('carrinho', JSON.stringify(carrinho));
+        
+        // Restaura botão após 1.5s
+        setTimeout(() => {
+          btn.innerHTML = originalHTML;
+          btn.style.background = 'linear-gradient(90deg, var(--destaque), var(--cinza-claro))';
+          btn.disabled = false;
+        }, 1500);
+      }
+
+      // Redirecionar para a página do carrinho
+      function mostrarCarrinho() {
+        localStorage.setItem('carrinho', JSON.stringify(carrinho));
+        window.location.href = 'cart.html';
+      }
+
+      // Event listeners
+      buscaProduto.addEventListener('input', filtrarProdutos);
+      filtroPreco.addEventListener('change', filtrarProdutos);
+      carrinhoBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        mostrarCarrinho();
+      });
+
+      // Inicializa a página
+      document.addEventListener('DOMContentLoaded', () => {
+        renderProdutos();
+      });
+
+      // Expor funções para o escopo global (necessário quando o JS está no HTML)
+      window.adicionarAoCarrinho = adicionarAoCarrinho;
     </script>
   </body>
 </html>
